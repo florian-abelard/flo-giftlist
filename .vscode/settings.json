@@ -1,0 +1,29 @@
+{
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#d83a3b",
+        "activityBar.activeBorder": "#105010",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#105010",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "titleBar.activeBackground": "#ba2526",
+        "titleBar.inactiveBackground": "#ba252699",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveForeground": "#e7e7e799",
+        "statusBar.background": "#ba2526",
+        "statusBarItem.hoverBackground": "#d83a3b",
+        "statusBar.foreground": "#e7e7e7"
+    },
+    "peacock.color": "#ba2526",
+    "sqltools.connections": [
+        {
+            "database": "wishlist",
+            "dialect": "PostgreSQL",
+            "name": "flo-wishlist",
+            "password": "flo",
+            "port": 5432,
+            "server": "localhost",
+            "username": "flo"
+        }
+    ]
+}
