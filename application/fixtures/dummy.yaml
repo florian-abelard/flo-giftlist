@@ -1,0 +1,13 @@
+App\Entity\GiftIdea:
+  idea1:
+    label: 'Coffret huile basilic'
+  idea2:
+    label: 'Livre d''activité'
+  idea3:
+    label: 'Attrape-plumes'
+  idea4:
+    label: 'Les culottées Tome 1'
+  idea5:
+    label: 'Cherche et trouve géant'
+  idea_{6..15}:
+    label: '<sentence(3, true)>'
