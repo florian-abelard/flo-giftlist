@@ -7,7 +7,7 @@ database-doctrine-exec = docker-compose -f ${DOCKER_COMPOSE_FILE} exec -T --user
 
 #------------------------------------------------------------------------------
 
-db-init: db-create-user db-create-database db-migrate ##@database create and populate database
+db-init: db-create-user db-create-database db-migrate db-populate##@database create and populate database
 
 db-create-user:
 	$(call database-admin-exec, env PGPASSWORD=${DATABASE_ADMIN_PASSWORD} psql --echo-all --username=${DATABASE_ADMIN} --variable="user=${DATABASE_USER}" --variable="user_password='${DATABASE_USER_PASSWORD}'" --file="/var/data/sql/system.sql")
@@ -17,6 +17,9 @@ db-create-database:
 
 db-migrate: 
 	$(call database-doctrine-exec, php bin/console doctrine:migrations:migrate)
+
+db-populate: 
+	$(call database-doctrine-exec, php bin/console hautelook:fixtures:load)
 
 #------------------------------------------------------------------------------
 
