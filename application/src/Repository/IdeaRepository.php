@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\GiftIdea;
+use App\Entity\Idea;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method GiftIdea|null find($id, $lockMode = null, $lockVersion = null)
- * @method GiftIdea|null findOneBy(array $criteria, array $orderBy = null)
- * @method GiftIdea[]    findAll()
- * @method GiftIdea[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Idea|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Idea|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Idea[]    findAll()
+ * @method Idea[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class GiftIdeaRepository extends ServiceEntityRepository
+class IdeaRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, GiftIdea::class);
+        parent::__construct($registry, Idea::class);
     }
 
     // /**
-    //  * @return GiftIdea[] Returns an array of GiftIdea objects
+    //  * @return Idea[] Returns an array of Idea objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class GiftIdeaRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?GiftIdea
+    public function findOneBySomeField($value): ?Idea
     {
         return $this->createQueryBuilder('g')
             ->andWhere('g.exampleField = :val')

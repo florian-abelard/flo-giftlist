@@ -1,4 +1,4 @@
-App\Entity\GiftIdea:
+App\Entity\Idea:
   idea1:
     label: 'Coffret huile basilic'
   idea2:

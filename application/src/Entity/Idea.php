@@ -2,12 +2,17 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\GiftIdeaRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\IdeaRepository")
+ * @ApiResource(
+ *      collectionOperations={"get", "post"},
+ *      itemOperations={"get"}
+ * )
  */
-class GiftIdea
+class Idea
 {
     /**
      * @ORM\Id()

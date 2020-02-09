@@ -19,7 +19,7 @@ db-migrate:
 	$(call database-doctrine-exec, php bin/console doctrine:migrations:migrate)
 
 db-populate: 
-	$(call database-doctrine-exec, php bin/console hautelook:fixtures:load)
+	$(call database-doctrine-exec, php bin/console hautelook:fixtures:load --no-bundles)
 
 #------------------------------------------------------------------------------
 
