@@ -8,7 +8,13 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import '../css/app.css';
 
-// Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
-// import $ from 'jquery';
+import Vue from 'vue';
+import Idea from './idea/Idea'
 
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+/**
+* Create a fresh Vue Application instance
+*/
+new Vue({
+    el: '#app',
+    components: { Idea }
+});

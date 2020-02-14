@@ -35,7 +35,7 @@ services:
     environment:
       POSTGRES_USER: ${DATABASE_ADMIN}
       POSTGRES_PASSWORD: ${DATABASE_ADMIN_PASSWORD}
-
+      
   adminer:
     image: adminer
     container_name: ${APP_NAME}-adminer
