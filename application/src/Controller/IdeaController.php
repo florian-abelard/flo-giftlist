@@ -13,13 +13,8 @@ class IdeaController extends AbstractController
      */
     public function list()
     {
-        $repository = $this->getDoctrine()->getRepository(Idea::class);
-
-        $ideas = $repository->findAll();
-
         return $this->render('idea/index.html.twig', [
-            'controller_name' => 'IdeaController',
-            'ideas' => $ideas,
+            'controller_name' => 'IdeaController'
         ]);
     }
 }

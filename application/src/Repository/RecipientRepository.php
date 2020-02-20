@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Close;
+use App\Entity\Recipient;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Close|null find($id, $lockMode = null, $lockVersion = null)
- * @method Close|null findOneBy(array $criteria, array $orderBy = null)
- * @method Close[]    findAll()
- * @method Close[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Recipient|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Recipient|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Recipient[]    findAll()
+ * @method Recipient[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CloseRepository extends ServiceEntityRepository
+class RecipientRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Close::class);
+        parent::__construct($registry, Recipient::class);
     }
 
     // /**
-    //  * @return Close[] Returns an array of Close objects
+    //  * @return Recipient[] Returns an array of Recipient objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class CloseRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Close
+    public function findOneBySomeField($value): ?Recipient
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.exampleField = :val')

@@ -11,6 +11,7 @@ services:
       - '9000:9000'
     volumes:
       - .:/var/www/app
+    working_dir: /var/www/app/application
 
   web:
     build: docker/images/nginx
@@ -34,7 +35,7 @@ services:
     environment:
       POSTGRES_USER: ${DATABASE_ADMIN}
       POSTGRES_PASSWORD: ${DATABASE_ADMIN_PASSWORD}
-
+      
   adminer:
     image: adminer
     container_name: ${APP_NAME}-adminer

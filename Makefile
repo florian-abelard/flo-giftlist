@@ -6,6 +6,7 @@ USER_ID=$(shell id -u)
 GROUP_ID=$(shell id -g)
 ROOT_PATH=$(shell pwd)
 DOCKER_COMPOSE_FILE?=./docker-compose.yml
+# DOCKER_COMPOSE_BUILDER_FILE?=./docker-compose-builder.yml
 
 export USER_ID
 export GROUP_ID
