@@ -3,21 +3,23 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\IdeaRepository")
  * @ApiResource(
  *      collectionOperations={"get", "post"},
- *      itemOperations={"get"}
+ *      itemOperations={"get", "patch"}
  * )
  */
 class Idea
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -30,9 +32,10 @@ class Idea
     /**
      * @ORM\ManyToMany(targetEntity="Recipient")
      * @ORM\JoinTable(name="ideas_recipients",
-     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      joinColumns={@ORM\JoinColumn(name="idea_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="recipient_id", referencedColumnName="id")}
      *      )
+     * @ApiSubresource
      */
     private $recipients;
 
@@ -54,6 +57,25 @@ class Idea
     public function setLabel(string $label): self
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    public function getRecipients(): Collection
+    {
+        return $this->recipients;
+    }
+
+    public function addRecipient(Recipient $recipient): self
+    {
+        $this->recipients->add($recipient);
+
+        return $this;
+    }
+
+    public function removeRecipient(Recipient $recipient): self
+    {
+        $this->recipients->removeElement($recipient);
 
         return $this;
     }

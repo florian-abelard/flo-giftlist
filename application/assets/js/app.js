@@ -9,7 +9,7 @@
 import '../css/app.css';
 
 import Vue from 'vue';
-import Idea from './idea/Idea'
+import Idea from './idea/Idea';
 
 /**
 * Create a fresh Vue Application instance

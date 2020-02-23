@@ -9,15 +9,25 @@
         <p>Voici la liste de vos idées cadeaux : </p>
         <ul v-if="ideas.length">
             <li v-for="idea in ideas">
-                {{ idea.label }}
+                <div>{{ idea.label }}</div>
+                <div>
+                    Pour qui ?
+                    <!-- <div v-for="recipient in idea.recipients">
+                       {{ recipient.name }}
+                    </div> -->
+                    <recipient :idea="idea"></recipient>
+                </div>
             </li>
         </ul>
     </div>
 </template>
 
 <script>
+    import Recipient from './Recipient';
+    
     export default {
         name: "idea",
+        components: { Recipient },
         data() {
             return { ideas: [], label: '' };
         },
