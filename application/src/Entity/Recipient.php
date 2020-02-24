@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RecipientRepository")
@@ -23,6 +24,7 @@ class Recipient
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("idea")
      */
     private $name;
 
