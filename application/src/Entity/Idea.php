@@ -3,16 +3,17 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiSubresource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\IdeaRepository")
  * @ApiResource(
  *      collectionOperations={"get", "post"},
- *      itemOperations={"get", "patch"}
+ *      itemOperations={"get", "patch"},
+ *      normalizationContext={"groups"={"idea"}}
  * )
  */
 class Idea
@@ -26,6 +27,7 @@ class Idea
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"idea"})
      */
     private $label;
 
@@ -35,7 +37,7 @@ class Idea
      *      joinColumns={@ORM\JoinColumn(name="idea_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="recipient_id", referencedColumnName="id")}
      *      )
-     * @ApiSubresource
+     * @Groups({"idea"})
      */
     private $recipients;
 

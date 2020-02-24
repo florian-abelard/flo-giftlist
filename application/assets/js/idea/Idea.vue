@@ -12,10 +12,11 @@
                 <div>{{ idea.label }}</div>
                 <div>
                     Pour qui ?
-                    <!-- <div v-for="recipient in idea.recipients">
+
+                    <div v-for="recipient in idea.recipients">
                        {{ recipient.name }}
-                    </div> -->
-                    <recipient :idea="idea"></recipient>
+                    </div>
+                    <!-- <recipient :idea="idea"></recipient> -->
                 </div>
             </li>
         </ul>
