@@ -26,6 +26,10 @@ make db-init
 make
 ```
 
-Accès interface sur `http://localhost:8080`
+### Accès aux interfaces
 
-Accès adminer sur `http://localhost:8081`
+Application `http://localhost:8080`
+
+API `http://localhost:8080/api`
+
+Adminer `http://localhost:8081`
