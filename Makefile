@@ -16,7 +16,7 @@ export GROUP_ID
 include .env
 export $(shell sed 's/=.*//' .env)
 
-ifneq (,$(wildcard application/.env.local))
+ifneq (,$(wildcard application/.env))
 	include application/.env
 	export $(shell sed 's/=.*//' application/.env)
 endif
