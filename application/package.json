@@ -16,5 +16,7 @@
         "watch": "encore dev --watch",
         "build": "encore production --progress"
     },
-    "dependencies": {}
+    "dependencies": {
+        "vue-router": "^3.1.6"
+    }
 }

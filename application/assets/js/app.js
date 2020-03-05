@@ -10,6 +10,7 @@ import '../css/app.css';
 
 import Vue from 'vue';
 import App from "./App";
+import router from "./router";
 
 /**
 * Create a fresh Vue Application instance
@@ -17,5 +18,6 @@ import App from "./App";
 new Vue({
     el: '#app',
     components: { App },
-    template: "<App/>"
+    template: "<App/>",
+    router
 });
