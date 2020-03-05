@@ -3,13 +3,14 @@
 
     <div class="container">
 
-        <h1>Hello My Dear !!!</h1>
+        <h1>GIFT LIST APP</h1>
 
         <router-link class="navbar-brand" to="/home">
-            App
+            Home
         </router-link>
-
-        COUCOU
+        <router-link class="navbar-brand" to="/idea/list">
+            Idées
+        </router-link>
 
         <router-view />
 
