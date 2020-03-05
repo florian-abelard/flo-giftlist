@@ -14,13 +14,17 @@ export GROUP_ID
 #------------------------------------------------------------------------------
 
 include .env
-$(foreach var,$(shell cat .env),$(eval export ${var}))
+export $(shell sed 's/=.*//' .env)
 
--include application/.env
-$(test ! -e application/.env && foreach var,$(shell cat application/.env),$(eval export ${var}))
+ifneq (,$(wildcard application/.env))
+	include application/.env
+	export $(shell sed 's/=.*//' application/.env)
+endif
 
--include application/.env.local
-$(test ! -e application/.env.local && foreach var,$(shell cat application/.env.local),$(eval export ${var}))
+ifneq (,$(wildcard application/.env.local))
+	include application/.env.local
+	export $(shell sed 's/=.*//' application/.env.local)
+endif
 
 #------------------------------------------------------------------------------
 
@@ -28,7 +32,7 @@ include makefiles/*.mk
 
 #------------------------------------------------------------------------------
 
-init: composer-install ## install project dependencies
+init: composer-install npm-install webpack-build ## install project dependencies
 
 #------------------------------------------------------------------------------
 

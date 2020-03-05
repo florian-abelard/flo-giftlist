@@ -15,10 +15,10 @@ composer-install: vendor ##@composer install / update composer dependencies
 composer-dump-autoload: ##@composer dump autoloading
 	$(call composer-exec, dump-autoload)
 
-vendor: composer.lock
+vendor: application/composer.lock
 	$(call composer-exec, install --ignore-platform-reqs ${COMPOSER_ARGS})
 
-composer.lock: composer.json
+application/composer.lock: application/composer.json
 	$(call composer-exec, update --ignore-platform-reqs ${COMPOSER_ARGS})
 
 #------------------------------------------------------------------------------
