@@ -9,12 +9,13 @@
 import '../css/app.css';
 
 import Vue from 'vue';
-import Idea from './idea/Idea';
+import App from "./App";
 
 /**
 * Create a fresh Vue Application instance
 */
 new Vue({
     el: '#app',
-    components: { Idea }
+    components: { App },
+    template: "<App/>"
 });
