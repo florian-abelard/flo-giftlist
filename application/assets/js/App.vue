@@ -1,20 +1,34 @@
 
 <template>
 
-    <div class="container">
+    <v-app>
 
-        <h1>GIFT LIST APP</h1>
+        <v-app-bar app color="green">
+            <v-toolbar-title>Idées Cadeaux Moflo</v-toolbar-title>
+                    
+            <router-link class="navbar-brand" to="/home">                
+                <v-btn value="home">
+                    <span>Home</span>
+                    <v-icon>mdi-home</v-icon>
+                </v-btn>
+            </router-link>
+            <router-link class="navbar-brand" to="/idea/list">                
+                <v-btn value="idea-list">
+                    <span>Idées cadeaux</span>
+                    <v-icon>mdi-heart</v-icon>
+                </v-btn>
+            </router-link>
+        </v-app-bar>
 
-        <router-link class="navbar-brand" to="/home">
-            Home
-        </router-link>
-        <router-link class="navbar-brand" to="/idea/list">
-            Idées
-        </router-link>
+        <v-content>
+            <v-container fluid>
+                
+                <router-view></router-view>
 
-        <router-view />
+            </v-container>
+        </v-content>
 
-    </div>
+    </v-app>
 
 </template>
 

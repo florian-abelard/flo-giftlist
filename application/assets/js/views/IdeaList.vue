@@ -24,7 +24,7 @@
 <script>
     
     export default {
-        name: "idea",
+        name: "IdeaList",
         data() {
             return { ideas: []};
         },
@@ -41,7 +41,7 @@
             }
         }
     }
-    
+
 </script>
 
 <style scoped>
