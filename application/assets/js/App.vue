@@ -3,29 +3,67 @@
 
     <v-app>
 
-        <v-app-bar app color="green">
+        <v-app-bar app color="green lighten-3">
+
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
             <v-toolbar-title>Idées Cadeaux Moflo</v-toolbar-title>
-                    
-            <router-link class="navbar-brand" to="/home">                
-                <v-btn value="home">
-                    <span>Home</span>
-                    <v-icon>mdi-home</v-icon>
-                </v-btn>
-            </router-link>
-            <router-link class="navbar-brand" to="/idea/list">                
-                <v-btn value="idea-list">
-                    <span>Idées cadeaux</span>
-                    <v-icon>mdi-heart</v-icon>
-                </v-btn>
-            </router-link>
+
+            <v-spacer></v-spacer>
+
         </v-app-bar>
 
         <v-content>
+
+            <v-navigation-drawer v-model="drawer" absolute>
+
+                <v-list nav dense>
+
+                    <v-list-item-group v-model="group" active-class="deep-green--text text--accent-4">
+
+                        <router-link to="/home" tag="v-list-item">  
+                            <v-list-item link>
+                                <v-list-item-icon>
+                                    <v-icon>mdi-home</v-icon>
+                                </v-list-item-icon>
+                                <v-list-item-content>
+                                    <v-list-item-title>Accueil</v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </router-link>
+                        <router-link to="/idea/list" tag="v-list-item">  
+                            <v-list-item link>
+                                <v-list-item-icon>
+                                    <v-icon>mdi-lightbulb-on-outline</v-icon>
+                                </v-list-item-icon>
+                                <v-list-item-content>
+                                    <v-list-item-title>Idées cadeaux</v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </router-link>
+                        <router-link to="/gift/list" tag="v-list-item">  
+                            <v-list-item link>
+                                <v-list-item-icon>
+                                    <v-icon>mdi-gift-outline</v-icon>
+                                </v-list-item-icon>
+                                <v-list-item-content>
+                                    <v-list-item-title>Cadeaux</v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </router-link>
+
+                    </v-list-item-group>
+                    
+                </v-list>
+
+            </v-navigation-drawer>
+
             <v-container fluid>
                 
                 <router-view></router-view>
 
             </v-container>
+
         </v-content>
 
     </v-app>
@@ -35,7 +73,16 @@
 <script>
 
     export default {
-        name: "App"
+        name: "App",
+        data: () => ({
+            drawer: false,
+            group: null,
+        }),
+        watch: {
+            group () {
+                this.drawer = false
+            },
+        },
     };
 
 </script>
