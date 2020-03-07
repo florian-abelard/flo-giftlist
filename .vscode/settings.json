@@ -1,29 +1,29 @@
 {
     "workbench.colorCustomizations": {
-        "activityBar.background": "#d83a3b",
-        "activityBar.activeBorder": "#105010",
-        "activityBar.foreground": "#e7e7e7",
-        "activityBar.inactiveForeground": "#e7e7e799",
-        "activityBarBadge.background": "#105010",
-        "activityBarBadge.foreground": "#e7e7e7",
-        "titleBar.activeBackground": "#ba2526",
-        "titleBar.inactiveBackground": "#ba252699",
-        "titleBar.activeForeground": "#e7e7e7",
-        "titleBar.inactiveForeground": "#e7e7e799",
-        "statusBar.background": "#ba2526",
-        "statusBarItem.hoverBackground": "#d83a3b",
-        "statusBar.foreground": "#e7e7e7"
+        "activityBar.background": "#99ffff",
+        "activityBar.activeBorder": "#ff60ff",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#ff60ff",
+        "activityBarBadge.foreground": "#15202b",
+        "titleBar.activeBackground": "#66ffff",
+        "titleBar.inactiveBackground": "#66ffff99",
+        "titleBar.activeForeground": "#15202b",
+        "titleBar.inactiveForeground": "#15202b99",
+        "statusBar.background": "#66ffff",
+        "statusBarItem.hoverBackground": "#33ffff",
+        "statusBar.foreground": "#15202b"
     },
-    "peacock.color": "#ba2526",
+    "peacock.color": "#66ffff",
     "sqltools.connections": [
         {
-            "database": "wishlist",
+            "database": "giftlist",
             "dialect": "PostgreSQL",
-            "name": "flo-wishlist",
-            "password": "flo",
+            "name": "giftlist - local",
+            "password": "dPz648DdzA4fjIZez4",
             "port": 5432,
-            "server": "localhost",
-            "username": "flo"
+            "server": "db",
+            "username": "postgres"
         }
     ]
 }
