@@ -1,16 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js">
+
     <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimal-ui">
+
+        <title>{% block title %}Idées Cadeaux Moflo{% endblock %}</title>
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
     </head>
+
     <body>
-        <div id="app">
-            {% block body %}{% endblock %}
-        </div>
+
+        {% block body %}
+            <div class="app-container" id="app">
+                <app></app>
+            </div>
+        {% endblock %}
+
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
     </body>
+
 </html>
