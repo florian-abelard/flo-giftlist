@@ -3,7 +3,7 @@
 
     <v-app>
 
-        <v-app-bar app color="green lighten-3">
+        <v-app-bar app color="teal darken-1" dark>
 
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
@@ -31,6 +31,7 @@
                                 </v-list-item-content>
                             </v-list-item>
                         </router-link>
+
                         <router-link to="/idea/list" tag="v-list-item">  
                             <v-list-item link>
                                 <v-list-item-icon>
@@ -41,6 +42,7 @@
                                 </v-list-item-content>
                             </v-list-item>
                         </router-link>
+
                         <router-link to="/gift/list" tag="v-list-item">  
                             <v-list-item link>
                                 <v-list-item-icon>
@@ -58,7 +60,7 @@
 
             </v-navigation-drawer>
 
-            <v-container fluid>
+            <v-container d-flex fluid>
                 
                 <router-view></router-view>
 
