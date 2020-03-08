@@ -3,6 +3,7 @@
     <v-container d-flex justify-center>
         
         <v-row justify="space-between">
+
             <v-col cols="12" sm="6">
                 <router-link to="/idea/list" v-slot="{ href, route, navigate }">
                     <v-card :href="href" @click="navigate" color="teal lighten-4">
@@ -47,9 +48,9 @@
                             </v-row>
                         </v-container>
                     </v-card>
-                </router-link>  
-            </v-card>
-          </v-col>
+                </router-link>
+            </v-col>
+
         </v-row>
 
     </v-container>

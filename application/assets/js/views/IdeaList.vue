@@ -26,7 +26,7 @@
     export default {
         name: "IdeaList",
         data() {
-            return { ideas: []};
+            return { ideas: [] };
         },
         created() {
             this.fetchIdeas();
@@ -34,9 +34,14 @@
         methods: {
             fetchIdeas() {
                 fetch('/api/ideas')
-                .then( response => response.json() )
+                .then( response => {
+                    return response.json();
+                })
                 .then( (data) => {
                     this.ideas = data['hydra:member'];
+                })
+                .catch( (err) => {
+                    console.log(err);
                 });
             }
         }
