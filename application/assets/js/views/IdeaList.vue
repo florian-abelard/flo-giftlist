@@ -1,23 +1,33 @@
 <template>
 
-    <div>
-        <br/>
-        <p>Voici la liste de vos idées cadeaux : </p>
-        <ul v-if="ideas.length">
-            <li v-for="idea in ideas">
+    <v-container justify-center>
 
-                <div>{{ idea.label }}</div>
-                <div>
-                    Pour qui ?
+        <v-container class="display-1">Idées cadeaux</v-container>
 
-                    <div v-for="recipient in idea.recipients">
-                       {{ recipient.name }}
-                    </div>
-                </div>
+        <v-list>
 
-            </li>
-        </ul>
-    </div>
+            <template v-for="(idea, index) in ideas">
+                <v-list-item :key="idea.id" @click="">
+
+                    <v-list-item-content>
+                        <v-list-item-title v-text="idea.label"></v-list-item-title>
+
+                        <div v-for="recipient in idea.recipients">
+                            {{ recipient.name }}
+                        </div>
+                    </v-list-item-content>
+
+                    <v-list-item-icon @click="">
+                        <v-icon color="red">mdi-delete</v-icon>
+                    </v-list-item-icon>
+
+                </v-list-item>
+                <v-divider v-if="index + 1 < ideas.length" :key="index"></v-divider>
+            </template>
+
+        </v-list>
+
+    </v-container>
 
 </template>
 
