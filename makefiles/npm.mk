@@ -24,7 +24,7 @@ npm-install: ##@npm install npm dependencies
 npm-install-dev: ##@npm install npm dependencies
 	$(call NPM_DOCKER_CMD, install $(NPM_CLI_ARGS) --save-dev)
 
-npm-uninstall: ##@npm install npm dependencies
+npm-uninstall: ##@npm uninstall npm dependencies
 	$(call NPM_DOCKER_CMD, uninstall $(NPM_CLI_ARGS))
 
 npm-update: ##@npm update npm dependencies

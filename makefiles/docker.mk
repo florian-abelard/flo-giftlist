@@ -13,12 +13,6 @@ down: ##@docker stop and remove containers and volumes
 
 rebuild: build up ##@docker rebuild and start containers
 
-bash-web: ##@docker open a bash session in the web container
-	docker-compose -f ${DOCKER_COMPOSE_FILE} exec web /bin/bash
-
-bash-php: ##@docker open a bash session in the web container
-	docker-compose -f ${DOCKER_COMPOSE_FILE} exec php /bin/bash
-
 #------------------------------------------------------------------------------
 
 clean-docker: down ##@docker clean docker containers
@@ -27,4 +21,4 @@ clean-docker: down ##@docker clean docker containers
 
 #------------------------------------------------------------------------------
 
-.PHONY: up build down rebuild connect clean-docker
+.PHONY: up build down rebuild connect clean-docker bash-web bash-php
