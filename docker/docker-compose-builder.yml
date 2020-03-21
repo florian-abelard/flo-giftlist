@@ -12,3 +12,11 @@ services:
       - "${ROOT_PATH}:/var/www/app:cached"
       - "~/.cache/composer:/tmp/.composer/cache"
     working_dir: /var/www/app/application
+
+  node:
+    image: node:13
+    container_name: ${APP_NAME}-node
+    volumes:
+      - "${ROOT_PATH}:/var/www/app:cached"
+      - "~/.npm:/opt/.npm"
+    working_dir: /var/www/app/application

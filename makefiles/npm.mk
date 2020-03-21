@@ -1,16 +1,10 @@
 #------------------------------------------------------------------------------
-# Webpack Makefile
+# NPM and Webpack Makefile
 #------------------------------------------------------------------------------
 
-NPM_DOCKER_CMD = docker run --rm \
-	-v ${ROOT_PATH}:/var/www/app \
-	-v ${HOME}/.npm:/opt/.npm \
-	-u ${USER_ID}:${GROUP_ID} \
-	-w /var/www/app/application \
-	node:13 \
-	npm ${1}
+NPM_DOCKER_CMD = docker-compose -f ${DOCKER_COMPOSE_BUILDER_FILE} run -T --user ${USER_ID}:${GROUP_ID} node npm ${1}
 
-# Spread cli arguments
+# Cli arguments
 ifneq (,$(filter npm-install% npm-uninstall, $(firstword $(MAKECMDGOALS))))
     NPM_CLI_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
     $(eval $(NPM_CLI_ARGS):;@:)
@@ -29,9 +23,6 @@ npm-uninstall: ##@npm uninstall npm dependencies
 
 npm-update: ##@npm update npm dependencies
 	$(call NPM_DOCKER_CMD, update)
-
-# npm-create-cache-dir:
-# 	mkdir -p ~/.npm
 
 #------------------------------------------------------------------------------
 

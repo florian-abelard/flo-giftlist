@@ -10,7 +10,7 @@ ifneq (,$(filter composer-require% composer-remove%, $(firstword $(MAKECMDGOALS)
     $(eval $(COMPOSER_CLI_ARGS):;@:)
 endif
 
-# Others arguments
+# Command arguments
 ifeq ($(ENV), test)
     COMPOSER_ARGS=--no-interaction
 endif
