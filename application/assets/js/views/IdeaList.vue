@@ -17,15 +17,15 @@
                         </div>
                     </v-list-item-content>
 
-                    <v-list-item-icon @click="">
-                        <v-icon color="red">mdi-delete</v-icon>
-                    </v-list-item-icon>
-
                 </v-list-item>
                 <v-divider v-if="index + 1 < ideas.length" :key="index"></v-divider>
             </template>
 
         </v-list>
+
+        <v-btn class="mx-2" fab dark fixed bottom right color="teal darken-1">
+            <v-icon dark>mdi-plus</v-icon>
+        </v-btn>
 
     </v-container>
 
