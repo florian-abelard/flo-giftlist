@@ -15,7 +15,7 @@
 
         <v-content>
 
-            <v-navigation-drawer v-model="drawer" absolute>
+            <v-navigation-drawer v-model="drawer" absolute fixed>
 
                 <v-list nav dense>
 

@@ -23,9 +23,11 @@
 
         </v-list>
 
-        <v-btn class="mx-2" fab dark fixed bottom right color="teal darken-1">
-            <v-icon dark>mdi-plus</v-icon>
-        </v-btn>
+        <router-link to="/idea/create" v-slot="{ href, route, navigate }">
+            <v-btn class="mx-2" fab dark fixed bottom right color="teal darken-1" :href="href" @click="navigate">
+                <v-icon dark>mdi-plus</v-icon>
+            </v-btn>
+        </router-link>
 
     </v-container>
 
