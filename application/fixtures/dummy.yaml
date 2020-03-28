@@ -11,3 +11,43 @@ App\Entity\Idea:
     label: 'Cherche et trouve géant'
   idea_{6..15}:
     label: '<sentence(3, true)>'
+
+App\Entity\Recipient:
+  recipient1:
+    name: 'Clémentine'
+  recipient2:
+    name: 'Médhi'
+  recipient3:
+    name: 'Juliette'
+  recipient4:
+    name: 'Antoine'
+  recipient5:
+    name: 'Papi'
+  recipient6:
+    name: 'Mamie Flo'
+  recipient7:
+    name: 'Mamie Nicole'
+  recipient8:
+    name: 'Papi Phil'
+  recipient9:
+    name: 'Thibault'
+  recipient10:
+    name: 'Aurélie'
+  recipient11:
+    name: 'Arthur'
+  recipient12:
+    name: 'Jules'
+  recipient13:
+    name: 'Jeanne'
+  recipient14:
+    name: 'Charline'
+  recipient15:
+    name: 'Guillaume'
+  recipient16:
+    name: 'Junon'
+  recipient17:
+    name: 'Amaurine'
+  recipient18:
+    name: 'Mamée'
+  recipient19:
+    name: 'Papé'
