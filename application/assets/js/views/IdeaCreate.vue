@@ -11,6 +11,7 @@
             <v-text-field
                 v-model="label"
                 label="Libellé"
+                :rules="[value => !!value || 'Le libellé est obligatoire']"
                 required
             >
             </v-text-field>
