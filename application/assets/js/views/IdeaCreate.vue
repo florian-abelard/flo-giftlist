@@ -24,7 +24,8 @@
                 dense
                 chips
                 small-chips
-                label="Outlined"
+                deletable-chips
+                label="Ajouter des destinataires"
                 multiple
             ></v-autocomplete>
 
@@ -33,7 +34,7 @@
                 class="mr-4"
                 @click="create"
             >
-                Valider
+                Valider mon idée cadeau
             </v-btn>
 
         </v-form>
