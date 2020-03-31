@@ -17,10 +17,10 @@
             </v-text-field>
 
             <v-autocomplete
-                v-model="recipientsId"
+                v-model="recipientsUri"
                 :items="allRecipients"
                 item-text="name"
-                item-value="id"
+                item-value="@id"
                 outlined
                 dense
                 chips
@@ -49,7 +49,7 @@
     export default {
         name: "IdeaCreate",
         data() {
-            return { label: '', recipientsId: [], allRecipients: []};
+            return { label: '', recipientsUri: [], allRecipients: []};
         },
         created() {
             this.fetchRecpients();
@@ -58,8 +58,7 @@
             create()
             {
                 const label = this.label;
-                const recipientsId = this.recipientsId;
-                const recipientsUri = this.buildUris(recipientsId);
+                const recipientsUri = this.recipientsUri;
                 fetch('/api/ideas', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/ld+json'},
@@ -87,16 +86,6 @@
                 .catch( (err) => {
                     console.log(err);
                 });
-            },
-            buildUris(elementsId)
-            {
-                let uris = [];
-
-                elementsId.forEach(id => {
-                    uris.push('/api/recipients/' + id);
-                });
-
-                return uris;
             }
         }
     }
