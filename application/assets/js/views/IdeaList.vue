@@ -1,26 +1,29 @@
 <template>
-
     <v-container justify-center>
 
         <v-container class="display-1">Idées cadeaux</v-container>
 
         <v-list>
-
             <template v-for="(idea, index) in ideas">
-                <v-list-item :key="idea.id" @click="">
+
+                <v-list-item :key="idea.id">
 
                     <v-list-item-content>
-                        <v-list-item-title v-text="idea.label"></v-list-item-title>
 
-                        <div v-for="recipient in idea.recipients">
-                            {{ recipient.name }}
-                        </div>
+                        <v-list-item-title v-text="idea.label" @click="test"></v-list-item-title>
+
+                        <v-list-item-subtitle v-if="idea.recipients.length > 0">
+                            <v-chip v-for="recipient in idea.recipients" small>
+                                {{ recipient.name }}
+                            </v-chip>
+                        </v-list-item-subtitle>
+
                     </v-list-item-content>
 
                 </v-list-item>
+
                 <v-divider v-if="index + 1 < ideas.length" :key="index"></v-divider>
             </template>
-
         </v-list>
 
         <router-link to="/idea/create" v-slot="{ href, route, navigate }">
@@ -30,7 +33,6 @@
         </router-link>
 
     </v-container>
-
 </template>
 
 <script>
