@@ -17,15 +17,17 @@
                         </div>
                     </v-list-item-content>
 
-                    <v-list-item-icon @click="">
-                        <v-icon color="red">mdi-delete</v-icon>
-                    </v-list-item-icon>
-
                 </v-list-item>
                 <v-divider v-if="index + 1 < ideas.length" :key="index"></v-divider>
             </template>
 
         </v-list>
+
+        <router-link to="/idea/create" v-slot="{ href, route, navigate }">
+            <v-btn class="mx-2" fab dark fixed bottom right color="teal darken-1" :href="href" @click="navigate">
+                <v-icon dark>mdi-plus</v-icon>
+            </v-btn>
+        </router-link>
 
     </v-container>
 
