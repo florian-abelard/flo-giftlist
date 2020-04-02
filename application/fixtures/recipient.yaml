@@ -1,17 +1,3 @@
-App\Entity\Idea:
-  idea1:
-    label: 'Coffret huile basilic'
-  idea2:
-    label: 'Livre d''activité'
-  idea3:
-    label: 'Attrape-plumes'
-  idea4:
-    label: 'Les culottées Tome 1'
-  idea5:
-    label: 'Cherche et trouve géant'
-  idea_{6..15}:
-    label: '<sentence(3, true)>'
-
 App\Entity\Recipient:
   recipient1:
     name: 'Clémentine'
@@ -51,3 +37,9 @@ App\Entity\Recipient:
     name: 'Mamée'
   recipient19:
     name: 'Papé'
+  recipient20:
+    name: 'Roxane'
+  recipient21:
+    name: 'Maud'
+  recipient22:
+    name: 'Florian'
