@@ -3,14 +3,14 @@
 
         <v-container class="display-1">Idées cadeaux</v-container>
 
-        <v-list>
+        <v-list two-line>
             <template v-for="(idea, index) in ideas">
 
-                <v-list-item :key="idea.id">
+                <v-list-item :key="idea.id" @click="">
 
                     <v-list-item-content>
 
-                        <v-list-item-title v-text="idea.label" @click="test"></v-list-item-title>
+                        <v-list-item-title v-text="idea.label"></v-list-item-title>
 
                         <v-list-item-subtitle v-if="idea.recipients.length > 0">
                             <v-chip v-for="recipient in idea.recipients" small>
@@ -19,6 +19,12 @@
                         </v-list-item-subtitle>
 
                     </v-list-item-content>
+
+                    <v-list-item-action>
+                        <v-btn icon v-on:click="deleteIdea(idea.id)">
+                            <v-icon color="grey lighten-1">mdi-delete</v-icon>
+                        </v-btn>
+                    </v-list-item-action>
 
                 </v-list-item>
 
@@ -53,6 +59,17 @@
                 })
                 .then( (data) => {
                     this.ideas = data['hydra:member'];
+                })
+                .catch( (err) => {
+                    console.log(err);
+                });
+            },
+            deleteIdea(id) {
+                fetch('/api/ideas/' + id, {
+                    method: 'DELETE'
+                })
+                .then( response => {
+                    this.fetchIdeas();
                 })
                 .catch( (err) => {
                     console.log(err);
