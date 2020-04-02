@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\IdeaRepository")
  * @ApiResource(
  *      collectionOperations={"get", "post"},
- *      itemOperations={"get", "patch"},
+ *      itemOperations={"get", "patch", "delete"},
  *      normalizationContext={"groups"={"idea"}}
  * )
  */
@@ -23,6 +23,7 @@ class Idea
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
+     * @Groups({"idea"})
      */
     private $id;
 
