@@ -13,52 +13,52 @@
 
         </v-app-bar>
 
+        <v-navigation-drawer v-model="drawer" app>
+
+            <v-list nav dense>
+
+                <v-list-item-group v-model="group" active-class="deep-green--text text--accent-4">
+
+                    <router-link to="/home" tag="v-list-item">  
+                        <v-list-item link>
+                            <v-list-item-icon>
+                                <v-icon>mdi-home</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-content>
+                                <v-list-item-title>Accueil</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </router-link>
+
+                    <router-link to="/idea/list" tag="v-list-item">  
+                        <v-list-item link>
+                            <v-list-item-icon>
+                                <v-icon>mdi-lightbulb-on-outline</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-content>
+                                <v-list-item-title>Idées cadeaux</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </router-link>
+
+                    <router-link to="/gift/list" tag="v-list-item">  
+                        <v-list-item link>
+                            <v-list-item-icon>
+                                <v-icon>mdi-gift-outline</v-icon>
+                            </v-list-item-icon>
+                            <v-list-item-content>
+                                <v-list-item-title>Cadeaux</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </router-link>
+
+                </v-list-item-group>
+                
+            </v-list>
+
+        </v-navigation-drawer>
+
         <v-content>
-
-            <v-navigation-drawer v-model="drawer" absolute fixed>
-
-                <v-list nav dense>
-
-                    <v-list-item-group v-model="group" active-class="deep-green--text text--accent-4">
-
-                        <router-link to="/home" tag="v-list-item">  
-                            <v-list-item link>
-                                <v-list-item-icon>
-                                    <v-icon>mdi-home</v-icon>
-                                </v-list-item-icon>
-                                <v-list-item-content>
-                                    <v-list-item-title>Accueil</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </router-link>
-
-                        <router-link to="/idea/list" tag="v-list-item">  
-                            <v-list-item link>
-                                <v-list-item-icon>
-                                    <v-icon>mdi-lightbulb-on-outline</v-icon>
-                                </v-list-item-icon>
-                                <v-list-item-content>
-                                    <v-list-item-title>Idées cadeaux</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </router-link>
-
-                        <router-link to="/gift/list" tag="v-list-item">  
-                            <v-list-item link>
-                                <v-list-item-icon>
-                                    <v-icon>mdi-gift-outline</v-icon>
-                                </v-list-item-icon>
-                                <v-list-item-content>
-                                    <v-list-item-title>Cadeaux</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </router-link>
-
-                    </v-list-item-group>
-                    
-                </v-list>
-
-            </v-navigation-drawer>
 
             <v-container d-flex fluid>
                 

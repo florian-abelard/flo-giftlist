@@ -6,7 +6,7 @@
         <v-list two-line>
             <template v-for="(idea, index) in ideas">
 
-                <v-list-item :key="idea.id" @click="">
+                <v-list-item :key="idea.id" v-on:click="">
 
                     <v-list-item-content>
 
