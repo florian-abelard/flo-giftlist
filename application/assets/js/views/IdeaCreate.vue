@@ -52,7 +52,7 @@
             return { label: '', recipientsUri: [], allRecipients: []};
         },
         created() {
-            this.fetchRecpients();
+            this.fetchRecipients();
         },
         methods: {
             create()
@@ -74,7 +74,7 @@
                     console.log(err);
                 });
             },
-            fetchRecpients()
+            fetchRecipients()
             {
                 fetch('/api/recipients')
                 .then( response => {
