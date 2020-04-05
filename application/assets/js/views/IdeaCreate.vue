@@ -6,10 +6,10 @@
 
         Créer une idée cadeaux
 
-        <v-form>
+        <v-form v-on:submit.prevent="create">
 
             <v-text-field
-                v-model="label"
+                v-model="idea.label"
                 label="Libellé"
                 :rules="[value => !!value || 'Le libellé est obligatoire']"
                 required
@@ -17,7 +17,7 @@
             </v-text-field>
 
             <v-autocomplete
-                v-model="recipientsUri"
+                v-model="idea.recipientsUri"
                 :items="allRecipients"
                 item-text="name"
                 item-value="@id"
@@ -31,9 +31,9 @@
             ></v-autocomplete>
 
             <v-btn
+                type="submit"
                 color="success"
                 class="mr-4"
-                @click="create"
             >
                 Valider mon idée cadeau
             </v-btn>
@@ -49,7 +49,13 @@
     export default {
         name: "IdeaCreate",
         data() {
-            return { label: '', recipientsUri: [], allRecipients: []};
+            return { 
+                idea: {
+                    label: '', 
+                    recipientsUri: []
+                },
+                allRecipients: []
+            };
         },
         created() {
             this.fetchRecipients();
@@ -57,14 +63,13 @@
         methods: {
             create()
             {
-                const label = this.label;
-                const recipientsUri = this.recipientsUri;
+                const idea = this.idea;
                 fetch('/api/ideas', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/ld+json'},
                     body: JSON.stringify({
-                        label: label,
-                        recipients: recipientsUri
+                        label: idea.label,
+                        recipients: idea.recipientsUri
                     })
                 })
                 .then( response => {
