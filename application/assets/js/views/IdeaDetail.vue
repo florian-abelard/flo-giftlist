@@ -28,9 +28,10 @@
             <v-text-field
                 v-model="idea.label"
                 label="Libellé"
-                :rules="[value => !!value || 'Le libellé est obligatoire']"
                 required
-                :disabled="editMode === false"
+                :rules="[value => !!value || 'Le libellé est obligatoire']"
+                :disabled="!editMode"
+                :class="editMode ? '' : 'input-read-mode'"
             >
             </v-text-field>
 
@@ -98,4 +99,17 @@
 </script>
 
 <style scoped>
+    .input-read-mode >>> .v-input__slot::before {
+        border-style: none;
+    }
+    .input-read-mode >>> .theme--light.v-label--is-disabled {
+        color: rgba(0, 0, 0, .87);
+    }
+    .theme--light.v-input--is-disabled input {
+        color: rgba(0, 0, 0, .87);
+    }
+    .input-read-mode >>> input[type="text"][disabled] {
+        color: rgba(0, 0, 0, .87);
+    }
 </style>
+e
