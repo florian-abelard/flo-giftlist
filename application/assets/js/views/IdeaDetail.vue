@@ -23,17 +23,34 @@
 
         <p>Détail de l'idée cadeau</p>
 
-        <v-form v-on:submit.prevent="update">
+        <v-form
+            :class="editMode ? '' : 'form-read-mode'"
+            v-on:submit.prevent="update"
+        >
 
             <v-text-field
                 v-model="idea.label"
                 label="Libellé"
+                :outlined="editMode"
                 required
                 :rules="[value => !!value || 'Le libellé est obligatoire']"
                 :disabled="!editMode"
-                :class="editMode ? '' : 'input-read-mode'"
             >
             </v-text-field>
+
+            <v-autocomplete
+                v-model="idea.recipientsUri"
+                :items="allRecipients"
+                item-text="name"
+                item-value="@id"
+                dense
+                :outlined="editMode"
+                small-chips
+                deletable-chips
+                label="Destinataires"
+                multiple
+                :disabled="!editMode"
+            ></v-autocomplete>
 
             <v-btn
                 type="submit"
@@ -55,10 +72,16 @@
     export default {
         name: "IdeaDetail",
         data() {
-            return { idea: {}, initialIdea: {}, editMode: false};
+            return { 
+                idea: {}, 
+                initialIdea: {},
+                allRecipients: [],
+                editMode: false
+            };
         },
         created() {
            this.fetchIdea(this.$route.params.id);
+           this.fetchRecipients();
         },
         methods: {
             fetchIdea(id) {
@@ -68,12 +91,26 @@
                     })
                     .then( (data) => {
                         this.idea = data;
-                        this.initialIdea = data;
+                        this.idea.recipientsUri = this.idea.recipients.map( element => element['@id'] );
+                        this.initialIdea = this.idea;
                     })
                     .catch( (err) => {
                         console.log(err);
                     })
                 ;
+            },
+            fetchRecipients()
+            {
+                fetch('/api/recipients')
+                .then( response => {
+                    return response.json();
+                })
+                .then( (data) => {
+                    this.allRecipients = data['hydra:member'];
+                })
+                .catch( (err) => {
+                    console.log(err);
+                });
             },
             update()
             {
@@ -82,7 +119,8 @@
                         method: 'PATCH',
                         headers: {'Content-Type': 'application/merge-patch+json'},
                         body: JSON.stringify({
-                            label: idea.label
+                            label: idea.label,
+                            recipients: idea.recipientsUri
                         })
                     })
                     .then( response => {
@@ -99,17 +137,20 @@
 </script>
 
 <style scoped>
-    .input-read-mode >>> .v-input__slot::before {
+    .form-read-mode >>> .v-input__slot::before {
         border-style: none;
     }
-    .input-read-mode >>> .theme--light.v-label--is-disabled {
+    .form-read-mode >>> .theme--light.v-label--is-disabled {
+        color: rgba(0, 0, 0, .6);
+    }
+    .form-read-mode >>> .theme--light.v-input--is-disabled input {
         color: rgba(0, 0, 0, .87);
     }
-    .theme--light.v-input--is-disabled input {
+    .form-read-mode >>> input[type="text"][disabled] {
         color: rgba(0, 0, 0, .87);
     }
-    .input-read-mode >>> input[type="text"][disabled] {
-        color: rgba(0, 0, 0, .87);
+    .form-read-mode >>> .theme--light.v-chip--disabled {
+        opacity: 1;
     }
 </style>
 e
