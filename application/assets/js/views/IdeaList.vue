@@ -6,19 +6,21 @@
         <v-list two-line>
             <template v-for="(idea, index) in ideas">
 
-                <v-list-item :key="idea.id" v-on:click="">
+                <v-list-item :key="idea.id" :style="{ cursor: 'pointer' }">
 
-                    <v-list-item-content>
+                    <router-link v-bind:to="'/idea/' + idea.id" v-slot="{ href, route, navigate }">
+                        <v-list-item-content :href="href" v-on:click="navigate">
 
-                        <v-list-item-title v-text="idea.label"></v-list-item-title>
+                            <v-list-item-title v-text="idea.label"></v-list-item-title>
 
-                        <v-list-item-subtitle v-if="idea.recipients.length > 0">
-                            <v-chip v-for="recipient in idea.recipients" small>
-                                {{ recipient.name }}
-                            </v-chip>
-                        </v-list-item-subtitle>
+                            <v-list-item-subtitle v-if="idea.recipients.length > 0">
+                                <v-chip v-for="recipient in idea.recipients" small>
+                                    {{ recipient.name }}
+                                </v-chip>
+                            </v-list-item-subtitle>
 
-                    </v-list-item-content>
+                        </v-list-item-content>
+                    </router-link>
 
                     <v-list-item-action>
                         <v-btn icon v-on:click="deleteIdea(idea.id)">
@@ -33,7 +35,7 @@
         </v-list>
 
         <router-link to="/idea/create" v-slot="{ href, route, navigate }">
-            <v-btn class="mx-2" fab dark fixed bottom right color="teal darken-1" :href="href" @click="navigate">
+            <v-btn class="mx-2" fab dark fixed bottom right color="teal darken-1" :href="href" v-on:click="navigate">
                 <v-icon dark>mdi-plus</v-icon>
             </v-btn>
         </router-link>

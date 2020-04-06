@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\IdeaRepository")
  * @ApiResource(
  *      collectionOperations={"get", "post"},
- *      itemOperations={"get", "delete"},
+ *      itemOperations={"get", "patch", "delete"},
  *      normalizationContext={"groups"={"idea"}},
  *      attributes={"order"={"id": "DESC"}}
  * )

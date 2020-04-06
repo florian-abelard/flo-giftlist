@@ -1,13 +1,13 @@
 App\Entity\Idea:
-  idea1:
-    label: 'Coffret huile basilic'
-  idea2:
-    label: 'Livre d''activité'
-  idea3:
-    label: 'Attrape-plumes'
-  idea4:
-    label: 'Les culottées Tome 1'
-  idea5:
-    label: 'Cherche et trouve géant'
-  idea_{6..15}:
+  idea_{1..10}:
     label: '<sentence(3, true)>'
+  idea11:
+    label: 'Coffret huile basilic'
+  idea12:
+    label: 'Livre d''activité'
+  idea13:
+    label: 'Attrape-plumes'
+  idea14:
+    label: 'Les culottées Tome 1'
+  idea15:
+    label: 'Cherche et trouve géant'
