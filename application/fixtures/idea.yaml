@@ -1,22 +1,22 @@
 App\Entity\Idea:
-  idea_{1..4}:
-    label: <sentence(3, true)>
-    recipients: <randomElements(@recipient{1..22}, 1)>
-  idea_{5..7}:
-    label: <sentence(3, true)>
-    recipients (unique): <randomElements(@recipient{1..22}, 2)>
-  idea_{8..10}:
-    label: <sentence(3, true)>
-  idea11:
+  idea1:
     label: 'Coffret huile basilic'
-  idea12:
+  idea2:
     label: 'Livre d''activité'
     recipients: ['@recipient13', '@recipient17', '@recipient20']
-  idea13:
+  idea3:
     label: 'Attrape-plumes'
-  idea14:
+  idea4:
     label: 'Les culottées Tome 1'
     recipients: ['@recipient1']
-  idea15:
+  idea5:
     label: 'Cherche et trouve géant'
     recipients: ['@recipient12']
+  idea_{6..8}:
+    label: <sentence(3, true)>
+    recipients: <randomElements(@recipient{1..22}, 1)>
+  idea_{9..11}:
+    label: <sentence(3, true)>
+    recipients (unique): <randomElements(@recipient{1..22}, 2)>
+  idea_{12..15}:
+    label: <sentence(3, true)>

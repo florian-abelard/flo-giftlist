@@ -6,6 +6,8 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
+use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -15,11 +17,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  *      collectionOperations={"get", "post"},
  *      itemOperations={"get", "patch", "delete"},
  *      normalizationContext={"groups"={"idea"}},
- *      attributes={"order"={"id": "DESC"}}
+ *      attributes={"order"={"updatedAt": "DESC", "id": "ASC"}}
  * )
  */
-class Idea
+class Idea implements TimestampableInterface
 {
+    use TimestampableTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
