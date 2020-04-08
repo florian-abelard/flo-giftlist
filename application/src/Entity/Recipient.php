@@ -30,6 +30,7 @@ class Recipient
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Group", inversedBy="members")
+     * @ORM\JoinColumn(name="group_id", referencedColumnName="id")
      * @Groups("idea")
      */
     private $group;
