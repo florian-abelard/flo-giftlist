@@ -9,8 +9,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RecipientRepository")
  * @ApiResource(
- *      collectionOperations={"get", "post"},
- *      itemOperations={"get"}
+ *     collectionOperations={"get", "post"},
+ *     itemOperations={"get"}
  * )
  */
 class Recipient
@@ -28,6 +28,12 @@ class Recipient
      */
     private $name;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Group", inversedBy="members")
+     * @Groups("idea")
+     */
+    private $group;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -41,6 +47,18 @@ class Recipient
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getGroup(): ?Group
+    {
+        return $this->group;
+    }
+
+    public function setGroup(?Group $group): self
+    {
+        $this->group = $group;
 
         return $this;
     }
