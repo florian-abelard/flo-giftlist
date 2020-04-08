@@ -42,7 +42,7 @@ class Idea implements TimestampableInterface
     private $label;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Recipient", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Recipient")
      * @ORM\JoinTable(name="ideas_recipients",
      *      joinColumns={@ORM\JoinColumn(name="idea_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="recipient_id", referencedColumnName="id")}

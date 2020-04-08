@@ -22,7 +22,7 @@ db-create-database:
 	$(call database-doctrine-exec, php bin/console doctrine:database:create)
 
 db-populate: ##@database populate with fixtures data 
-	$(call database-doctrine-exec, php bin/console hautelook:fixtures:load --no-bundles)
+	$(call database-doctrine-exec, php bin/console hautelook:fixtures:load --no-bundles --env=dev)
 
 db-migrate: ##@database run the database migrations 
 	$(call database-doctrine-exec, php bin/console doctrine:migrations:migrate)

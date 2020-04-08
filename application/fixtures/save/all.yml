@@ -1,0 +1,81 @@
+App\Entity\Recipient:
+  recipient1:
+    name: 'Clémentine'
+  recipient2:
+    name: 'Médhi'
+  recipient3:
+    name: 'Juliette'
+  recipient4:
+    name: 'Antoine'
+  recipient5:
+    name: 'Papi'
+  recipient6:
+    name: 'Mamie Flo'
+  recipient7:
+    name: 'Mamie Nicole'
+  recipient8:
+    name: 'Papi Phil'
+  recipient9:
+    name: 'Thibault'
+  recipient10:
+    name: 'Aurélie'
+  recipient11:
+    name: 'Arthur'
+  recipient12:
+    name: 'Jules'
+  recipient13:
+    name: 'Jeanne'
+  recipient14:
+    name: 'Charline'
+  recipient15:
+    name: 'Guillaume'
+  recipient16:
+    name: 'Junon'
+  recipient17:
+    name: 'Amaurine'
+  recipient18:
+    name: 'Mamée'
+  recipient19:
+    name: 'Papé'
+  recipient20:
+    name: 'Roxane'
+  recipient21:
+    name: 'Maud'
+  recipient22:
+    name: 'Florian'
+
+App\Entity\Group:
+  group1:
+    label: 'Famille Moflo'
+  group2:
+    label: 'Famille Abélard'
+  group3:
+    label: 'Famille Verlaguet'
+  group4:
+    label: 'Famille Lasterre'
+  group5:
+    label: 'Amis'
+
+App\Entity\Idea:
+  idea1:
+    label: 'Coffret huile basilic'
+  idea2:
+    label: 'Livre d''activité'
+    recipients: ['@recipient13', '@recipient17', '@recipient20']
+  idea3:
+    label: 'Attrape-plumes'
+  idea4:
+    label: 'Les culottées Tome 1'
+    recipients: ['@recipient1']
+  idea5:
+    label: 'Cherche et trouve géant'
+    recipients: ['@recipient12']
+  idea_{6..8}:
+    label: <sentence(3, true)>
+    recipients: <randomElements(@recipient{1..22}, 1)>
+  idea_{9..11}:
+    label: <sentence(3, true)>
+    recipients (unique): <randomElements(@recipient{1..22}, 2)>
+  idea_{12..15}:
+    label: <sentence(3, true)>
+
