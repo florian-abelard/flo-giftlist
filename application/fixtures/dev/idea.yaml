@@ -3,7 +3,7 @@ App\Entity\Idea:
     label: 'Coffret huile basilic'
   idea2:
     label: 'Livre d''activité'
-    recipients: ['@recipient13', '@recipient17', '@recipient20']
+    recipients: ['@recipient12', '@recipient13']
   idea3:
     label: 'Attrape-plumes'
   idea4:
@@ -11,12 +11,12 @@ App\Entity\Idea:
     recipients: ['@recipient1']
   idea5:
     label: 'Cherche et trouve géant'
-    recipients: ['@recipient12']
   idea_{6..8}:
     label: <sentence(3, true)>
     recipients: <randomElements(@recipient{1..22}, 1)>
   idea_{9..11}:
     label: <sentence(3, true)>
-    recipients (unique): <randomElements(@recipient{1..22}, 2)>
+    recipients : <randomElements(@recipient{1..22}, 2)>
   idea_{12..15}:
     label: <sentence(3, true)>
+    recipients: '<randomElements(@recipient{1..22}, 3)>'
