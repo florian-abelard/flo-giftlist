@@ -1,0 +1,13 @@
+App\Entity\Group:
+  group1:
+    label: 'Famille Moflo'
+    # members: ['@recipient20', '@recipient21', '@recipient22']
+  group2:
+    label: 'Famille Abélard'
+    # members: '5x @recipient*'
+  group3:
+    label: 'Famille Verlaguet'
+  group4:
+    label: 'Famille Lasterre'
+  group5:
+    label: 'Amis'

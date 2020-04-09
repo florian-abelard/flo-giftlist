@@ -1,10 +1,13 @@
 App\Entity\Recipient:
   recipient1:
     name: 'Clémentine'
+    group: '@group2'
   recipient2:
     name: 'Médhi'
+    group: '@group2'
   recipient3:
     name: 'Juliette'
+    group: '@group2'
   recipient4:
     name: 'Antoine'
   recipient5:
@@ -39,7 +42,10 @@ App\Entity\Recipient:
     name: 'Papé'
   recipient20:
     name: 'Roxane'
+    group: '@group1'
   recipient21:
     name: 'Maud'
+    group: '@group1'
   recipient22:
     name: 'Florian'
+    group: '@group1'
