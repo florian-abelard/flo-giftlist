@@ -10,36 +10,52 @@ App\Entity\Recipient:
     group: '@group2'
   recipient4:
     name: 'Antoine'
+    group: '@group2'
   recipient5:
     name: 'Papi'
+    group: '@group2'
   recipient6:
     name: 'Mamie Flo'
+    group: '@group2'
   recipient7:
     name: 'Mamie Nicole'
+    group: '@group3'
   recipient8:
     name: 'Papi Phil'
+    group: '@group3'
   recipient9:
     name: 'Thibault'
+    group: '@group4'
   recipient10:
     name: 'Aurélie'
+    group: '@group4'
   recipient11:
     name: 'Arthur'
+    group: '@group4'
   recipient12:
     name: 'Jules'
+    group: '@group4'
   recipient13:
     name: 'Jeanne'
+    group: '@group4'
   recipient14:
     name: 'Charline'
+    group: '@group4'
   recipient15:
     name: 'Guillaume'
+    group: '@group4'
   recipient16:
     name: 'Junon'
+    group: '@group4'
   recipient17:
     name: 'Amaurine'
+    group: '@group4'
   recipient18:
     name: 'Mamée'
+    group: '@group4'
   recipient19:
     name: 'Papé'
+    group: '@group4'
   recipient20:
     name: 'Roxane'
     group: '@group1'
