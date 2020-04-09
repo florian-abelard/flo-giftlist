@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\GiftRepository")
@@ -14,9 +15,12 @@ class Gift implements TimestampableInterface
     use TimestampableTrait;
 
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @var UuidInterface The internal primary identity key
+     *
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM") 
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
 
@@ -25,7 +29,7 @@ class Gift implements TimestampableInterface
      */
     private $label;
 
-    public function getId(): ?int
+    public function getId(): ?UuidInterface
     {
         return $this->id;
     }

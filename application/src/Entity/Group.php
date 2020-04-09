@@ -5,6 +5,7 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * @ApiResource()
@@ -14,9 +15,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Group
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @var UuidInterface The internal primary identity key
+     *
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM") 
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
 
@@ -35,7 +39,7 @@ class Group
         $this->members = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): ?UuidInterface
     {
         return $this->id;
     }

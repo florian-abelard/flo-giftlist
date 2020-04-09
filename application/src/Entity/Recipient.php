@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -16,9 +17,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
 class Recipient
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
+     * @var UuidInterface The internal primary identity key
+     *
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM") 
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     * @Groups({"idea"})
      */
     private $id;
 
@@ -35,7 +40,7 @@ class Recipient
      */
     private $group;
 
-    public function getId(): ?int
+    public function getId(): ?UuidInterface
     {
         return $this->id;
     }

@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Contract\Entity\TimestampableInterface;
 use Knp\DoctrineBehaviors\Model\Timestampable\TimestampableTrait;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -25,12 +26,15 @@ class Idea implements TimestampableInterface
     use TimestampableTrait;
 
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
+     * @var UuidInterface The internal primary identity key
+     *
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM") 
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      * @Groups({"idea"})
      */
-    private $id;
+    protected $id;
 
     /** 
      * @var string The label of the gift
@@ -56,7 +60,7 @@ class Idea implements TimestampableInterface
         $this->recipients = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId(): ?UuidInterface
     {
         return $this->id;
     }

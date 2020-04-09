@@ -13,7 +13,7 @@ export default new VueRouter({
         { path: "/home", component: Home },
         { path: "/idea/list", component: IdeaList },
         { path: "/idea/create", component: IdeaCreate },
-        { path: "/idea/:id(\\d+)", component: IdeaDetail },
+        { path: "/idea/:id", component: IdeaDetail },
         { path: "*", redirect: "/home" }
     ]
 });
