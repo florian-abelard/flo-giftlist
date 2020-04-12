@@ -10,5 +10,6 @@ RUN apk add zlib-dev postgresql-dev git icu-dev libxml2-dev libzip-dev unzip \
     && docker-php-ext-install zip xml
 
 # Set timezone
-RUN ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+RUN apk add tzdata
+RUN ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
 RUN "date"
