@@ -12,16 +12,19 @@ endif
 
 #------------------------------------------------------------------------------
 
-npm-install: ##@npm install npm dependencies
+npm-init: 
+	test -e ~/.npm || mkdir ~/.npm
+
+npm-install: npm-init ##@npm install npm dependencies
 	$(call NPM_DOCKER_CMD, install $(NPM_CLI_ARGS) --silent)
 
-npm-install-dev: ##@npm install npm dependencies
+npm-install-dev: npm-init ##@npm install npm dependencies
 	$(call NPM_DOCKER_CMD, install $(NPM_CLI_ARGS) --save-dev)
 
-npm-uninstall: ##@npm uninstall npm dependencies
+npm-uninstall: npm-init ##@npm uninstall npm dependencies
 	$(call NPM_DOCKER_CMD, uninstall $(NPM_CLI_ARGS))
 
-npm-update: ##@npm update npm dependencies
+npm-update: npm-init ##@npm update npm dependencies
 	$(call NPM_DOCKER_CMD, update)
 
 #------------------------------------------------------------------------------
