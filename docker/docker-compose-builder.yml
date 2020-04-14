@@ -16,6 +16,8 @@ services:
   node:
     image: node:13
     container_name: ${APP_NAME}-node
+    environment:
+      - HOME=/opt
     volumes:
       - "${ROOT_PATH}:/var/www/app:cached"
       - "~/.npm:/opt/.npm"
