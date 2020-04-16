@@ -5,9 +5,9 @@ name: Test CI
 
 on:
   push:
-    branches: [ chore-create-workflow-with-github-action ]
+    branches: [ develop ]
   pull_request:
-    branches: [ chore-create-workflow-with-github-action ]
+    branches: [ develop ]
 
 jobs:
   build:
