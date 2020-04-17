@@ -51,3 +51,12 @@ jobs:
           ARGS: "-e -a -v -z -r --delete"
           FOLDER: "./"
           SERVER_DESTINATION: "/var/www/recette.cadeaux.moflo.fr/"
+
+      - name: Reset and populate database
+        uses: appleboy/ssh-action@master
+        with:
+          host: "recette.cadeaux.lesmoflo.fr"
+          username: ${{ secrets.SERVER_STAGING_REMOTE_USER }}
+          key: ${{ secrets.SERVER_STAGING_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SERVER_STAGING_REMOTE_PORT }}
+          script: make db-init
