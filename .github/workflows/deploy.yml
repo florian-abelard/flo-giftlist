@@ -6,7 +6,12 @@ on:
   pull_request:
     branches: [ develop ]
 
+env:
+  DEPLOY_REMOTE_HOST: "recette.cadeaux.lesmoflo.fr"
+  DEPLOY_DESTINATION_FOLDER: "/var/www/recette.cadeaux.moflo.fr/"
+
 jobs:
+
   deploy:
 
     runs-on: ubuntu-latest
@@ -45,18 +50,20 @@ jobs:
         uses: AEnterprise/rsync-deploy@v1.0
         env:
           DEPLOY_KEY: ${{ secrets.SERVER_STAGING_SSH_PRIVATE_KEY }}
-          SERVER_IP: "recette.cadeaux.lesmoflo.fr"
+          SERVER_IP: ${DEPLOY_REMOTE_HOST}
           SERVER_PORT: ${{ secrets.SERVER_STAGING_REMOTE_PORT }}
           USERNAME: ${{ secrets.SERVER_STAGING_REMOTE_USER }}
           ARGS: "-e -a -v -z -r --delete"
           FOLDER: "./"
-          SERVER_DESTINATION: "/var/www/recette.cadeaux.moflo.fr/"
+          SERVER_DESTINATION: ${DEPLOY_DESTINATION_FOLDER}
 
       - name: Reset and populate database
         uses: appleboy/ssh-action@master
         with:
-          host: "recette.cadeaux.lesmoflo.fr"
+          host: ${DEPLOY_REMOTE_HOST}
           username: ${{ secrets.SERVER_STAGING_REMOTE_USER }}
           key: ${{ secrets.SERVER_STAGING_SSH_PRIVATE_KEY }}
           port: ${{ secrets.SERVER_STAGING_REMOTE_PORT }}
-          script: make db-init
+          script: |
+            cd ${DEPLOY_DESTINATION_FOLDER}
+            make db-init
