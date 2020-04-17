@@ -60,10 +60,10 @@ jobs:
       - name: Reset and populate database
         uses: appleboy/ssh-action@master
         with:
-          host: ${DEPLOY_REMOTE_HOST}
+          host: ${{ env.DEPLOY_REMOTE_HOST }}
           username: ${{ secrets.SERVER_STAGING_REMOTE_USER }}
           key: ${{ secrets.SERVER_STAGING_SSH_PRIVATE_KEY }}
           port: ${{ secrets.SERVER_STAGING_REMOTE_PORT }}
           script: |
-            cd ${DEPLOY_DESTINATION_FOLDER}
+            cd ${{ env.DEPLOY_REMOTE_HOST }}
             make db-init
