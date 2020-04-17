@@ -65,5 +65,5 @@ jobs:
           key: ${{ secrets.SERVER_STAGING_SSH_PRIVATE_KEY }}
           port: ${{ secrets.SERVER_STAGING_REMOTE_PORT }}
           script: |
-            cd ${{ env.DEPLOY_REMOTE_HOST }}
+            cd ${{ env.DEPLOY_DESTINATION_FOLDER }}
             make db-init
