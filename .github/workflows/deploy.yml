@@ -8,7 +8,7 @@ on:
 
 env:
   DEPLOY_REMOTE_HOST: "recette.cadeaux.lesmoflo.fr"
-  DEPLOY_DESTINATION_FOLDER: "/var/www/recette.cadeaux.moflo.fr/"
+  DEPLOY_DESTINATION_FOLDER: "/var/www/recette.cadeaux.lesmoflo.fr/"
 
 jobs:
 
