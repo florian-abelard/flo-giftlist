@@ -1,6 +1,6 @@
 # fl0 - gift list
 
-## Démarrage - TEST 5
+## Démarrage
 
 ### Pré-requis
 
