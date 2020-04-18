@@ -53,7 +53,7 @@ jobs:
           SERVER_IP: ${DEPLOY_REMOTE_HOST}
           SERVER_PORT: ${{ secrets.SERVER_STAGING_REMOTE_PORT }}
           USERNAME: ${{ secrets.SERVER_STAGING_REMOTE_USER }}
-          ARGS: "-e -a -v -z -r --delete"
+          ARGS: "-e -a -v -z -r --delete --exclude={'env.local','application/env.local','application/var/'}"
           FOLDER: "./"
           SERVER_DESTINATION: ${DEPLOY_DESTINATION_FOLDER}
 
