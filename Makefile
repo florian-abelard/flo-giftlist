@@ -48,8 +48,8 @@ bash-node: ## open a bash session in the node container
 	docker-compose -f ${DOCKER_COMPOSE_BUILDER_FILE} run --user ${USER_ID}:${GROUP_ID} node /bin/bash
 
 cache-clear: ## clear symfony cache
-	docker-compose -f ${DOCKER_COMPOSE_FILE} exec php bin/console cache:clear
-
+	docker-compose -f ${DOCKER_COMPOSE_FILE} exec -T php bin/console cache:clear
+	
 #------------------------------------------------------------------------------
 
 .DEFAULT_GOAL := help
