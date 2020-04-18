@@ -53,7 +53,7 @@ jobs:
           SERVER_IP: ${DEPLOY_REMOTE_HOST}
           SERVER_PORT: ${{ secrets.SERVER_STAGING_REMOTE_PORT }}
           USERNAME: ${{ secrets.SERVER_STAGING_REMOTE_USER }}
-          ARGS: "-e -a -v -z -r --delete --exclude={'env.local','application/env.local','application/var/'}"
+          ARGS: "-e -a -v -z -r --delete --exclude='env.local' --exclude='application/env.local' --exclude='application/var'"
           FOLDER: "./"
           SERVER_DESTINATION: ${DEPLOY_DESTINATION_FOLDER}
 
@@ -66,4 +66,5 @@ jobs:
           port: ${{ secrets.SERVER_STAGING_REMOTE_PORT }}
           script: |
             cd ${{ env.DEPLOY_DESTINATION_FOLDER }}
+            make clear:cache
             make db-init
