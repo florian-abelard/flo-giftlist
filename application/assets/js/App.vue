@@ -17,8 +17,12 @@
                 <v-icon>mdi-arrow-left</v-icon>
             </v-btn>
     
-            <v-btn icon v-if="$route.name == 'idea'" >
+            <v-btn icon v-if="$route.name == 'idea' && !editMode" @click="editMode = true">
                 <v-icon>mdi-square-edit-outline</v-icon>
+            </v-btn>
+    
+            <v-btn icon v-if="$route.name == 'idea' && editMode" @click="validateForm = true">
+                <v-icon>mdi-check</v-icon>
             </v-btn>
   
             <v-btn icon v-if="$route.name == 'ideaList'">
@@ -76,7 +80,11 @@
 
             <v-container d-flex fluid>
                 
-                <router-view></router-view>
+                <router-view 
+                    :editMode="editMode"
+                    :validateForm="validateForm"
+                    v-on:formValidated="editMode = false"
+                ></router-view>
 
             </v-container>
 
@@ -93,6 +101,8 @@
         data: () => ({
             drawer: false,
             group: null,
+            editMode: false,
+            validateForm: false
         }),
         watch: {
             group () {

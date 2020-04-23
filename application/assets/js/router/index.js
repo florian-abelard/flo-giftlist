@@ -12,7 +12,12 @@ export default new VueRouter({
     routes: [
         { path: "/", name: 'home', component: Home },
         { path: "/idea/list", name: 'ideaList', component: IdeaList },
-        { path: "/idea/create", name: 'ideaCreate', component: IdeaCreate },
+        { 
+            path: "/idea/create", 
+            name: 'ideaCreate', 
+            component: IdeaCreate,
+            props: true
+        },
         { path: "/idea/:id", name: 'idea', component: IdeaDetail },
         { path: "*", redirect: "/" }
     ]

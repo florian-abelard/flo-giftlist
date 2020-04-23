@@ -12,7 +12,7 @@
                             <v-list-item-title v-text="idea.label"></v-list-item-title>
 
                             <v-list-item-subtitle v-if="idea.recipients.length > 0">
-                                <v-chip v-for="recipient in idea.recipients" small>
+                                <v-chip v-for="recipient in idea.recipients"  v-bind:key="recipient.id" small>
                                     {{ recipient.name }}
                                 </v-chip>
                             </v-list-item-subtitle>
