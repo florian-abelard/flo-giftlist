@@ -7,9 +7,23 @@
 
             <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-            <v-toolbar-title>Idées Cadeaux Moflo</v-toolbar-title>
+            <v-toolbar-title>
+                Idées Cadeaux
+            </v-toolbar-title>
 
             <v-spacer></v-spacer>
+    
+            <v-btn icon v-if="$route.name == 'idea'" @click="$router.go(-1)">
+                <v-icon>mdi-arrow-left</v-icon>
+            </v-btn>
+    
+            <v-btn icon v-if="$route.name == 'idea'" >
+                <v-icon>mdi-square-edit-outline</v-icon>
+            </v-btn>
+  
+            <v-btn icon v-if="$route.name == 'ideaList'">
+                <v-icon>mdi-filter-outline</v-icon>
+            </v-btn>
 
         </v-app-bar>
 
@@ -19,7 +33,7 @@
 
                 <v-list-item-group v-model="group" active-class="deep-green--text text--accent-4">
 
-                    <router-link to="/home" tag="v-list-item">  
+                    <router-link to="/" tag="v-list-item">  
                         <v-list-item link>
                             <v-list-item-icon>
                                 <v-icon>mdi-home</v-icon>

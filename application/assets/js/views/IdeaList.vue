@@ -1,8 +1,6 @@
 <template>
     <v-container justify-center>
 
-        <v-container class="display-1">Idées cadeaux</v-container>
-
         <v-list two-line>
             <template v-for="(idea, index) in ideas">
 
