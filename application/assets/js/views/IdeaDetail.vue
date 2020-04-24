@@ -2,30 +2,12 @@
 
     <v-container justify-center>
 
-        <v-container class="display-1">Idées cadeaux</v-container>
-
-        <v-btn
-            color="warning"
-            class="mr-4"
-            @click="$router.go(-1)"
-        >
-            Retour
-        </v-btn>
-        <v-btn
-            color="warning"
-            class="mr-4"
-            @click="editMode = true"
-        >
-            Modifier
-        </v-btn>
-        <br/>
-        <br/>
-
         <p>Détail de l'idée cadeau</p>
 
         <v-form
+            ref="ideaForm"
             :class="editMode ? '' : 'form-read-mode'"
-            v-on:submit.prevent="update"
+            v-on:submit.prevent="onSubmit"
         >
 
             <v-text-field
@@ -52,15 +34,6 @@
                 :disabled="!editMode"
             ></v-autocomplete>
 
-            <v-btn
-                type="submit"
-                color="success"
-                class="mr-4"
-                :disabled="editMode === false"
-            >
-                Modifier mon idée cadeau
-            </v-btn>
-
         </v-form>
 
     </v-container>
@@ -71,17 +44,26 @@
     
     export default {
         name: "IdeaDetail",
+        props: {
+            editMode: false,
+            validateForm: false
+        },
         data() {
             return { 
                 idea: {}, 
                 initialIdea: {},
-                allRecipients: [],
-                editMode: false
+                allRecipients: []
             };
         },
         created() {
            this.fetchIdea(this.$route.params.id);
            this.fetchRecipients();
+        },
+        watch: {
+            validateForm: function () {
+                this.onSubmit();
+                this.$emit('formValidated');
+            }
         },
         methods: {
             fetchIdea(id) {
@@ -111,6 +93,10 @@
                 .catch( (err) => {
                     console.log(err);
                 });
+            },
+            onSubmit()
+            {
+                this.update();
             },
             update()
             {

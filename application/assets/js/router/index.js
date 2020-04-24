@@ -10,10 +10,15 @@ Vue.use(VueRouter);
 export default new VueRouter({
     mode: "history",
     routes: [
-        { path: "/home", component: Home },
-        { path: "/idea/list", component: IdeaList },
-        { path: "/idea/create", component: IdeaCreate },
-        { path: "/idea/:id", component: IdeaDetail },
-        { path: "*", redirect: "/home" }
+        { path: "/", name: 'home', component: Home },
+        { path: "/idea/list", name: 'ideaList', component: IdeaList },
+        { 
+            path: "/idea/create", 
+            name: 'ideaCreate', 
+            component: IdeaCreate,
+            props: true
+        },
+        { path: "/idea/:id", name: 'idea', component: IdeaDetail },
+        { path: "*", redirect: "/" }
     ]
 });
