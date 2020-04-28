@@ -56,13 +56,16 @@
             };
         },
         created() {
-           this.fetchIdea(this.$route.params.id);
-           this.fetchRecipients();
+            this.fetchIdea(this.$route.params.id);
+            this.fetchRecipients();
+            this.$emit('formCreated');
         },
         watch: {
             validateForm: function () {
-                this.onSubmit();
-                this.$emit('formValidated');
+                if (this.validateForm) {
+                    this.onSubmit();
+                    this.$emit('formValidated');
+                }
             }
         },
         methods: {

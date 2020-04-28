@@ -83,7 +83,8 @@
                 <router-view 
                     :editMode="editMode"
                     :validateForm="validateForm"
-                    v-on:formValidated="editMode = false"
+                    v-on:formValidated="onFormValidated"
+                    v-on:formCreated="onFormCreated"
                 ></router-view>
 
             </v-container>
@@ -107,6 +108,15 @@
         watch: {
             group () {
                 this.drawer = false
+            },
+        },
+        methods: {
+            onFormValidated() {
+                this.editMode = false;
+                this.validateForm = false;
+            },
+            onFormCreated() {
+                this.editMode = false;
             },
         },
     };
