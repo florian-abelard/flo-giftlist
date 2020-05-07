@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200505161554 extends AbstractMigration
+final class Version20200508191605 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,7 +22,7 @@ final class Version20200505161554 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
-        $this->addSql('CREATE TABLE idea (id UUID NOT NULL, label VARCHAR(255) NOT NULL, price_amount DOUBLE PRECISION DEFAULT NULL, created_at TIMESTAMP(0) WITH TIME ZONE DEFAULT NULL, updated_at TIMESTAMP(0) WITH TIME ZONE DEFAULT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE idea (id UUID NOT NULL, label VARCHAR(255) NOT NULL, price_value DOUBLE PRECISION DEFAULT NULL, created_at TIMESTAMP(0) WITH TIME ZONE DEFAULT NULL, updated_at TIMESTAMP(0) WITH TIME ZONE DEFAULT NULL, PRIMARY KEY(id))');
         $this->addSql('COMMENT ON COLUMN idea.id IS \'(DC2Type:uuid)\'');
         $this->addSql('CREATE TABLE ideas_recipients (idea_id UUID NOT NULL, recipient_id UUID NOT NULL, PRIMARY KEY(idea_id, recipient_id))');
         $this->addSql('CREATE INDEX IDX_54A62A475B6FEF7D ON ideas_recipients (idea_id)');

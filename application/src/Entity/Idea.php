@@ -19,8 +19,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiResource(
  *      collectionOperations={"get", "post"},
  *      itemOperations={"get", "patch", "delete"},
- *      normalizationContext={"groups"={"idea"}},
- *      attributes={"order"={"updatedAt": "DESC", "id": "ASC"}}
+ *      normalizationContext={
+ *          "groups"={"idea"}
+ *      },
+ *      attributes={
+ *          "order"={"updatedAt": "DESC", "id": "ASC"}
+ *      }
  * )
  */
 class Idea implements TimestampableInterface
@@ -54,6 +58,7 @@ class Idea implements TimestampableInterface
      * 
      * @ORM\Embedded(class="App\Entity\ValueObject\Price")
      * 
+     * @Assert\Type(type="App\Entity\ValueObject\Price")
      * @Groups({"idea"})
      */
     private $price;

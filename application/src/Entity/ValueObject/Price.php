@@ -3,6 +3,7 @@
 namespace App\Entity\ValueObject;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Embeddable()
@@ -10,21 +11,26 @@ use Doctrine\ORM\Mapping as ORM;
 final class Price
 {
     /**
-     * @ORM\Column(type="float", nullable=true)
      * @var float
+     * 
+     * @ORM\Column(type="float", nullable=true)
+     * 
+     * @Groups({"idea"})
      */
-    private $amount;
-
-    public function __construct(float $amount = null)
+    private $value;
+    
+    public function __construct(float $value = null)
     {
-        $this->validate($amount);
+        if (!is_null($value)) {
+            $this->validate($value);
+        }
 
-        $this->amount = $amount;
+        $this->value = $value;
     }
 
-    public function value(): string
+    public function value(): ?float
     {
-        return $this->amount;
+        return $this->value;
     }
 
     public function equals(Price $price): bool
@@ -32,20 +38,11 @@ final class Price
         return $this->value() === $price->value();
     }
 
-    public function validate(float $amount): void
+    public function validate(float $value): void
     {
-        if (is_null($amount))
+        if ($value < 0)
         {
-            return;
+            throw new \InvalidArgumentException('The amount of the price must be bigger than 0. ' . $value . ' given');
         }
-        if ($amount < 0)
-        {
-            throw new \InvalidArgumentException('The amount of the price must be bigger than 0. ' . $amount . ' given');
-        }
-    }
-
-    public function __toString(): string
-    {
-        return $this->type;
     }
 }
