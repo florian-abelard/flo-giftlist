@@ -13,9 +13,15 @@
             <v-text-field
                 v-model="idea.label"
                 label="Libellé"
-                :outlined="editMode"
                 required
                 :rules="[value => !!value || 'Le libellé est obligatoire']"
+                :disabled="!editMode"
+            >
+            </v-text-field>
+
+            <v-text-field
+                v-model="idea.price.value"
+                label="Prix"
                 :disabled="!editMode"
             >
             </v-text-field>
@@ -25,8 +31,6 @@
                 :items="allRecipients"
                 item-text="name"
                 item-value="@id"
-                dense
-                :outlined="editMode"
                 small-chips
                 deletable-chips
                 label="Destinataires"
@@ -50,7 +54,9 @@
         },
         data() {
             return { 
-                idea: {}, 
+                idea: {
+                    price: {}
+                }, 
                 initialIdea: {},
                 allRecipients: []
             };
@@ -109,6 +115,9 @@
                         headers: {'Content-Type': 'application/merge-patch+json'},
                         body: JSON.stringify({
                             label: idea.label,
+                            price: {
+                                value: parseFloat(idea.price.value)
+                            },
                             recipients: idea.recipientsUri
                         })
                     })
