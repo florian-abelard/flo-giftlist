@@ -16,13 +16,17 @@
             >
             </v-text-field>
 
+            <v-text-field
+                v-model="idea.price"
+                label="Prix"
+            >
+            </v-text-field>
+
             <v-autocomplete
                 v-model="idea.recipientsUri"
                 :items="allRecipients"
                 item-text="name"
                 item-value="@id"
-                outlined
-                dense
                 chips
                 small-chips
                 deletable-chips
@@ -51,7 +55,8 @@
         data() {
             return { 
                 idea: {
-                    label: '', 
+                    label: '',
+                    price: null,
                     recipientsUri: []
                 },
                 allRecipients: []
@@ -69,6 +74,9 @@
                     headers: {'Content-Type': 'application/ld+json'},
                     body: JSON.stringify({
                         label: idea.label,
+                        price: {
+                            value: parseFloat(idea.price)
+                        },
                         recipients: idea.recipientsUri
                     })
                 })
