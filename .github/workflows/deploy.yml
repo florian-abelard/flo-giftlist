@@ -3,8 +3,6 @@ name: Deploy application on staging server
 on:
   push:
     branches: [ develop ]
-  pull_request:
-    branches: [ develop ]
 
 env:
   DEPLOY_REMOTE_HOST: "recette.cadeaux.lesmoflo.fr"
