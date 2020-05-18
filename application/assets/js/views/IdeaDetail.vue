@@ -111,8 +111,8 @@
             {
                 const idea = this.idea;
                 fetch('/api/ideas/' + idea.id, {
-                        method: 'PATCH',
-                        headers: {'Content-Type': 'application/merge-patch+json'},
+                        method: 'PUT',
+                        headers: {'Content-Type': 'application/ld+json'},
                         body: JSON.stringify({
                             label: idea.label,
                             price: {
