@@ -6,7 +6,7 @@
 
         Créer une idée cadeaux
 
-        <v-form v-on:submit.prevent="create">
+        <v-form v-on:submit.prevent="onSubmit">
 
             <v-text-field
                 v-model="idea.label"
@@ -33,15 +33,7 @@
                 label="Ajouter des destinataires"
                 multiple
             ></v-autocomplete>
-
-            <v-btn
-                type="submit"
-                color="success"
-                class="mr-4"
-            >
-                Valider mon idée cadeau
-            </v-btn>
-
+            
         </v-form>
 
     </v-container>
@@ -52,6 +44,9 @@
     
     export default {
         name: "IdeaCreate",
+        props: {
+            validateForm: false
+        },
         data() {
             return { 
                 idea: {
@@ -65,7 +60,19 @@
         created() {
             this.fetchRecipients();
         },
+        watch: {
+            validateForm: function () {
+                if (this.validateForm) {
+                    this.onSubmit();
+                    this.$emit('formValidated');
+                }
+            }
+        },
         methods: {
+            onSubmit()
+            {
+                this.create();
+            },
             create()
             {
                 const idea = this.idea;

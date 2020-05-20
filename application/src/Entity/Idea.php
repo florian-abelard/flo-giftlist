@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * 
  * @ApiResource(
  *      collectionOperations={"get", "post"},
- *      itemOperations={"get", "patch", "delete"},
+ *      itemOperations={"get", "put", "delete"},
  *      normalizationContext={
  *          "groups"={"idea"}
  *      },
