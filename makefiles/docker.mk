@@ -21,4 +21,4 @@ clean-docker: down ##@docker clean docker containers
 
 #------------------------------------------------------------------------------
 
-.PHONY: up build down rebuild connect clean-docker
+.PHONY: up build down rebuild connect clean-docker bash-web bash-php
