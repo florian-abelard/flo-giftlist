@@ -13,9 +13,7 @@
         "titleBar.inactiveForeground": "#15202b99",
         "statusBar.background": "#66ffff",
         "statusBarItem.hoverBackground": "#33ffff",
-        "statusBar.foreground": "#15202b",
-        "statusBar.border": "#66ffff",
-        "titleBar.border": "#66ffff"
+        "statusBar.foreground": "#15202b"
     },
     "peacock.color": "#66ffff",
     "sqltools.connections": [

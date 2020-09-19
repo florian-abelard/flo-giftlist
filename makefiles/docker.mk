@@ -13,6 +13,9 @@ down: ##@docker stop and remove containers and volumes
 
 rebuild: build up ##@docker rebuild and start containers
 
+logs: ##@docker displays containers log
+	docker-compose logs -f -t --tail="5"
+
 #------------------------------------------------------------------------------
 
 clean-docker: down ##@docker clean docker containers
