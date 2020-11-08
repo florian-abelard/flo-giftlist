@@ -26,6 +26,19 @@ services:
       - php
     working_dir: /var/www/app/application
 
+  apache:
+    build: docker/images/apache
+    image: ${APP_NAME}-apache:develop
+    container_name: ${APP_NAME}-apache
+    restart: always
+    volumes:
+      - .:/var/www/app
+    ports:
+      - '8088:80'
+    depends_on:
+      - php
+    working_dir: /var/www/app/application
+
   db:
     image: postgres:12-alpine
     container_name: ${APP_NAME}-db
@@ -37,7 +50,7 @@ services:
       PGTZ: 'Europe/Paris'
       POSTGRES_USER: ${DATABASE_ADMIN}
       POSTGRES_PASSWORD: ${DATABASE_ADMIN_PASSWORD}
-      
+
   adminer:
     image: adminer
     container_name: ${APP_NAME}-adminer
