@@ -21,22 +21,23 @@ class Recipient
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
-     * @ORM\GeneratedValue(strategy="CUSTOM") 
+     * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
-     * @Groups({"idea"})
+     *
+     * @Groups({"idea:read","idea:item:get"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("idea")
+     *
+     * @Groups({"idea:read","idea:item:get"})
      */
     private $name;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Group", inversedBy="members")
      * @ORM\JoinColumn(name="group_id", referencedColumnName="id")
-     * @Groups("idea")
      */
     private $group;
 

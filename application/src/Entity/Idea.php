@@ -18,10 +18,15 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ApiResource(
  *      collectionOperations={"get", "post"},
- *      itemOperations={"get", "put", "delete"},
- *      normalizationContext={
- *          "groups"={"idea"}
+ *      itemOperations={
+ *          "get"={
+ *              "normalization_context"={"groups"={"idea:read","idea:item:get"}},
+ *          },
+ *          "post",
+ *          "delete"
  *      },
+ *      normalizationContext={"groups"={"idea:read"}},
+ *      denormalizationContext={"groups"={"idea:write"}},
  *      attributes={
  *          "order"={"updatedAt": "DESC", "id": "ASC"}
  *      }
@@ -39,7 +44,7 @@ class Idea implements TimestampableInterface
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      *
-     * @Groups({"idea"})
+     * @Groups({"idea:read","idea:write","idea:item:get"})
      */
     protected $id;
 
@@ -49,7 +54,7 @@ class Idea implements TimestampableInterface
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      *
-     * @Groups({"idea"})
+     * @Groups({"idea:read","idea:write","idea:item:get"})
      */
     private $label;
 
@@ -59,7 +64,7 @@ class Idea implements TimestampableInterface
      * @ORM\Embedded(class="App\Entity\ValueObject\Price")
      * @Assert\Type(type="App\Entity\ValueObject\Price")
      *
-     * @Groups({"idea"})
+     * @Groups({"idea:write","idea:item:get"})
      */
     private $price;
 
@@ -70,7 +75,7 @@ class Idea implements TimestampableInterface
      *      inverseJoinColumns={@ORM\JoinColumn(name="recipient_id", referencedColumnName="id")}
      *      )
      *
-     * @Groups({"idea"})
+     * @Groups({"idea:read","idea:write","idea:item:get"})
      */
     private $recipients;
 

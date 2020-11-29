@@ -13,14 +13,14 @@ final class Price
 {
     /**
      * @var float
-     * 
+     *
      * @ORM\Column(type="float", nullable=true)
-     * 
+     *
      * @Assert\PositiveOrZero
-     * @Groups({"idea"})
+     * @Groups({"idea:write","idea:item:get"})
      */
     private $value;
-    
+
     public function __construct(float $value = null)
     {
         $this->value = $value;
