@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "get"={
  *              "normalization_context"={"groups"={"idea:read","idea:item:get"}},
  *          },
- *          "post",
+ *          "put",
  *          "delete"
  *      },
  *      normalizationContext={"groups"={"idea:read"}},
@@ -44,7 +44,7 @@ class Idea implements TimestampableInterface
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      *
-     * @Groups({"idea:read","idea:write","idea:item:get"})
+     * @Groups({"idea:read","idea:item:get"})
      */
     protected $id;
 

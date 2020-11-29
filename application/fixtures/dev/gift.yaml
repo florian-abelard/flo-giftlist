@@ -1,0 +1,5 @@
+App\Entity\Gift:
+  gift1:
+    label: 'Orangette au chocolat'
+    price: '<identity(new App\Entity\ValueObject\Price("8.50"))>'
+    recipients: ['@recipient6']

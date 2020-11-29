@@ -4,27 +4,27 @@ App\Entity\Idea:
     price: '<identity(new App\Entity\ValueObject\Price("14.90"))>'
   idea2:
     label: 'Livre d''activité'
-    recipients: ['@recipient12', '@recipient13']
     price: '@price1'
+    recipients: ['@recipient12', '@recipient13']
   idea3:
     label: 'Attrape-plumes'
     price: '@price2'
   idea4:
     label: 'Les culottées Tome 1'
-    recipients: ['@recipient1']
     price: '@price3'
+    recipients: ['@recipient1']
   idea5:
     label: 'Cherche et trouve géant'
     price: '@price11'
   idea{6..8}:
     label: <sentence(3, true)>
-    recipients: <randomElements(@recipient{1..22}, 1)>
     price: '@price*'
+    recipients: <randomElements(@recipient{1..22}, 1)>
   idea{9..11}:
     label: <sentence(3, true)>
-    recipients : <randomElements(@recipient{1..22}, 2)>
     price: '@price*'
+    recipients : <randomElements(@recipient{1..22}, 2)>
   idea{12..15}:
     label: <sentence(3, true)>
-    recipients: '<randomElements(@recipient{1..22}, 3)>'
     price: '@price*'
+    recipients: '<randomElements(@recipient{1..22}, 3)>'
