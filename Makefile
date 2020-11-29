@@ -49,14 +49,14 @@ bash-node: ## open a bash session in the node container
 
 cache-clear: ## clear symfony cache
 	docker-compose -f ${DOCKER_COMPOSE_FILE} exec -T php bin/console cache:clear
-	
+
 #------------------------------------------------------------------------------
 
 .DEFAULT_GOAL := help
 
 help:
 	@echo "================================================================================"
-	@echo " Main Makefile"
+	@echo " Flo gift list Makefile"
 	@echo "================================================================================"
 	@echo
 	@perl -e '$(HELP_FUNC)' $(MAKEFILE_LIST)
