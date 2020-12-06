@@ -44,14 +44,21 @@ class Gift implements TimestampableInterface
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      *
-     * @Groups({"gift:read","gift:item:get"})
+     * @Groups({
+     *     "gift:write",
+     *     "gift:item:get",
+     * })
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Groups({"gift:read","gift:write","gift:item:get"})
+     * @Groups({
+     *     "gift:read",
+     *     "gift:write",
+     *     "gift:item:get",
+     * })
      */
     private $label;
 
@@ -59,9 +66,13 @@ class Gift implements TimestampableInterface
      * @var Price The price of the gift
      *
      * @ORM\Embedded(class="App\Entity\ValueObject\Price")
-     * @Assert\Type(type="App\Entity\ValueObject\Price")
      *
-     * @Groups({"gift:write","gift:item:get"})
+     * @Groups({
+     *     "gift:write",
+     *     "gift:item:get",
+     * })
+     *
+     * @Assert\Type(type="App\Entity\ValueObject\Price")
      */
     private $price;
 
@@ -72,9 +83,50 @@ class Gift implements TimestampableInterface
      *      inverseJoinColumns={@ORM\JoinColumn(name="recipient_id", referencedColumnName="id")}
      *      )
      *
-     * @Groups({"gift:read","gift:write","gift:item:get"})
+     * @Groups({
+     *     "gift:read",
+     *     "gift:write",
+     *     "gift:item:get",
+     * })
      */
     private $recipients;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Event")
+     *
+     * @Groups({
+     *     "gift:read",
+     *     "gift:write",
+     *     "gift:item:get",
+     * })
+     */
+    private $event;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Groups({
+     *     "gift:write",
+     *     "gift:item:get",
+     * })
+     *
+     * @Assert\Length(255)
+     */
+    private $note;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     *
+     * @Groups({
+     *     "gift:write",
+     *     "gift:item:get",
+     * })
+     *
+     * @Assert\Date
+     *
+     * @var string A "Y-m-d" formatted value
+     */
+    private $giftDate;
 
     public function __construct()
     {
@@ -126,6 +178,42 @@ class Gift implements TimestampableInterface
     public function removeRecipient(Recipient $recipient): self
     {
         $this->recipients->removeElement($recipient);
+
+        return $this;
+    }
+
+    public function getEvent(): ?Event
+    {
+        return $this->event;
+    }
+
+    public function setEvent(?Event $event): self
+    {
+        $this->event = $event;
+
+        return $this;
+    }
+
+    public function getNote(): ?string
+    {
+        return $this->note;
+    }
+
+    public function setNote(?string $note): self
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    public function getGiftDate(): ?\DateTimeInterface
+    {
+        return $this->giftDate;
+    }
+
+    public function setGiftDate(?\DateTimeInterface $giftDate): self
+    {
+        $this->giftDate = $giftDate;
 
         return $this;
     }
