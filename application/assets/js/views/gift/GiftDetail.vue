@@ -2,16 +2,16 @@
 
     <v-container justify-center>
 
-        <p>Détail de l'idée cadeau</p>
+        <p>Détail du cadeau</p>
 
         <v-form
-            ref="ideaForm"
+            ref="giftForm"
             :class="editMode ? '' : 'form-read-mode'"
             v-on:submit.prevent="onSubmit"
         >
 
             <v-text-field
-                v-model="idea.label"
+                v-model="gift.label"
                 label="Libellé"
                 required
                 :rules="[value => !!value || 'Le libellé est obligatoire']"
@@ -20,15 +20,15 @@
             </v-text-field>
 
             <v-text-field
-                v-model="idea.price.value"
+                v-model="gift.price.value"
                 label="Prix"
                 :disabled="!editMode"
             >
             </v-text-field>
 
             <v-autocomplete
-                v-model="idea.recipientsUri"
-                :items="allRecipients"
+                v-model="gift.recipientsUri"
+                :items="recipients"
                 item-text="name"
                 item-value="@id"
                 small-chips
@@ -45,24 +45,23 @@
 </template>
 
 <script>
-    
+
     export default {
-        name: "IdeaDetail",
+        name: "GiftDetail",
         props: {
             editMode: false,
             validateForm: false
         },
         data() {
-            return { 
-                idea: {
+            return {
+                gift: {
                     price: {}
-                }, 
-                initialIdea: {},
-                allRecipients: []
+                },
+                recipients: []
             };
         },
         created() {
-            this.fetchIdea(this.$route.params.id);
+            this.fetchGift(this.$route.params.id);
             this.fetchRecipients();
             this.$emit('formCreated');
         },
@@ -75,15 +74,14 @@
             }
         },
         methods: {
-            fetchIdea(id) {
-                fetch('/api/ideas/' + id)
+            fetchGift(id) {
+                fetch('/api/gifts/' + id)
                     .then( response => {
                         return response.json();
                     })
                     .then( (data) => {
-                        this.idea = data;
-                        this.idea.recipientsUri = this.idea.recipients.map( element => element['@id'] );
-                        this.initialIdea = this.idea;
+                        this.gift = data;
+                        this.gift.recipientsUri = this.gift.recipients.map( element => element['@id'] );
                     })
                     .catch( (err) => {
                         console.log(err);
@@ -97,7 +95,7 @@
                     return response.json();
                 })
                 .then( (data) => {
-                    this.allRecipients = data['hydra:member'];
+                    this.recipients = data['hydra:member'];
                 })
                 .catch( (err) => {
                     console.log(err);
@@ -109,16 +107,16 @@
             },
             update()
             {
-                const idea = this.idea;
-                fetch('/api/ideas/' + idea.id, {
+                const gift = this.gift;
+                fetch('/api/gifts/' + gift.id, {
                         method: 'PUT',
                         headers: {'Content-Type': 'application/ld+json'},
                         body: JSON.stringify({
-                            label: idea.label,
+                            label: gift.label,
                             price: {
-                                value: parseFloat(idea.price.value)
+                                value: parseFloat(gift.price.value)
                             },
-                            recipients: idea.recipientsUri
+                            recipients: gift.recipientsUri
                         })
                     })
                     .then( response => {
@@ -151,4 +149,3 @@
         opacity: 1;
     }
 </style>
-e

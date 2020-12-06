@@ -24,14 +24,22 @@ class Recipient
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      *
-     * @Groups({"idea:read","idea:item:get"})
+     * @Groups({
+     *     "idea:read",
+     *     "idea:item:get",
+     *     "gift:read",
+     * })
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Groups({"idea:read","idea:item:get"})
+     * @Groups({
+     *     "idea:read",
+     *     "idea:item:get",
+     *     "gift:read",
+     * })
      */
     private $name;
 

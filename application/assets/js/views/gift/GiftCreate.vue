@@ -24,7 +24,7 @@
 
             <v-autocomplete
                 v-model="idea.recipientsUri"
-                :items="allRecipients"
+                :items="recipients"
                 item-text="name"
                 item-value="@id"
                 chips
@@ -33,7 +33,7 @@
                 label="Ajouter des destinataires"
                 multiple
             ></v-autocomplete>
-            
+
         </v-form>
 
     </v-container>
@@ -41,20 +41,20 @@
 </template>
 
 <script>
-    
+
     export default {
         name: "IdeaCreate",
         props: {
             validateForm: false
         },
         data() {
-            return { 
+            return {
                 idea: {
                     label: '',
                     price: null,
                     recipientsUri: []
                 },
-                allRecipients: []
+                recipients: []
             };
         },
         created() {
@@ -101,7 +101,7 @@
                     return response.json();
                 })
                 .then( (data) => {
-                    this.allRecipients = data['hydra:member'];
+                    this.recipients = data['hydra:member'];
                 })
                 .catch( (err) => {
                     console.log(err);
