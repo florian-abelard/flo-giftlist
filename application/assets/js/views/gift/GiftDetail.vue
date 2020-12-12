@@ -108,6 +108,7 @@
             update()
             {
                 const gift = this.gift;
+                console.log(gift);
                 fetch('/api/gifts/' + gift.id, {
                         method: 'PUT',
                         headers: {'Content-Type': 'application/ld+json'},

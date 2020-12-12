@@ -45,7 +45,7 @@ class Gift implements TimestampableInterface
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      *
      * @Groups({
-     *     "gift:write",
+     *     "gift:read",
      *     "gift:item:get",
      * })
      */
@@ -67,12 +67,12 @@ class Gift implements TimestampableInterface
      *
      * @ORM\Embedded(class="App\Entity\ValueObject\Price")
      *
+     * @Assert\Type(type="App\Entity\ValueObject\Price")
+     *
      * @Groups({
      *     "gift:write",
      *     "gift:item:get",
      * })
-     *
-     * @Assert\Type(type="App\Entity\ValueObject\Price")
      */
     private $price;
 
@@ -105,24 +105,24 @@ class Gift implements TimestampableInterface
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      *
+     * @Assert\Length(255)
+     *
      * @Groups({
      *     "gift:write",
      *     "gift:item:get",
      * })
-     *
-     * @Assert\Length(255)
      */
     private $note;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      *
+     * @Assert\Date
+     *
      * @Groups({
      *     "gift:write",
      *     "gift:item:get",
      * })
-     *
-     * @Assert\Date
      *
      * @var string A "Y-m-d" formatted value
      */

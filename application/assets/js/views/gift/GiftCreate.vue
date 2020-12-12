@@ -2,14 +2,14 @@
 
     <v-container justify-center>
 
-        <v-container class="display-1">Idées cadeaux</v-container>
+        <v-container class="display-1">Cadeaux</v-container>
 
-        Créer une idée cadeaux
+        Ajouter un cadeaux
 
         <v-form v-on:submit.prevent="onSubmit">
 
             <v-text-field
-                v-model="idea.label"
+                v-model="gift.label"
                 label="Libellé"
                 :rules="[value => !!value || 'Le libellé est obligatoire']"
                 required
@@ -17,13 +17,13 @@
             </v-text-field>
 
             <v-text-field
-                v-model="idea.price"
+                v-model="gift.price"
                 label="Prix"
             >
             </v-text-field>
 
             <v-autocomplete
-                v-model="idea.recipientsUri"
+                v-model="gift.recipientsUri"
                 :items="recipients"
                 item-text="name"
                 item-value="@id"
@@ -43,13 +43,13 @@
 <script>
 
     export default {
-        name: "IdeaCreate",
+        name: "GiftCreate",
         props: {
             validateForm: false
         },
         data() {
             return {
-                idea: {
+                gift: {
                     label: '',
                     price: null,
                     recipientsUri: []
@@ -75,16 +75,17 @@
             },
             create()
             {
-                const idea = this.idea;
-                fetch('/api/ideas', {
+                const gift = this.gift;
+                console.log(gift);
+                fetch('/api/gifts', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/ld+json'},
                     body: JSON.stringify({
-                        label: idea.label,
+                        label: gift.label,
                         price: {
-                            value: parseFloat(idea.price)
+                            value: parseFloat(gift.price)
                         },
-                        recipients: idea.recipientsUri
+                        recipients: gift.recipientsUri
                     })
                 })
                 .then( response => {

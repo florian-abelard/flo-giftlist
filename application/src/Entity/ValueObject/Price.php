@@ -17,7 +17,13 @@ final class Price
      * @ORM\Column(type="float", nullable=true)
      *
      * @Assert\PositiveOrZero
-     * @Groups({"idea:write","idea:item:get"})
+     *
+     * @Groups({
+     *     "idea:write",
+     *     "idea:item:get",
+     *     "gift:write",
+     *     "gift:item:get",
+     * })
      */
     private $value;
 

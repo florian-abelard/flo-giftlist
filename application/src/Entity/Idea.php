@@ -44,7 +44,10 @@ class Idea implements TimestampableInterface
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      *
-     * @Groups({"idea:read","idea:item:get"})
+     * @Groups({
+     *     "idea:read,
+     *     "idea:item:get"
+     * })
      */
     protected $id;
 
@@ -52,9 +55,14 @@ class Idea implements TimestampableInterface
      * @var string The label of the gift
      *
      * @ORM\Column(type="string", length=255)
+     *
      * @Assert\NotBlank
      *
-     * @Groups({"idea:read","idea:write","idea:item:get"})
+     * @Groups({
+     *     "idea:write",
+     *     "idea:read,
+     *     "idea:item:get"
+     * })
      */
     private $label;
 
@@ -62,9 +70,13 @@ class Idea implements TimestampableInterface
      * @var Price The price of the gift
      *
      * @ORM\Embedded(class="App\Entity\ValueObject\Price")
+     *
      * @Assert\Type(type="App\Entity\ValueObject\Price")
      *
-     * @Groups({"idea:write","idea:item:get"})
+     * @Groups({
+     *     "idea:write",
+     *     "idea:item:get"
+     * })
      */
     private $price;
 
@@ -75,7 +87,11 @@ class Idea implements TimestampableInterface
      *      inverseJoinColumns={@ORM\JoinColumn(name="recipient_id", referencedColumnName="id")}
      * )
      *
-     * @Groups({"idea:read","idea:write","idea:item:get"})
+     * @Groups({
+     *     "idea:write",
+     *     "idea:read,
+     *     "idea:item:get"
+     * })
      */
     private $recipients;
 
