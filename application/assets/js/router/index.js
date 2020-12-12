@@ -14,12 +14,12 @@ export default new VueRouter({
     mode: "history",
     routes: [
         { path: "/", name: 'home', component: Home },
-        { path: "/idea/list", name: 'ideaList', component: IdeaList },
-        { path: "/idea/create", name: 'ideaCreate', component: IdeaCreate, props: true },
-        { path: "/idea/:id", name: 'idea', component: IdeaDetail },
-        { path: "/gift/list", name: 'giftList', component: GiftList },
-        { path: "/gift/create", name: 'giftCreate', component: GiftCreate, props: true },
-        { path: "/gift/:id", name: 'gift', component: GiftDetail },
+        { path: "/ideas", name: 'ideaList', component: IdeaList },
+        { path: "/ideas/create", name: 'ideaCreate', component: IdeaCreate, props: true },
+        { path: "/ideas/:id", name: 'idea', component: IdeaDetail },
+        { path: "/gifts", name: 'giftList', component: GiftList },
+        { path: "/gifts/create", name: 'giftCreate', component: GiftCreate, props: true },
+        { path: "/gifts/:id", name: 'gift', component: GiftDetail },
         { path: "*", redirect: "/" }
     ]
 });

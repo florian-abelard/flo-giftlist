@@ -73,7 +73,7 @@ class Idea implements TimestampableInterface
      * @ORM\JoinTable(name="ideas_recipients",
      *      joinColumns={@ORM\JoinColumn(name="idea_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="recipient_id", referencedColumnName="id")}
-     *      )
+     * )
      *
      * @Groups({"idea:read","idea:write","idea:item:get"})
      */

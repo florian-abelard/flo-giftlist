@@ -48,7 +48,7 @@
                         </v-list-item>
                     </router-link>
 
-                    <router-link to="/idea/list" tag="v-list-item">
+                    <router-link to="/ideas" tag="v-list-item">
                         <v-list-item link>
                             <v-list-item-icon>
                                 <v-icon>mdi-lightbulb-on-outline</v-icon>
@@ -59,7 +59,7 @@
                         </v-list-item>
                     </router-link>
 
-                    <router-link to="/gift/list" tag="v-list-item">
+                    <router-link to="/gifts" tag="v-list-item">
                         <v-list-item link>
                             <v-list-item-icon>
                                 <v-icon>mdi-gift-outline</v-icon>

@@ -6,7 +6,7 @@
 
                 <v-list-item :key="gift.id" :style="{ cursor: 'pointer' }">
 
-                    <router-link v-bind:to="'/gift/' + gift.id" v-slot="{ href, route, navigate }">
+                    <router-link v-bind:to="'/gifts/' + gift.id" v-slot="{ href, route, navigate }">
                         <v-list-item-content :href="href" v-on:click="navigate">
 
                             <v-list-item-title v-text="gift.label"></v-list-item-title>
@@ -32,7 +32,7 @@
             </template>
         </v-list>
 
-        <router-link to="/gift/create" v-slot="{ href, route, navigate }">
+        <router-link to="/gifts/create" v-slot="{ href, route, navigate }">
             <v-btn class="mx-2" fab dark fixed bottom right color="teal darken-1" :href="href" v-on:click="navigate">
                 <v-icon dark>mdi-plus</v-icon>
             </v-btn>

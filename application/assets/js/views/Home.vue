@@ -1,11 +1,11 @@
 <template>
 
     <v-container d-flex justify-center>
-        
+
         <v-row justify="space-between">
 
             <v-col cols="12" sm="6">
-                <router-link to="/idea/list" v-slot="{ href, route, navigate }">
+                <router-link to="/ideas" v-slot="{ href, route, navigate }">
                     <v-card :href="href" @click="navigate" color="teal lighten-4">
                         <v-container>
                             <v-row no-gutters justify="space-between" align="center">
@@ -28,9 +28,9 @@
                     </v-card>
                 </router-link>
             </v-col>
-          
+
             <v-col cols="12" sm="6">
-                <router-link to="/gift/list" v-slot="{ href, route, navigate }">
+                <router-link to="/gifts" v-slot="{ href, route, navigate }">
                     <v-card :href="href" @click="navigate" color="teal lighten-4">
                         <v-container>
                             <v-row no-gutters justify="space-between" align="center">

@@ -6,7 +6,7 @@
 
                 <v-list-item :key="idea.id" :style="{ cursor: 'pointer' }">
 
-                    <router-link v-bind:to="'/idea/' + idea.id" v-slot="{ href, route, navigate }">
+                    <router-link v-bind:to="'/ideas/' + idea.id" v-slot="{ href, route, navigate }">
                         <v-list-item-content :href="href" v-on:click="navigate">
 
                             <v-list-item-title v-text="idea.label"></v-list-item-title>
@@ -32,7 +32,7 @@
             </template>
         </v-list>
 
-        <router-link to="/idea/create" v-slot="{ href, route, navigate }">
+        <router-link to="/ideas/create" v-slot="{ href, route, navigate }">
             <v-btn class="mx-2" fab dark fixed bottom right color="teal darken-1" :href="href" v-on:click="navigate">
                 <v-icon dark>mdi-plus</v-icon>
             </v-btn>
@@ -42,7 +42,7 @@
 </template>
 
 <script>
-    
+
     export default {
         name: "IdeaList",
         data() {
