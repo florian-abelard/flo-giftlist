@@ -45,7 +45,7 @@ class Idea implements TimestampableInterface
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      *
      * @Groups({
-     *     "idea:read,
+     *     "idea:read",
      *     "idea:item:get"
      * })
      */
@@ -60,7 +60,7 @@ class Idea implements TimestampableInterface
      *
      * @Groups({
      *     "idea:write",
-     *     "idea:read,
+     *     "idea:read",
      *     "idea:item:get"
      * })
      */
@@ -89,7 +89,7 @@ class Idea implements TimestampableInterface
      *
      * @Groups({
      *     "idea:write",
-     *     "idea:read,
+     *     "idea:read",
      *     "idea:item:get"
      * })
      */
