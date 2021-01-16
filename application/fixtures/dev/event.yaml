@@ -1,0 +1,19 @@
+App\Entity\Event:
+  event1:
+    label: 'Noël'
+    year: 2020
+  event2:
+    label: 'Noël'
+    year: 2019
+  event3:
+    label: 'Noël'
+    year: 2018
+  event4:
+    label: 'Noël'
+    year: 2017
+  event5:
+    label: 'Anniversaire Papi'
+    year: 2017
+  event6:
+    label: 'Anniversaire Nicole'
+    year: 2017

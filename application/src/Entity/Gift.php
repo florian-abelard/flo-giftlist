@@ -81,7 +81,7 @@ class Gift implements TimestampableInterface
      * @ORM\JoinTable(name="gifts_recipients",
      *      joinColumns={@ORM\JoinColumn(name="gift_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="recipient_id", referencedColumnName="id")}
-     *      )
+     * )
      *
      * @Groups({
      *     "gift:read",

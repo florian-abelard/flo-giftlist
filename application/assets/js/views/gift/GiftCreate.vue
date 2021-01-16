@@ -54,11 +54,13 @@
                     price: null,
                     recipientsUri: []
                 },
-                recipients: []
+                recipients: [],
+                events: [],
             };
         },
         created() {
             this.fetchRecipients();
+            this.fetchEvents();
         },
         watch: {
             validateForm: function () {
@@ -103,6 +105,19 @@
                 })
                 .then( (data) => {
                     this.recipients = data['hydra:member'];
+                })
+                .catch( (err) => {
+                    console.log(err);
+                });
+            },
+            fetchEvents()
+            {
+                fetch('/api/events')
+                .then( response => {
+                    return response.json();
+                })
+                .then( (data) => {
+                    this.events = data['hydra:member'];
                 })
                 .catch( (err) => {
                     console.log(err);
