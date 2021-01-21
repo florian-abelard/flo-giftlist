@@ -20,7 +20,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *      normalizationContext={"groups"={"event:read"}},
  *      denormalizationContext={"groups"={"event:write"}},
  *      attributes={
- *          "order"={"year": "DESC", "id": "ASC"}
+ *          "order"={"date": "DESC", "id": "ASC"}
  *      }
  * )
  */
@@ -52,14 +52,23 @@ class Event
     private $label;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="date")
      *
      * @Groups({
      *     "event:read",
      *     "gift:read",
      * })
      */
-    private $year;
+    private $date;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\EventType")
+     *
+     * @Groups({
+     *     "gift:read",
+     * })
+     */
+    private $type;
 
     public function getId(): ?UuidInterface
     {
@@ -78,14 +87,26 @@ class Event
         return $this;
     }
 
-    public function getYear(): ?int
+    public function getDate(): ?\DateTimeInterface
     {
-        return $this->year;
+        return $this->date;
     }
 
-    public function setYear(int $year): self
+    public function setDate(\DateTimeInterface $date): self
     {
-        $this->year = $year;
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getType(): ?EventType
+    {
+        return $this->type;
+    }
+
+    public function setType(?EventType $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

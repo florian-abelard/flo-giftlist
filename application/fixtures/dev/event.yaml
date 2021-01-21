@@ -1,19 +1,21 @@
 App\Entity\Event:
   event1:
-    label: 'Noël'
-    year: 2020
+    label: 'Noël famille Lasterre'
+    date: <(new \DateTime('2020-12-25'))>
+    type: '@eventType1'
   event2:
-    label: 'Noël'
-    year: 2019
+    label: 'Noël famille Abélard'
+    date: <(new \DateTime('2021-01-10'))>
+    type: '@eventType1'
   event3:
-    label: 'Noël'
-    year: 2018
+    label: 'Noël famille Verlaguet'
+    date: <(new \DateTime('2021-01-02'))>
+    type: '@eventType1'
   event4:
-    label: 'Noël'
-    year: 2017
-  event5:
-    label: 'Anniversaire Papi'
-    year: 2017
+    label: 'Noël famille Abélard'
+    date: <(new \DateTime('2019-12-25'))>
+    type: '@eventType1'
   event6:
     label: 'Anniversaire Nicole'
-    year: 2017
+    date: <(new \DateTime('2020-07-21'))>
+    type: '@eventType2'

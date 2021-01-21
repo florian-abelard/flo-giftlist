@@ -30,9 +30,17 @@
                 chips
                 small-chips
                 deletable-chips
-                label="Ajouter des destinataires"
+                label="Destinataires"
                 multiple
             ></v-autocomplete>
+
+            <v-select
+                v-model="gift.event"
+                :items="events"
+                item-text="label"
+                item-value="@id"
+                label="Evènement"
+            ></v-select>
 
         </v-form>
 
@@ -52,7 +60,8 @@
                 gift: {
                     label: '',
                     price: null,
-                    recipientsUri: []
+                    recipientsUri: [],
+                    event: null,
                 },
                 recipients: [],
                 events: [],

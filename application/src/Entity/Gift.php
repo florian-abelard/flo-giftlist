@@ -126,7 +126,7 @@ class Gift implements TimestampableInterface
      *
      * @var string A "Y-m-d" formatted value
      */
-    private $giftDate;
+    private $date;
 
     public function __construct()
     {
@@ -206,14 +206,14 @@ class Gift implements TimestampableInterface
         return $this;
     }
 
-    public function getGiftDate(): ?\DateTimeInterface
+    public function getDate(): ?\DateTimeInterface
     {
-        return $this->giftDate;
+        return $this->date;
     }
 
-    public function setGiftDate(?\DateTimeInterface $giftDate): self
+    public function setDate(?\DateTimeInterface $date): self
     {
-        $this->giftDate = $giftDate;
+        $this->date = $date;
 
         return $this;
     }

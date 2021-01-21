@@ -1,0 +1,7 @@
+App\Entity\EventType:
+  EventType1:
+    code: 'NOEL'
+    label: 'Noël'
+  EventType2:
+    code: 'ANNIVERSAIRE'
+    label: 'Anniversaire'
