@@ -92,7 +92,7 @@ class Gift implements TimestampableInterface
     private $recipients;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Event")
+     * @ORM\ManyToOne(targetEntity="App\Entity\EventType")
      *
      * @Groups({
      *     "gift:read",
@@ -100,7 +100,7 @@ class Gift implements TimestampableInterface
      *     "gift:item:get",
      * })
      */
-    private $event;
+    private $eventType;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -117,14 +117,10 @@ class Gift implements TimestampableInterface
     /**
      * @ORM\Column(type="date", nullable=true)
      *
-     * @Assert\Date
-     *
      * @Groups({
      *     "gift:write",
      *     "gift:item:get",
      * })
-     *
-     * @var string A "Y-m-d" formatted value
      */
     private $date;
 
@@ -182,14 +178,14 @@ class Gift implements TimestampableInterface
         return $this;
     }
 
-    public function getEvent(): ?Event
+    public function getEventType(): ?EventType
     {
-        return $this->event;
+        return $this->eventType;
     }
 
-    public function setEvent(?Event $event): self
+    public function setEventType(?EventType $eventType): self
     {
-        $this->event = $event;
+        $this->eventType = $eventType;
 
         return $this;
     }
