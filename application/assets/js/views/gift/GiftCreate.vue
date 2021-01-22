@@ -35,11 +35,11 @@
             ></v-autocomplete>
 
             <v-select
-                v-model="gift.event"
-                :items="events"
+                v-model="gift.eventTypeUri"
+                :items="eventTypes"
                 item-text="label"
                 item-value="@id"
-                label="Evènement"
+                label="Type d'évènement"
             ></v-select>
 
         </v-form>
@@ -61,15 +61,15 @@
                     label: '',
                     price: null,
                     recipientsUri: [],
-                    event: null,
+                    eventTypeUri: null,
                 },
                 recipients: [],
-                events: [],
+                eventTypes: [],
             };
         },
         created() {
             this.fetchRecipients();
-            this.fetchEvents();
+            this.fetchEventTypes();
         },
         watch: {
             validateForm: function () {
@@ -96,7 +96,8 @@
                         price: {
                             value: parseFloat(gift.price)
                         },
-                        recipients: gift.recipientsUri
+                        recipients: gift.recipientsUri,
+                        eventType: gift.eventTypeUri,
                     })
                 })
                 .then( response => {
@@ -119,14 +120,14 @@
                     console.log(err);
                 });
             },
-            fetchEvents()
+            fetchEventTypes()
             {
-                fetch('/api/events')
+                fetch('/api/event_types')
                 .then( response => {
                     return response.json();
                 })
                 .then( (data) => {
-                    this.events = data['hydra:member'];
+                    this.eventTypes = data['hydra:member'];
                 })
                 .catch( (err) => {
                     console.log(err);

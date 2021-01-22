@@ -8,7 +8,7 @@ use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\EventRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\EventTypeRepository")
  *
  * @ApiResource(
  *      collectionOperations={"get"},
@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *      normalizationContext={"groups"={"eventType:read"}},
  *      denormalizationContext={"groups"={"eventType:write"}},
  *      attributes={
- *          "order"={"year": "DESC", "id": "ASC"}
+ *          "order"={"sorting": "ASC"}
  *      }
  * )
  */
@@ -54,6 +54,11 @@ class EventType
      */
     private $label;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $sorting;
+
     public function getId(): ?UuidInterface
     {
         return $this->id;
@@ -79,6 +84,18 @@ class EventType
     public function setLabel(string $label): self
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    public function getSorting(): ?int
+    {
+        return $this->sorting;
+    }
+
+    public function setSorting(int $sorting): self
+    {
+        $this->sorting = $sorting;
 
         return $this;
     }
