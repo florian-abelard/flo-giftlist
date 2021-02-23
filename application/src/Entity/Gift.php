@@ -92,17 +92,6 @@ class Gift implements TimestampableInterface
     private $recipients;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\EventType")
-     *
-     * @Groups({
-     *     "gift:read",
-     *     "gift:write",
-     *     "gift:item:get",
-     * })
-     */
-    private $eventType;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @Assert\Length(255)
@@ -115,6 +104,8 @@ class Gift implements TimestampableInterface
     private $note;
 
     /**
+     * @var \Datetime The date of the event
+     *
      * @ORM\Column(type="date", nullable=true)
      *
      * @Groups({
@@ -123,6 +114,20 @@ class Gift implements TimestampableInterface
      * })
      */
     private $date;
+
+    /**
+     * @var string the date of the event
+     *
+     * @ORM\Column(type="string", length=4, nullable=true)
+     *
+     * @Assert\Length(max=4)
+     *
+     * @Groups({
+     *     "gift:write",
+     *     "vs:item:get"
+     * })
+     */
+    private $eventDate;
 
     public function __construct()
     {
@@ -178,18 +183,6 @@ class Gift implements TimestampableInterface
         return $this;
     }
 
-    public function getEventType(): ?EventType
-    {
-        return $this->eventType;
-    }
-
-    public function setEventType(?EventType $eventType): self
-    {
-        $this->eventType = $eventType;
-
-        return $this;
-    }
-
     public function getNote(): ?string
     {
         return $this->note;
@@ -210,6 +203,18 @@ class Gift implements TimestampableInterface
     public function setDate(?\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getEventDate(): ?string
+    {
+        return $this->eventDate;
+    }
+
+    public function setEventDate(?string $eventDate): self
+    {
+        $this->eventDate = $eventDate;
 
         return $this;
     }

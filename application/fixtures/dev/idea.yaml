@@ -2,17 +2,20 @@ App\Entity\Idea:
   idea1:
     label: 'Coffret huile basilic'
     price: '<identity(new App\Entity\ValueObject\Price("14.90"))>'
+    eventDate: '2018'
   idea2:
     label: 'Livre d''activité'
     price: '@price1'
     recipients: ['@recipient12', '@recipient13']
+    eventDate: '2018'
   idea3:
-    label: 'Attrape-plumes'
-    price: '@price2'
-  idea4:
     label: 'Les culottées Tome 1'
     price: '@price3'
     recipients: ['@recipient1']
+    eventDate: '2018'
+  idea4:
+    label: 'Attrape-plumes'
+    price: '@price2'
   idea5:
     label: 'Cherche et trouve géant'
     price: '@price11'
@@ -20,11 +23,14 @@ App\Entity\Idea:
     label: <sentence(3, true)>
     price: '@price*'
     recipients: <randomElements(@recipient{1..22}, 1)>
+    eventDate: '50%? <year("now")>'
   idea{9..11}:
     label: <sentence(3, true)>
     price: '@price*'
     recipients : <randomElements(@recipient{1..22}, 2)>
+    eventDate: '50%? <year("now")>'
   idea{12..15}:
     label: <sentence(3, true)>
     price: '@price*'
     recipients: '<randomElements(@recipient{1..22}, 3)>'
+    eventDate: '50%? <year("now")>'

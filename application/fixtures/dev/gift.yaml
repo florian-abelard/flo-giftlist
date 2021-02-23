@@ -3,6 +3,6 @@ App\Entity\Gift:
     label: 'Orangette au chocolat'
     price: '<identity(new App\Entity\ValueObject\Price("8.50"))>'
     recipients: ['@recipient6']
-    eventType: '@eventType1'
     note: 'Coucou'
-    date: <(new \DateTime('2020'))>
+    date: <(new \DateTime('2017'))>
+    eventDate: '2017'

@@ -57,10 +57,11 @@ class Idea implements TimestampableInterface
      * @ORM\Column(type="string", length=255)
      *
      * @Assert\NotBlank
+     * @Assert\Length(max=255)
      *
      * @Groups({
-     *     "idea:write",
      *     "idea:read",
+     *     "idea:write",
      *     "idea:item:get"
      * })
      */
@@ -88,12 +89,27 @@ class Idea implements TimestampableInterface
      * )
      *
      * @Groups({
-     *     "idea:write",
      *     "idea:read",
+     *     "idea:write",
      *     "idea:item:get"
      * })
      */
     private $recipients;
+
+    /**
+     * @var string the date of the event
+     *
+     * @ORM\Column(type="string", length=4, nullable=true)
+     *
+     * @Assert\Length(max=4)
+     *
+     * @Groups({
+     *     "idea:read",
+     *     "idea:write",
+     *     "idea:item:get"
+     * })
+     */
+    private $eventDate;
 
     public function __construct()
     {
@@ -145,6 +161,18 @@ class Idea implements TimestampableInterface
     public function removeRecipient(Recipient $recipient): self
     {
         $this->recipients->removeElement($recipient);
+
+        return $this;
+    }
+
+    public function getEventDate(): ?string
+    {
+        return $this->eventDate;
+    }
+
+    public function setEventDate(?string $eventDate): self
+    {
+        $this->eventDate = $eventDate;
 
         return $this;
     }
