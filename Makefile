@@ -35,6 +35,8 @@ include makefiles/*.mk
 
 init: composer-install npm-install webpack-build ## install project dependencies
 
+up: up-app db-wait-for db-init ## up application
+
 bash-web: ## open a bash session in the web container
 	docker-compose -f ${DOCKER_COMPOSE_FILE} exec web /bin/sh
 
