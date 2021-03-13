@@ -5,7 +5,7 @@
 build: ##@docker build containers
 	docker-compose -f ${DOCKER_COMPOSE_FILE} build
 
-up: .env ##@docker build and start containers
+up-app: .env ##@docker build and start containers
 	docker-compose -f ${DOCKER_COMPOSE_FILE} up -d
 
 down: ##@docker stop and remove containers and volumes

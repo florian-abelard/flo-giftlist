@@ -18,20 +18,23 @@ db-system-init:
 		--variable="user_password='${DATABASE_USER_PASSWORD}'" \
 		--file="/var/data/sql/system.sql")
 
-db-create-database: 
+db-create-database:
 	$(call database-doctrine-exec, php bin/console doctrine:database:create)
 
-db-populate: ##@database populate with fixtures data 
+db-populate: ##@database populate with fixtures data
 	$(call database-doctrine-exec, php bin/console hautelook:fixtures:load --no-bundles --env=dev -v)
 
-db-migrate: ##@database run the database migrations 
+db-migrate: ##@database run the database migrations
 	$(call database-doctrine-exec, php bin/console doctrine:migrations:migrate)
 
 db-create-migration: ##@database create a new migration file
 	$(call database-doctrine-exec, php bin/console doctrine:migrations:diff)
 
-db-update-schema: 
+db-update-schema:
 	$(call database-doctrine-exec, php bin/console doctrine:schema:update --force)
+
+db-wait-for:
+	sh bin/wait-for-db.sh
 
 #------------------------------------------------------------------------------
 
@@ -39,4 +42,4 @@ clean-db: ##@database clean database TODO ?
 
 #------------------------------------------------------------------------------
 
-.PHONY: db-init db-create-user db-create-database db-migrate db-populate
+.PHONY: db-init db-create-user db-create-database db-migrate db-populate db-wait-for
