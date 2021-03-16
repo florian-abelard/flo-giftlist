@@ -1,0 +1,14 @@
+
+issues :
+    - fix: db-system-init ?
+
+
+refactor :
+    - refactor: sortir les annotations ORM des entitées
+    - refactor(vuejs): https://router.vuejs.org/guide/essentials/passing-props.html
+
+improvements :
+    - chore(docker): sécurisation container docker ?
+    - chore(ci): on create tag pour production ? https://github.community/t5/GitHub-Actions/How-to-run-GitHub-Actions-Workflow-only-for-new-tags/td-p/29413/page/3
+
+features :
