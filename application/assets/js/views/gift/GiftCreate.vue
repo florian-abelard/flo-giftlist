@@ -16,12 +16,6 @@
             >
             </v-text-field>
 
-            <v-text-field
-                v-model="gift.price"
-                label="Prix"
-            >
-            </v-text-field>
-
             <v-autocomplete
                 v-model="gift.recipientsUri"
                 :items="recipients"
@@ -34,13 +28,17 @@
                 multiple
             ></v-autocomplete>
 
-            <v-select
-                v-model="gift.eventTypeUri"
-                :items="eventTypes"
-                item-text="label"
-                item-value="@id"
-                label="Type d'évènement"
-            ></v-select>
+            <v-text-field
+                v-model="gift.eventYear"
+                label="Année de l'évènement"
+            >
+            </v-text-field>
+
+            <v-text-field
+                v-model="gift.price"
+                label="Prix"
+            >
+            </v-text-field>
 
         </v-form>
 
@@ -59,17 +57,15 @@
             return {
                 gift: {
                     label: '',
-                    price: null,
                     recipientsUri: [],
-                    eventTypeUri: null,
+                    eventYear: '',
+                    price: null,
                 },
                 recipients: [],
-                eventTypes: [],
             };
         },
         created() {
             this.fetchRecipients();
-            this.fetchEventTypes();
         },
         watch: {
             validateForm: function () {
@@ -87,17 +83,17 @@
             create()
             {
                 const gift = this.gift;
-                console.log(gift);
+
                 fetch('/api/gifts', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/ld+json'},
                     body: JSON.stringify({
                         label: gift.label,
+                        recipients: gift.recipientsUri,
+                        eventYear: gift.eventYear,
                         price: {
                             value: parseFloat(gift.price)
                         },
-                        recipients: gift.recipientsUri,
-                        eventType: gift.eventTypeUri,
                     })
                 })
                 .then( response => {
@@ -120,19 +116,6 @@
                     console.log(err);
                 });
             },
-            fetchEventTypes()
-            {
-                fetch('/api/event_types')
-                .then( response => {
-                    return response.json();
-                })
-                .then( (data) => {
-                    this.eventTypes = data['hydra:member'];
-                })
-                .catch( (err) => {
-                    console.log(err);
-                });
-            }
         }
     }
 

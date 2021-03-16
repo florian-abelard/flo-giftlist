@@ -19,13 +19,6 @@
             >
             </v-text-field>
 
-            <v-text-field
-                v-model="gift.price.value"
-                label="Prix"
-                :disabled="!editMode"
-            >
-            </v-text-field>
-
             <v-autocomplete
                 v-model="gift.recipientsUri"
                 :items="recipients"
@@ -37,6 +30,20 @@
                 multiple
                 :disabled="!editMode"
             ></v-autocomplete>
+
+            <v-text-field
+                v-model="gift.eventYear"
+                label="Année de l'évènement"
+                :disabled="!editMode"
+            >
+            </v-text-field>
+
+            <v-text-field
+                v-model="gift.price.value"
+                label="Prix"
+                :disabled="!editMode"
+            >
+            </v-text-field>
 
         </v-form>
 
@@ -114,10 +121,11 @@
                         headers: {'Content-Type': 'application/ld+json'},
                         body: JSON.stringify({
                             label: gift.label,
+                            recipients: gift.recipientsUri,
+                            eventYear: gift.eventYear,
                             price: {
                                 value: parseFloat(gift.price.value)
                             },
-                            recipients: gift.recipientsUri
                         })
                     })
                     .then( response => {

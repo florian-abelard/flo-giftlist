@@ -97,7 +97,7 @@ class Idea implements TimestampableInterface
     private $recipients;
 
     /**
-     * @var string the date of the event
+     * @var string
      *
      * @ORM\Column(type="string", length=4, nullable=true)
      *
@@ -109,7 +109,7 @@ class Idea implements TimestampableInterface
      *     "idea:item:get"
      * })
      */
-    private $eventDate;
+    private $eventYear;
 
     public function __construct()
     {
@@ -165,14 +165,14 @@ class Idea implements TimestampableInterface
         return $this;
     }
 
-    public function getEventDate(): ?string
+    public function getEventYear(): ?string
     {
-        return $this->eventDate;
+        return $this->eventYear;
     }
 
-    public function setEventDate(?string $eventDate): self
+    public function setEventYear(?string $eventYear): self
     {
-        $this->eventDate = $eventDate;
+        $this->eventYear = $eventYear;
 
         return $this;
     }

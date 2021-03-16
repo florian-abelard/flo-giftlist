@@ -16,12 +16,6 @@
             >
             </v-text-field>
 
-            <v-text-field
-                v-model="idea.price"
-                label="Prix"
-            >
-            </v-text-field>
-
             <v-autocomplete
                 v-model="idea.recipientsUri"
                 :items="recipients"
@@ -33,6 +27,18 @@
                 label="Ajouter des destinataires"
                 multiple
             ></v-autocomplete>
+
+            <v-text-field
+                v-model="idea.eventYear"
+                label="Année de l'évènement"
+            >
+            </v-text-field>
+
+            <v-text-field
+                v-model="idea.price"
+                label="Prix"
+            >
+            </v-text-field>
 
         </v-form>
 
@@ -51,10 +57,11 @@
             return {
                 idea: {
                     label: '',
+                    recipientsUri: [],
+                    eventYear: '',
                     price: null,
-                    recipientsUri: []
                 },
-                recipients: []
+                recipients: [],
             };
         },
         created() {
@@ -81,10 +88,11 @@
                     headers: {'Content-Type': 'application/ld+json'},
                     body: JSON.stringify({
                         label: idea.label,
+                        recipients: idea.recipientsUri,
+                        eventYear: idea.eventYear,
                         price: {
                             value: parseFloat(idea.price)
                         },
-                        recipients: idea.recipientsUri
                     })
                 })
                 .then( response => {

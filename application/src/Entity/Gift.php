@@ -92,31 +92,7 @@ class Gift implements TimestampableInterface
     private $recipients;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @Assert\Length(255)
-     *
-     * @Groups({
-     *     "gift:write",
-     *     "gift:item:get",
-     * })
-     */
-    private $note;
-
-    /**
-     * @var \Datetime The date of the event
-     *
-     * @ORM\Column(type="date", nullable=true)
-     *
-     * @Groups({
-     *     "gift:write",
-     *     "gift:item:get",
-     * })
-     */
-    private $date;
-
-    /**
-     * @var string the date of the event
+     * @var string
      *
      * @ORM\Column(type="string", length=4, nullable=true)
      *
@@ -124,10 +100,22 @@ class Gift implements TimestampableInterface
      *
      * @Groups({
      *     "gift:write",
-     *     "vs:item:get"
+     *     "gift:item:get",
      * })
      */
-    private $eventDate;
+    private $eventYear;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Assert\Length(max=255)
+     *
+     * @Groups({
+     *     "gift:write",
+     *     "gift:item:get",
+     * })
+     */
+    private $note;
 
     public function __construct()
     {
@@ -195,26 +183,14 @@ class Gift implements TimestampableInterface
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getEventYear(): ?string
     {
-        return $this->date;
+        return $this->eventYear;
     }
 
-    public function setDate(?\DateTimeInterface $date): self
+    public function setEventYear(?string $eventYear): self
     {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    public function getEventDate(): ?string
-    {
-        return $this->eventDate;
-    }
-
-    public function setEventDate(?string $eventDate): self
-    {
-        $this->eventDate = $eventDate;
+        $this->eventYear = $eventYear;
 
         return $this;
     }

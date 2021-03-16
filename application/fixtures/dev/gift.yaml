@@ -4,5 +4,4 @@ App\Entity\Gift:
     price: '<identity(new App\Entity\ValueObject\Price("8.50"))>'
     recipients: ['@recipient6']
     note: 'Coucou'
-    date: <(new \DateTime('2017'))>
-    eventDate: '2017'
+    eventYear: '2017'
