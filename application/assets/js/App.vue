@@ -5,10 +5,10 @@
 
         <v-app-bar app color="teal darken-1" dark>
 
-            <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon @click.stop="navDrawer = !navDrawer"></v-app-bar-nav-icon>
 
             <v-toolbar-title>
-                Idées Cadeaux {{ $route.name }}
+                Idées Cadeaux
             </v-toolbar-title>
 
             <v-spacer></v-spacer>
@@ -25,54 +25,78 @@
                 <v-icon>mdi-check</v-icon>
             </v-btn>
 
-            <v-btn icon v-if="['ideaList', 'giftList'].includes($route.name)">
+            <v-btn icon v-if="['ideaList', 'giftList'].includes($route.name)" @click.stop="filterDrawer = !filterDrawer">
                 <v-icon>mdi-filter-outline</v-icon>
             </v-btn>
 
         </v-app-bar>
 
-        <v-navigation-drawer v-model="drawer" app>
+        <v-navigation-drawer v-model="navDrawer" absolute left>
 
-            <v-list nav dense>
+            <div class="app-drawer">
 
-                <v-list-item-group v-model="group" active-class="deep-green--text text--accent-4">
+                <v-list nav dense>
 
-                    <router-link to="/" tag="v-list-item">
-                        <v-list-item link>
-                            <v-list-item-icon>
-                                <v-icon>mdi-home</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-content>
-                                <v-list-item-title>Accueil</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </router-link>
+                    <v-list-item-group v-model="group" active-class="deep-green--text text--accent-4">
 
-                    <router-link to="/ideas" tag="v-list-item">
-                        <v-list-item link>
-                            <v-list-item-icon>
-                                <v-icon>mdi-lightbulb-on-outline</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-content>
-                                <v-list-item-title>Idées cadeaux</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </router-link>
+                        <router-link to="/" tag="v-list-item">
+                            <v-list-item link>
+                                <v-list-item-icon>
+                                    <v-icon>mdi-home</v-icon>
+                                </v-list-item-icon>
+                                <v-list-item-content>
+                                    <v-list-item-title>Accueil</v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </router-link>
 
-                    <router-link to="/gifts" tag="v-list-item">
-                        <v-list-item link>
-                            <v-list-item-icon>
-                                <v-icon>mdi-gift-outline</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-content>
-                                <v-list-item-title>Cadeaux</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </router-link>
+                        <router-link to="/ideas" tag="v-list-item">
+                            <v-list-item link>
+                                <v-list-item-icon>
+                                    <v-icon>mdi-lightbulb-on-outline</v-icon>
+                                </v-list-item-icon>
+                                <v-list-item-content>
+                                    <v-list-item-title>Idées cadeaux</v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </router-link>
 
-                </v-list-item-group>
+                        <router-link to="/gifts" tag="v-list-item">
+                            <v-list-item link>
+                                <v-list-item-icon>
+                                    <v-icon>mdi-gift-outline</v-icon>
+                                </v-list-item-icon>
+                                <v-list-item-content>
+                                    <v-list-item-title>Cadeaux</v-list-item-title>
+                                </v-list-item-content>
+                            </v-list-item>
+                        </router-link>
 
-            </v-list>
+                    </v-list-item-group>
+
+                </v-list>
+
+            </div>
+
+        </v-navigation-drawer>
+
+        <v-navigation-drawer v-model="filterDrawer"  absolute right>
+
+            <div class="app-drawer">
+
+                <v-card elevation="0">
+
+                    <v-card-title>
+                        FILTERS
+                    </v-card-title>
+
+                    <v-card-text>
+                        FILTERS
+                    </v-card-text>
+
+                </v-card>
+
+            </div>
 
         </v-navigation-drawer>
 
@@ -100,14 +124,16 @@
     export default {
         name: "App",
         data: () => ({
-            drawer: false,
+            navDrawer: false,
+            filterDrawer: false,
             group: null,
             editMode: false,
             validateForm: false
         }),
         watch: {
             group () {
-                this.drawer = false
+                this.navDrawer = false,
+                this.filterDrawer = false
             },
         },
         methods: {
