@@ -11,7 +11,7 @@
 
 ```bash
 # Récupération des sources github
-git clone https://github.com/florian-abelard/flo-giftlist.git
+git clone https://github.com/florian-abelard/giftlist.git
 
 # Initialisation du projet
 make init
