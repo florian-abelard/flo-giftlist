@@ -1,6 +1,6 @@
 #!/bin/sh
 
-while ! nc -z 192.168.1.13 5432; do
+while ! nc -z 127.0.0.1 ${LOCAL_DATABASE_PORT}; do
   echo >&2 "$(date +%T) Postgres is unavailable - sleeping"
   sleep 1
 done
