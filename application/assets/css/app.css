@@ -1,7 +1,3 @@
 body {
     background-color: lightgray;
 }
-
-aside.v-navigation-drawer .app-drawer {
-    margin-top: 60px !important;
-}

@@ -5,7 +5,8 @@
 
         <v-app-bar app color="teal darken-1" dark>
 
-            <v-app-bar-nav-icon @click.stop="navDrawer = !navDrawer"></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon @click.stop="navDrawer = !navDrawer">
+            </v-app-bar-nav-icon>
 
             <v-toolbar-title>
                 Idées Cadeaux
@@ -31,84 +32,66 @@
 
         </v-app-bar>
 
-        <v-navigation-drawer v-model="navDrawer" absolute left>
-
-            <div class="app-drawer">
-
-                <v-list nav dense>
-
-                    <v-list-item-group v-model="group" active-class="deep-green--text text--accent-4">
-
-                        <router-link to="/" tag="v-list-item">
-                            <v-list-item link>
-                                <v-list-item-icon>
-                                    <v-icon>mdi-home</v-icon>
-                                </v-list-item-icon>
-                                <v-list-item-content>
-                                    <v-list-item-title>Accueil</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </router-link>
-
-                        <router-link to="/ideas" tag="v-list-item">
-                            <v-list-item link>
-                                <v-list-item-icon>
-                                    <v-icon>mdi-lightbulb-on-outline</v-icon>
-                                </v-list-item-icon>
-                                <v-list-item-content>
-                                    <v-list-item-title>Idées cadeaux</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </router-link>
-
-                        <router-link to="/gifts" tag="v-list-item">
-                            <v-list-item link>
-                                <v-list-item-icon>
-                                    <v-icon>mdi-gift-outline</v-icon>
-                                </v-list-item-icon>
-                                <v-list-item-content>
-                                    <v-list-item-title>Cadeaux</v-list-item-title>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </router-link>
-
-                    </v-list-item-group>
-
-                </v-list>
-
-            </div>
-
-        </v-navigation-drawer>
-
-        <v-navigation-drawer v-model="filterDrawer"  absolute right>
-
-            <div class="app-drawer">
-
-                <v-card elevation="0">
-
-                    <v-card-title>
-                        FILTERS
-                    </v-card-title>
-
-                    <v-card-text>
-                        FILTERS
-                    </v-card-text>
-
-                </v-card>
-
-            </div>
-
-        </v-navigation-drawer>
-
         <v-content>
+
+            <v-navigation-drawer v-model="navDrawer" absolute left>
+
+                <div class="app-drawer">
+
+                    <v-list nav dense>
+
+                        <v-list-item-group active-class="deep-green--text text--accent-4">
+
+                            <router-link to="/" tag="v-list-item">
+                                <v-list-item link>
+                                    <v-list-item-icon>
+                                        <v-icon>mdi-home</v-icon>
+                                    </v-list-item-icon>
+                                    <v-list-item-content>
+                                        <v-list-item-title>Accueil</v-list-item-title>
+                                    </v-list-item-content>
+                                </v-list-item>
+                            </router-link>
+
+                            <router-link to="/ideas" tag="v-list-item">
+                                <v-list-item link>
+                                    <v-list-item-icon>
+                                        <v-icon>mdi-lightbulb-on-outline</v-icon>
+                                    </v-list-item-icon>
+                                    <v-list-item-content>
+                                        <v-list-item-title>Idées cadeaux</v-list-item-title>
+                                    </v-list-item-content>
+                                </v-list-item>
+                            </router-link>
+
+                            <router-link to="/gifts" tag="v-list-item">
+                                <v-list-item link>
+                                    <v-list-item-icon>
+                                        <v-icon>mdi-gift-outline</v-icon>
+                                    </v-list-item-icon>
+                                    <v-list-item-content>
+                                        <v-list-item-title>Cadeaux</v-list-item-title>
+                                    </v-list-item-content>
+                                </v-list-item>
+                            </router-link>
+
+                        </v-list-item-group>
+
+                    </v-list>
+
+                </div>
+
+            </v-navigation-drawer>
 
             <v-container d-flex fluid>
 
                 <router-view
                     :editMode="editMode"
+                    :filterDrawer="filterDrawer"
                     :validateForm="validateForm"
                     v-on:formValidated="onFormValidated"
                     v-on:formCreated="onFormCreated"
+                    v-on:filterDrawerUpdated="onFilterDrawerUpdated"
                 ></router-view>
 
             </v-container>
@@ -126,16 +109,9 @@
         data: () => ({
             navDrawer: false,
             filterDrawer: false,
-            group: null,
             editMode: false,
             validateForm: false
         }),
-        watch: {
-            group () {
-                this.navDrawer = false,
-                this.filterDrawer = false
-            },
-        },
         methods: {
             onFormValidated() {
                 this.editMode = false;
@@ -143,6 +119,9 @@
             },
             onFormCreated() {
                 this.editMode = false;
+            },
+            onFilterDrawerUpdated(value) {
+                this.filterDrawer = value;
             },
             showBackButton() {
                 return ['idea', 'ideaCreate', 'gift', 'giftCreate'].includes(this.$route.name);
