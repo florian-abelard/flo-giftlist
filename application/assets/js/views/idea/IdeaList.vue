@@ -1,9 +1,9 @@
 <template>
     <div>
 
-        <v-navigation-drawer v-model="filterDrawerLocal" absolute right>
+        <v-navigation-drawer v-model="filterDrawerLocal" fixed right>
 
-            <div class="app-drawer">
+            <div class="drawer-container">
 
                 <v-card elevation="0">
 
@@ -147,6 +147,3 @@
     }
 
 </script>
-
-<style scoped>
-</style>

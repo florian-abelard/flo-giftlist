@@ -3,7 +3,8 @@
 
     <v-app>
 
-        <v-app-bar app color="teal darken-1" dark>
+        <v-app-bar color="teal darken-1" app dark>
+
 
             <v-app-bar-nav-icon @click.stop="navDrawer = !navDrawer">
             </v-app-bar-nav-icon>
@@ -34,9 +35,9 @@
 
         <v-content>
 
-            <v-navigation-drawer v-model="navDrawer" absolute left>
+            <v-navigation-drawer v-model="navDrawer" fixed left>
 
-                <div class="app-drawer">
+                <div class="drawer-container">
 
                     <v-list nav dense>
 
@@ -145,3 +146,11 @@
     };
 
 </script>
+
+<style scoped>
+
+    #app >>> .v-navigation-drawer {
+        z-index: 4 !important;
+    }
+
+</style>
