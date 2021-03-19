@@ -1,0 +1,11 @@
+body {
+    background-color: lightgray;
+}
+
+aside .v-navigation-drawer {
+    margin-top: 60px !important;
+    border: 1px solid red;
+}
+
+$navigation-drawer-mobile-temporary-elevation: -1;
+$navigation-drawer-border-width: 50px;

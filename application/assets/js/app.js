@@ -12,7 +12,7 @@ import router from "./router";
 
 // any CSS you import will output into a single css file (app.css in this case)
 import '@mdi/font/css/materialdesignicons.min.css';
-import '../css/app.css';
+import '../css/app.scss';
 
 /**
 * Create a fresh Vue Application instance
