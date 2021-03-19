@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <v-container class="pa-0">
 
         <v-navigation-drawer v-model="filterDrawerLocal" fixed right>
 
@@ -31,7 +31,7 @@
 
         </v-navigation-drawer>
 
-        <v-container justify-center>
+        <v-container justify-center class="pa-0">
 
             <v-list two-line>
                 <template v-for="(idea, index) in ideas">
@@ -71,7 +71,8 @@
             </router-link>
 
         </v-container>
-    </div>
+
+    </v-container>
 </template>
 
 <script>
