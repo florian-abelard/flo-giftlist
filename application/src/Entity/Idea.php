@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Entity\ValueObject\Price;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -31,6 +33,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "order"={"updatedAt": "DESC", "id": "ASC"}
  *      }
  * )
+ *
+ * @ApiFilter(SearchFilter::class, properties={
+ *      "recipients.group.id": "exact"
+ * })
  */
 class Idea implements TimestampableInterface
 {

@@ -19,6 +19,8 @@
                                 label="Groupe"
                                 item-text="label"
                                 item-value="@id"
+                                v-model="filters['recipients.group.id']"
+                                clearable
                             >
                             </v-select>
 
@@ -84,6 +86,10 @@
             return {
                 ideas: [],
                 groups: [],
+                filters: {
+                    'recipients.group.id': '',
+                   /*  'recipients.id': [], */
+                },
                 filterDrawerLocal: this.filterDrawer
             };
         },
@@ -92,6 +98,12 @@
             this.fetchGroups();
         },
         watch: {
+            filters: {
+                handler: function(value) {
+                    this.fetchIdeas();
+                },
+                deep: true
+            },
             filterDrawer: {
                 handler(value) {
                     this.filterDrawerLocal = value;
@@ -107,7 +119,20 @@
         },
         methods: {
             fetchIdeas() {
-                fetch('/api/ideas')
+
+                let url = '/api/ideas';
+                let params = '';
+
+                for (const [filter, value] of Object.entries(this.filters)) {
+                    if (value) {
+                        params += `${filter}=${value}`;
+                    }
+                }
+                if (params) {
+                    url += '?' + params;
+                }
+
+                fetch(url)
                 .then( response => {
                     return response.json();
                 })
@@ -125,7 +150,6 @@
                     return response.json();
                 })
                 .then( (data) => {
-                    console.log(this.filterDrawerLocal);
                     this.groups = data['hydra:member'];
                 })
                 .catch( (err) => {
@@ -137,7 +161,6 @@
                     method: 'DELETE'
                 })
                 .then( response => {
-                    console.log(this.filterDrawerLocal);
                     this.fetchIdeas();
                 })
                 .catch( (err) => {
