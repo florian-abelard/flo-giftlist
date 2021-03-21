@@ -14,12 +14,18 @@
                     <v-card-text>
                         <v-form v-on:submit.prevent="onSubmit">
 
+                            <v-text-field
+                                v-model="filters['label']"
+                                label="Libellé"
+                            >
+                            </v-text-field>
+
                             <v-select
+                                v-model="filters['recipients.group.id']"
                                 :items="groups"
                                 label="Groupe"
                                 item-text="label"
                                 item-value="@id"
-                                v-model="filters['recipients.group.id']"
                                 clearable
                             >
                             </v-select>
@@ -87,6 +93,7 @@
                 ideas: [],
                 groups: [],
                 filters: {
+                    'label': '',
                     'recipients.group.id': '',
                    /*  'recipients.id': [], */
                 },
@@ -100,6 +107,7 @@
         watch: {
             filters: {
                 handler: function(value) {
+                    console.log(value);
                     this.fetchIdeas();
                 },
                 deep: true
@@ -108,14 +116,12 @@
                 handler(value) {
                     this.filterDrawerLocal = value;
                 },
-                deep: true
             },
             filterDrawerLocal: {
                 handler(value) {
                     this.$emit('filterDrawerUpdated', value);
                 },
-                deep: true
-            }
+            },
         },
         methods: {
             fetchIdeas() {
@@ -125,12 +131,12 @@
 
                 for (const [filter, value] of Object.entries(this.filters)) {
                     if (value) {
+                        params += params ? '&' : '';
                         params += `${filter}=${value}`;
                     }
                 }
-                if (params) {
-                    url += '?' + params;
-                }
+
+                url += params ? '?' : '';
 
                 fetch(url)
                 .then( response => {

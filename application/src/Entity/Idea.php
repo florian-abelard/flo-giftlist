@@ -35,6 +35,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * )
  *
  * @ApiFilter(SearchFilter::class, properties={
+ *      "label": "ipartial",
  *      "recipients.group.id": "exact"
  * })
  */
