@@ -127,16 +127,9 @@
             fetchIdeas() {
 
                 let url = '/api/ideas';
-                let params = '';
+                const params = this.formatQueryParams(this.filters);
 
-                for (const [filter, value] of Object.entries(this.filters)) {
-                    if (value) {
-                        params += params ? '&' : '';
-                        params += `${filter}=${value}`;
-                    }
-                }
-
-                url += params ? '?' : '';
+                url += params ? '?' + params : '';
 
                 fetch(url)
                 .then( response => {
@@ -172,6 +165,20 @@
                 .catch( (err) => {
                     console.log(err);
                 });
+            },
+            formatQueryParams(filters) {
+                console.log(filters);
+                let params = '';
+
+                for (const [filter, value] of Object.entries(filters)) {
+                    if (value) {
+                        params += params ? '&' : '';
+                        params += `${filter}=${value}`;
+                    }
+                }
+                console.log(params);
+
+                return params;
             }
         }
     }
