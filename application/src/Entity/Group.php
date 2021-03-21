@@ -14,7 +14,7 @@ use Ramsey\Uuid\UuidInterface;
  *
  * @ApiResource(
  *     collectionOperations={"get"},
-  *    attributes={"order"={"label": "ASC"}},
+ *     attributes={"order"={"label": "ASC"}},
  * )
  */
 class Group

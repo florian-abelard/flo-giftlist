@@ -11,8 +11,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ORM\Entity(repositoryClass="App\Repository\RecipientRepository")
  *
  * @ApiResource(
- *     collectionOperations={"get", "post"},
- *     itemOperations={"get"}
+ *     collectionOperations={"get"},
+ *     attributes={"order"={"name": "ASC"}},
  * )
  */
 class Recipient

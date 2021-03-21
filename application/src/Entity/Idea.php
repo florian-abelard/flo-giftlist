@@ -36,7 +36,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ApiFilter(SearchFilter::class, properties={
  *      "label": "ipartial",
- *      "recipients.group.id": "exact"
+ *      "recipients.group.id": "exact",
+ *      "recipients.id": "exact"
  * })
  */
 class Idea implements TimestampableInterface

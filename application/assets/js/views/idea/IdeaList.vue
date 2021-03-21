@@ -30,6 +30,17 @@
                             >
                             </v-select>
 
+                            <v-select
+                                v-model="filters['recipients.id[]']"
+                                :items="recipients"
+                                label="Personne"
+                                item-text="name"
+                                item-value="@id"
+                                clearable
+                                multiple
+                            >
+                            </v-select>
+
                         </v-form>
                     </v-card-text>
 
@@ -92,10 +103,11 @@
             return {
                 ideas: [],
                 groups: [],
+                recipients: [],
                 filters: {
                     'label': '',
                     'recipients.group.id': '',
-                   /*  'recipients.id': [], */
+                    'recipients.id[]': [],
                 },
                 filterDrawerLocal: this.filterDrawer
             };
@@ -103,11 +115,11 @@
         created() {
             this.fetchIdeas();
             this.fetchGroups();
+            this.fetchRecipients();
         },
         watch: {
             filters: {
                 handler: function(value) {
-                    console.log(value);
                     this.fetchIdeas();
                 },
                 deep: true
@@ -155,6 +167,19 @@
                     console.log(err);
                 });
             },
+            fetchRecipients()
+            {
+                fetch('/api/recipients')
+                .then( response => {
+                    return response.json();
+                })
+                .then( (data) => {
+                    this.recipients = data['hydra:member'];
+                })
+                .catch( (err) => {
+                    console.log(err);
+                });
+            },
             deleteIdea(id) {
                 fetch('/api/ideas/' + id, {
                     method: 'DELETE'
@@ -167,19 +192,23 @@
                 });
             },
             formatQueryParams(filters) {
-                console.log(filters);
                 let params = '';
 
-                for (const [filter, value] of Object.entries(filters)) {
-                    if (value) {
-                        params += params ? '&' : '';
-                        params += `${filter}=${value}`;
-                    }
-                }
-                console.log(params);
+                params = new URLSearchParams();
 
-                return params;
-            }
+                for (const [filter, value] of Object.entries(filters)) {
+
+					if (value instanceof Array && value.length !== 0) {
+						for (const item of value) {
+							params.append(filter, item);
+						}
+					} else if (!(value instanceof Array) && value) {
+						params.append(filter, value);
+					}
+                }
+
+                return params.toString();
+            },
         }
     }
 
