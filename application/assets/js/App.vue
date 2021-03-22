@@ -149,6 +149,10 @@
 
 <style scoped>
 
+    #app >>> .v-app-bar {
+        z-index: 10 !important;
+    }
+
     #app >>> .v-navigation-drawer {
         z-index: 4 !important;
     }

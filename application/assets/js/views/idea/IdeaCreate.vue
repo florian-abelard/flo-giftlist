@@ -26,6 +26,7 @@
                 deletable-chips
                 label="Ajouter des destinataires"
                 multiple
+                auto-select-first
             ></v-autocomplete>
 
             <v-text-field

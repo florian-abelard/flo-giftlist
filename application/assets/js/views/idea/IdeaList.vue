@@ -1,7 +1,7 @@
 <template>
     <v-container class="pa-0">
 
-        <v-navigation-drawer v-model="filterDrawerLocal" fixed right>
+        <v-navigation-drawer v-model="filterDrawerLocal" fixed right width=300>
 
             <div class="drawer-container">
 
@@ -17,6 +17,7 @@
                             <v-text-field
                                 v-model="filters['label']"
                                 label="Libellé"
+                                clearable
                             >
                             </v-text-field>
 
@@ -30,16 +31,30 @@
                             >
                             </v-select>
 
-                            <v-select
+                            <v-autocomplete
                                 v-model="filters['recipients.id[]']"
                                 :items="recipients"
-                                label="Personne"
                                 item-text="name"
                                 item-value="@id"
-                                clearable
+                                small-chips
+                                deletable-chips
+                                label="Destinataires"
                                 multiple
-                            >
-                            </v-select>
+                                clearable
+                                auto-select-first
+                            ></v-autocomplete>
+
+                            <v-container class="mt-3 pa-0 d-flex justify-center">
+                                <v-btn
+                                    small
+                                    @click="initializeFilters()"
+                                >
+                                    Réinitialiser
+                                    <v-icon right color="grey darken-1">
+                                        mdi-refresh
+                                    </v-icon>
+                                </v-btn>
+                            </v-container>
 
                         </v-form>
                     </v-card-text>
@@ -104,11 +119,7 @@
                 ideas: [],
                 groups: [],
                 recipients: [],
-                filters: {
-                    'label': '',
-                    'recipients.group.id': '',
-                    'recipients.id[]': [],
-                },
+                filters: {},
                 filterDrawerLocal: this.filterDrawer
             };
         },
@@ -116,6 +127,7 @@
             this.fetchIdeas();
             this.fetchGroups();
             this.fetchRecipients();
+            this.initializeFilters();
         },
         watch: {
             filters: {
@@ -190,6 +202,13 @@
                 .catch( (err) => {
                     console.log(err);
                 });
+            },
+            initializeFilters() {
+                this.filters = {
+                    'label': '',
+                    'recipients.group.id': '',
+                    'recipients.id[]': [],
+                };
             },
             formatQueryParams(filters) {
                 let params = '';
