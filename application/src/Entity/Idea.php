@@ -104,21 +104,6 @@ class Idea implements TimestampableInterface
      */
     private $recipients;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=4, nullable=true)
-     *
-     * @Assert\Length(max=4)
-     *
-     * @Groups({
-     *     "idea:read",
-     *     "idea:write",
-     *     "idea:item:get"
-     * })
-     */
-    private $eventYear;
-
     public function __construct()
     {
         $this->price = new Price();
@@ -169,18 +154,6 @@ class Idea implements TimestampableInterface
     public function removeRecipient(Recipient $recipient): self
     {
         $this->recipients->removeElement($recipient);
-
-        return $this;
-    }
-
-    public function getEventYear(): ?string
-    {
-        return $this->eventYear;
-    }
-
-    public function setEventYear(?string $eventYear): self
-    {
-        $this->eventYear = $eventYear;
 
         return $this;
     }

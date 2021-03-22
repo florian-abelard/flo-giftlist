@@ -28,15 +28,9 @@
                 deletable-chips
                 label="Destinataires"
                 multiple
+                auto-select-first
                 :disabled="!editMode"
             ></v-autocomplete>
-
-            <v-text-field
-                v-model="idea.eventYear"
-                label="Année de l'évènement"
-                :disabled="!editMode"
-            >
-            </v-text-field>
 
             <v-text-field
                 v-model="idea.price.value"
@@ -121,7 +115,6 @@
                         body: JSON.stringify({
                             label: idea.label,
                             recipients: idea.recipientsUri,
-                            eventYear: idea.eventYear,
                             price: {
                                 value: parseFloat(idea.price.value)
                             },
