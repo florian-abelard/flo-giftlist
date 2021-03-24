@@ -1,7 +1,7 @@
 <template>
     <v-container class="pa-0">
 
-        <v-navigation-drawer v-model="filterDrawerLocal" fixed right width=300>
+        <v-navigation-drawer v-model="showFilter" fixed right width=300>
 
             <div class="drawer-container">
 
@@ -111,16 +111,19 @@
 
 <script>
 
+    import filterMixin from '../../mixins/filterMixin.js'
+
     export default {
         name: "IdeaList",
-        props: ['filterDrawer'],
+        props: ['showFilterMain'],
+        mixins: [filterMixin],
         data() {
             return {
                 ideas: [],
                 groups: [],
                 recipients: [],
                 filters: {},
-                filterDrawerLocal: this.filterDrawer
+                showFilter: this.showFilterMain
             };
         },
         created() {
@@ -136,14 +139,14 @@
                 },
                 deep: true
             },
-            filterDrawer: {
+            showFilterMain: {
                 handler(value) {
-                    this.filterDrawerLocal = value;
+                    this.showFilter = value;
                 },
             },
-            filterDrawerLocal: {
+            showFilter: {
                 handler(value) {
-                    this.$emit('filterDrawerUpdated', value);
+                    this.$emit('showFilterMainUpdated', value);
                 },
             },
         },
@@ -209,24 +212,6 @@
                     'recipients.group.id': '',
                     'recipients.id[]': [],
                 };
-            },
-            formatQueryParams(filters) {
-                let params = '';
-
-                params = new URLSearchParams();
-
-                for (const [filter, value] of Object.entries(filters)) {
-
-					if (value instanceof Array && value.length !== 0) {
-						for (const item of value) {
-							params.append(filter, item);
-						}
-					} else if (!(value instanceof Array) && value) {
-						params.append(filter, value);
-					}
-                }
-
-                return params.toString();
             },
         }
     }
