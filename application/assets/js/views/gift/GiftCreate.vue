@@ -26,6 +26,7 @@
                 deletable-chips
                 label="Destinataires"
                 multiple
+                auto-select-first
             ></v-autocomplete>
 
             <v-text-field

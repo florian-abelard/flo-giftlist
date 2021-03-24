@@ -3,12 +3,14 @@
 
     <v-app>
 
-        <v-app-bar app color="teal darken-1" dark>
+        <v-app-bar color="teal darken-1" app dark>
 
-            <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
+            <v-app-bar-nav-icon @click.stop="navDrawer = !navDrawer">
+            </v-app-bar-nav-icon>
 
             <v-toolbar-title>
-                Idées Cadeaux {{ $route.name }}
+                Idées Cadeaux
             </v-toolbar-title>
 
             <v-spacer></v-spacer>
@@ -25,66 +27,72 @@
                 <v-icon>mdi-check</v-icon>
             </v-btn>
 
-            <v-btn icon v-if="['ideaList', 'giftList'].includes($route.name)">
+            <v-btn icon v-if="['ideaList', 'giftList'].includes($route.name)" @click.stop="showMainFilter = !showMainFilter">
                 <v-icon>mdi-filter-outline</v-icon>
             </v-btn>
 
         </v-app-bar>
 
-        <v-navigation-drawer v-model="drawer" app>
-
-            <v-list nav dense>
-
-                <v-list-item-group v-model="group" active-class="deep-green--text text--accent-4">
-
-                    <router-link to="/" tag="v-list-item">
-                        <v-list-item link>
-                            <v-list-item-icon>
-                                <v-icon>mdi-home</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-content>
-                                <v-list-item-title>Accueil</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </router-link>
-
-                    <router-link to="/ideas" tag="v-list-item">
-                        <v-list-item link>
-                            <v-list-item-icon>
-                                <v-icon>mdi-lightbulb-on-outline</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-content>
-                                <v-list-item-title>Idées cadeaux</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </router-link>
-
-                    <router-link to="/gifts" tag="v-list-item">
-                        <v-list-item link>
-                            <v-list-item-icon>
-                                <v-icon>mdi-gift-outline</v-icon>
-                            </v-list-item-icon>
-                            <v-list-item-content>
-                                <v-list-item-title>Cadeaux</v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </router-link>
-
-                </v-list-item-group>
-
-            </v-list>
-
-        </v-navigation-drawer>
-
         <v-content>
+
+            <v-navigation-drawer v-model="navDrawer" fixed left>
+
+                <div class="drawer-container">
+
+                    <v-list nav dense>
+
+                        <v-list-item-group active-class="deep-green--text text--accent-4">
+
+                            <router-link to="/" tag="v-list-item">
+                                <v-list-item link>
+                                    <v-list-item-icon>
+                                        <v-icon>mdi-home</v-icon>
+                                    </v-list-item-icon>
+                                    <v-list-item-content>
+                                        <v-list-item-title>Accueil</v-list-item-title>
+                                    </v-list-item-content>
+                                </v-list-item>
+                            </router-link>
+
+                            <router-link to="/ideas" tag="v-list-item">
+                                <v-list-item link>
+                                    <v-list-item-icon>
+                                        <v-icon>mdi-lightbulb-on-outline</v-icon>
+                                    </v-list-item-icon>
+                                    <v-list-item-content>
+                                        <v-list-item-title>Idées cadeaux</v-list-item-title>
+                                    </v-list-item-content>
+                                </v-list-item>
+                            </router-link>
+
+                            <router-link to="/gifts" tag="v-list-item">
+                                <v-list-item link>
+                                    <v-list-item-icon>
+                                        <v-icon>mdi-gift-outline</v-icon>
+                                    </v-list-item-icon>
+                                    <v-list-item-content>
+                                        <v-list-item-title>Cadeaux</v-list-item-title>
+                                    </v-list-item-content>
+                                </v-list-item>
+                            </router-link>
+
+                        </v-list-item-group>
+
+                    </v-list>
+
+                </div>
+
+            </v-navigation-drawer>
 
             <v-container d-flex fluid>
 
                 <router-view
                     :editMode="editMode"
+                    :showMainFilter="showMainFilter"
                     :validateForm="validateForm"
                     v-on:formValidated="onFormValidated"
                     v-on:formCreated="onFormCreated"
+                    v-on:showMainFilterUpdated="onshowMainFilterUpdated"
                 ></router-view>
 
             </v-container>
@@ -100,16 +108,11 @@
     export default {
         name: "App",
         data: () => ({
-            drawer: false,
-            group: null,
+            navDrawer: false,
+            showMainFilter: false,
             editMode: false,
             validateForm: false
         }),
-        watch: {
-            group () {
-                this.drawer = false
-            },
-        },
         methods: {
             onFormValidated() {
                 this.editMode = false;
@@ -117,6 +120,9 @@
             },
             onFormCreated() {
                 this.editMode = false;
+            },
+            onshowMainFilterUpdated(value) {
+                this.showMainFilter = value;
             },
             showBackButton() {
                 return ['idea', 'ideaCreate', 'gift', 'giftCreate'].includes(this.$route.name);
@@ -140,3 +146,15 @@
     };
 
 </script>
+
+<style scoped>
+
+    #app >>> .v-app-bar {
+        z-index: 10 !important;
+    }
+
+    #app >>> .v-navigation-drawer {
+        z-index: 4 !important;
+    }
+
+</style>

@@ -1,64 +1,195 @@
 <template>
-    <v-container justify-center>
+    <v-container class="pa-0">
 
-        <v-list two-line>
-            <template v-for="(idea, index) in ideas">
+        <v-navigation-drawer v-model="showFilter" fixed right width=300>
 
-                <v-list-item :key="idea.id" :style="{ cursor: 'pointer' }">
+            <div class="drawer-container">
 
-                    <router-link v-bind:to="'/ideas/' + idea.id" v-slot="{ href, route, navigate }">
-                        <v-list-item-content :href="href" v-on:click="navigate">
+                <v-card elevation="0">
 
-                            <v-list-item-title v-text="idea.label"></v-list-item-title>
+                    <v-card-title>
+                        Filtres
+                    </v-card-title>
 
-                            <v-list-item-subtitle v-if="idea.recipients.length > 0">
-                                <v-chip v-for="recipient in idea.recipients"  v-bind:key="recipient.id" small>
-                                    {{ recipient.name }}
-                                </v-chip>
-                            </v-list-item-subtitle>
+                    <v-card-text>
+                        <v-form v-on:submit.prevent="onSubmit">
 
-                        </v-list-item-content>
-                    </router-link>
+                            <v-text-field
+                                v-model="filters['label']"
+                                label="Libellé"
+                                clearable
+                            >
+                            </v-text-field>
 
-                    <v-list-item-action>
-                        <v-btn icon v-on:click="deleteIdea(idea.id)">
-                            <v-icon color="grey lighten-1">mdi-delete</v-icon>
-                        </v-btn>
-                    </v-list-item-action>
+                            <v-select
+                                v-model="filters['recipients.group.id']"
+                                :items="groups"
+                                label="Groupe"
+                                item-text="label"
+                                item-value="@id"
+                                clearable
+                            >
+                            </v-select>
 
-                </v-list-item>
+                            <v-autocomplete
+                                v-model="filters['recipients.id[]']"
+                                :items="recipients"
+                                item-text="name"
+                                item-value="@id"
+                                small-chips
+                                deletable-chips
+                                label="Destinataires"
+                                multiple
+                                clearable
+                                auto-select-first
+                            ></v-autocomplete>
 
-                <v-divider v-if="index + 1 < ideas.length" :key="index"></v-divider>
-            </template>
-        </v-list>
+                            <v-container class="mt-3 pa-0 d-flex justify-center">
+                                <v-btn
+                                    small
+                                    @click="initializeFilters()"
+                                >
+                                    Réinitialiser
+                                    <v-icon right color="grey darken-1">
+                                        mdi-refresh
+                                    </v-icon>
+                                </v-btn>
+                            </v-container>
 
-        <router-link to="/ideas/create" v-slot="{ href, route, navigate }">
-            <v-btn class="mx-2" fab dark fixed bottom right color="teal darken-1" :href="href" v-on:click="navigate">
-                <v-icon dark>mdi-plus</v-icon>
-            </v-btn>
-        </router-link>
+                        </v-form>
+                    </v-card-text>
+
+                </v-card>
+
+            </div>
+
+        </v-navigation-drawer>
+
+        <v-container justify-center class="pa-0">
+
+            <v-list two-line>
+                <template v-for="(idea, index) in ideas">
+
+                    <v-list-item :key="idea.id" :style="{ cursor: 'pointer' }">
+
+                        <router-link v-bind:to="'/ideas/' + idea.id" v-slot="{ href, route, navigate }">
+                            <v-list-item-content :href="href" v-on:click="navigate">
+
+                                <v-list-item-title v-text="idea.label"></v-list-item-title>
+
+                                <v-list-item-subtitle v-if="idea.recipients.length > 0">
+                                    <v-chip v-for="recipient in idea.recipients"  v-bind:key="recipient.id" small>
+                                        {{ recipient.name }}
+                                    </v-chip>
+                                </v-list-item-subtitle>
+
+                            </v-list-item-content>
+                        </router-link>
+
+                        <v-list-item-action>
+                            <v-btn icon v-on:click="deleteIdea(idea.id)">
+                                <v-icon color="grey lighten-1">mdi-delete</v-icon>
+                            </v-btn>
+                        </v-list-item-action>
+
+                    </v-list-item>
+
+                    <v-divider v-if="index + 1 < ideas.length" :key="index"></v-divider>
+                </template>
+            </v-list>
+
+            <router-link to="/ideas/create" v-slot="{ href, route, navigate }">
+                <v-btn class="mx-2" fab dark fixed bottom right color="teal darken-1" :href="href" v-on:click="navigate">
+                    <v-icon dark>mdi-plus</v-icon>
+                </v-btn>
+            </router-link>
+
+        </v-container>
 
     </v-container>
 </template>
 
 <script>
 
+    import filterMixin from '../../mixins/filterMixin.js'
+
     export default {
         name: "IdeaList",
+        props: ['showMainFilter'],
+        mixins: [filterMixin],
         data() {
-            return { ideas: [] };
+            return {
+                ideas: [],
+                groups: [],
+                recipients: [],
+                filters: {},
+                showFilter: this.showMainFilter
+            };
         },
         created() {
             this.fetchIdeas();
+            this.fetchGroups();
+            this.fetchRecipients();
+            this.initializeFilters();
+        },
+        watch: {
+            filters: {
+                handler: function(value) {
+                    this.fetchIdeas();
+                },
+                deep: true
+            },
+            showMainFilter: {
+                handler(value) {
+                    this.showFilter = value;
+                },
+            },
+            showFilter: {
+                handler(value) {
+                    this.$emit('showMainFilterUpdated', value);
+                },
+            },
         },
         methods: {
             fetchIdeas() {
-                fetch('/api/ideas')
+
+                let url = '/api/ideas';
+                const params = this.formatQueryParams(this.filters);
+
+                url += params ? '?' + params : '';
+
+                fetch(url)
                 .then( response => {
                     return response.json();
                 })
                 .then( (data) => {
                     this.ideas = data['hydra:member'];
+                })
+                .catch( (err) => {
+                    console.log(err);
+                });
+            },
+            fetchGroups()
+            {
+                fetch('/api/groups')
+                .then( response => {
+                    return response.json();
+                })
+                .then( (data) => {
+                    this.groups = data['hydra:member'];
+                })
+                .catch( (err) => {
+                    console.log(err);
+                });
+            },
+            fetchRecipients()
+            {
+                fetch('/api/recipients')
+                .then( response => {
+                    return response.json();
+                })
+                .then( (data) => {
+                    this.recipients = data['hydra:member'];
                 })
                 .catch( (err) => {
                     console.log(err);
@@ -74,11 +205,15 @@
                 .catch( (err) => {
                     console.log(err);
                 });
-            }
+            },
+            initializeFilters() {
+                this.filters = {
+                    'label': '',
+                    'recipients.group.id': '',
+                    'recipients.id[]': [],
+                };
+            },
         }
     }
 
 </script>
-
-<style scoped>
-</style>

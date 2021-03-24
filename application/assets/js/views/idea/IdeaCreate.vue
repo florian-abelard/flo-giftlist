@@ -26,13 +26,8 @@
                 deletable-chips
                 label="Ajouter des destinataires"
                 multiple
+                auto-select-first
             ></v-autocomplete>
-
-            <v-text-field
-                v-model="idea.eventYear"
-                label="Année de l'évènement"
-            >
-            </v-text-field>
 
             <v-text-field
                 v-model="idea.price"
@@ -58,7 +53,6 @@
                 idea: {
                     label: '',
                     recipientsUri: [],
-                    eventYear: '',
                     price: null,
                 },
                 recipients: [],
@@ -89,7 +83,6 @@
                     body: JSON.stringify({
                         label: idea.label,
                         recipients: idea.recipientsUri,
-                        eventYear: idea.eventYear,
                         price: {
                             value: parseFloat(idea.price)
                         },

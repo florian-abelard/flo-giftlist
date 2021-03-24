@@ -28,6 +28,7 @@
                 deletable-chips
                 label="Destinataires"
                 multiple
+                auto-select-first
                 :disabled="!editMode"
             ></v-autocomplete>
 

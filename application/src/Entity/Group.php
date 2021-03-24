@@ -4,13 +4,18 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * @ApiResource()
  * @ORM\Entity(repositoryClass="App\Repository\GroupRepository")
  * @ORM\Table(name="`group`")
+ *
+ * @ApiResource(
+ *     collectionOperations={"get"},
+ *     attributes={"order"={"label": "ASC"}},
+ * )
  */
 class Group
 {
@@ -19,7 +24,7 @@ class Group
      *
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
-     * @ORM\GeneratedValue(strategy="CUSTOM") 
+     * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
     private $id;
@@ -56,7 +61,7 @@ class Group
         return $this;
     }
 
-    public function getMembers(): ArrayCollection
+    public function getMembers(): Collection
     {
         return $this->members;
     }

@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Entity\ValueObject\Price;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -31,6 +33,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "order"={"updatedAt": "DESC", "id": "ASC"}
  *      }
  * )
+ *
+ * @ApiFilter(SearchFilter::class, properties={
+ *      "label": "ipartial",
+ *      "recipients.group.id": "exact",
+ *      "recipients.id": "exact"
+ * })
  */
 class Idea implements TimestampableInterface
 {
@@ -96,21 +104,6 @@ class Idea implements TimestampableInterface
      */
     private $recipients;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", length=4, nullable=true)
-     *
-     * @Assert\Length(max=4)
-     *
-     * @Groups({
-     *     "idea:read",
-     *     "idea:write",
-     *     "idea:item:get"
-     * })
-     */
-    private $eventYear;
-
     public function __construct()
     {
         $this->price = new Price();
@@ -161,18 +154,6 @@ class Idea implements TimestampableInterface
     public function removeRecipient(Recipient $recipient): self
     {
         $this->recipients->removeElement($recipient);
-
-        return $this;
-    }
-
-    public function getEventYear(): ?string
-    {
-        return $this->eventYear;
-    }
-
-    public function setEventYear(?string $eventYear): self
-    {
-        $this->eventYear = $eventYear;
 
         return $this;
     }
