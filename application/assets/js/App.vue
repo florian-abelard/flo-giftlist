@@ -27,7 +27,7 @@
                 <v-icon>mdi-check</v-icon>
             </v-btn>
 
-            <v-btn icon v-if="['ideaList', 'giftList'].includes($route.name)" @click.stop="showFilterMain = !showFilterMain">
+            <v-btn icon v-if="['ideaList', 'giftList'].includes($route.name)" @click.stop="showMainFilter = !showMainFilter">
                 <v-icon>mdi-filter-outline</v-icon>
             </v-btn>
 
@@ -88,11 +88,11 @@
 
                 <router-view
                     :editMode="editMode"
-                    :showFilterMain="showFilterMain"
+                    :showMainFilter="showMainFilter"
                     :validateForm="validateForm"
                     v-on:formValidated="onFormValidated"
                     v-on:formCreated="onFormCreated"
-                    v-on:showFilterMainUpdated="onshowFilterMainUpdated"
+                    v-on:showMainFilterUpdated="onshowMainFilterUpdated"
                 ></router-view>
 
             </v-container>
@@ -109,7 +109,7 @@
         name: "App",
         data: () => ({
             navDrawer: false,
-            showFilterMain: false,
+            showMainFilter: false,
             editMode: false,
             validateForm: false
         }),
@@ -121,8 +121,8 @@
             onFormCreated() {
                 this.editMode = false;
             },
-            onshowFilterMainUpdated(value) {
-                this.showFilterMain = value;
+            onshowMainFilterUpdated(value) {
+                this.showMainFilter = value;
             },
             showBackButton() {
                 return ['idea', 'ideaCreate', 'gift', 'giftCreate'].includes(this.$route.name);

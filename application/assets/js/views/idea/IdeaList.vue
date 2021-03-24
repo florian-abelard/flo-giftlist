@@ -115,7 +115,7 @@
 
     export default {
         name: "IdeaList",
-        props: ['showFilterMain'],
+        props: ['showMainFilter'],
         mixins: [filterMixin],
         data() {
             return {
@@ -123,7 +123,7 @@
                 groups: [],
                 recipients: [],
                 filters: {},
-                showFilter: this.showFilterMain
+                showFilter: this.showMainFilter
             };
         },
         created() {
@@ -139,14 +139,14 @@
                 },
                 deep: true
             },
-            showFilterMain: {
+            showMainFilter: {
                 handler(value) {
                     this.showFilter = value;
                 },
             },
             showFilter: {
                 handler(value) {
-                    this.$emit('showFilterMainUpdated', value);
+                    this.$emit('showMainFilterUpdated', value);
                 },
             },
         },
