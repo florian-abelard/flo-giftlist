@@ -2,10 +2,6 @@
 
     <v-container justify-center>
 
-        <v-container class="display-1">Cadeaux</v-container>
-
-        Ajouter un cadeaux
-
         <v-form v-on:submit.prevent="onSubmit">
 
             <v-text-field

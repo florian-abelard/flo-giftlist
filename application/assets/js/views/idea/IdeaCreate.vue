@@ -2,10 +2,6 @@
 
     <v-container justify-center>
 
-        <v-container class="display-1">Idées cadeaux</v-container>
-
-        Créer une idée cadeaux
-
         <v-form v-on:submit.prevent="onSubmit">
 
             <v-text-field

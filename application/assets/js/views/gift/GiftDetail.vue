@@ -2,8 +2,6 @@
 
     <v-container justify-center>
 
-        <p>Détail du cadeau</p>
-
         <v-form
             ref="giftForm"
             :class="editMode ? '' : 'form-read-mode'"

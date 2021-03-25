@@ -10,7 +10,7 @@
             </v-app-bar-nav-icon>
 
             <v-toolbar-title>
-                Idées Cadeaux
+                {{ displayTitle() }}
             </v-toolbar-title>
 
             <v-spacer></v-spacer>
@@ -142,6 +142,14 @@
             showFilterButton() {
                 return ['ideaList', 'giftList'].includes(this.$route.name);
             },
+            displayTitle() {
+                if (this.$route.name.startsWith('idea')) {
+                    return 'Idées cadeaux';
+                }
+                if (this.$route.name.startsWith('gift')) {
+                    return 'Cadeaux';
+                }
+            }
         },
     };
 
