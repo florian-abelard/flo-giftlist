@@ -4,7 +4,7 @@
 
         <v-form
             ref="ideaForm"
-            :class="editMode ? '' : 'form-read-mode'"
+            :class="editing ? '' : 'form-reading'"
             v-on:submit.prevent="onSubmit"
         >
 
@@ -13,7 +13,7 @@
                 label="Libellé"
                 required
                 :rules="[value => !!value || 'Le libellé est obligatoire']"
-                :disabled="!editMode"
+                :disabled="!editing"
             >
             </v-text-field>
 
@@ -27,13 +27,13 @@
                 label="Destinataires"
                 multiple
                 auto-select-first
-                :disabled="!editMode"
+                :disabled="!editing"
             ></v-autocomplete>
 
             <v-text-field
                 v-model="idea.price.value"
                 label="Prix"
-                :disabled="!editMode"
+                :disabled="!editing"
             >
             </v-text-field>
 
@@ -48,8 +48,8 @@
     export default {
         name: "IdeaDetail",
         props: {
-            editMode: false,
-            validateForm: false
+            editing: false,
+            submitForm: false
         },
         data() {
             return {
@@ -60,13 +60,15 @@
             };
         },
         created() {
-            this.fetchIdea(this.$route.params.id);
+            if (this.$route.meta.formMode === 'edit') {
+                this.fetchIdea(this.$route.params.id);
+            }
             this.fetchRecipients();
             this.$emit('formCreated');
         },
         watch: {
-            validateForm: function () {
-                if (this.validateForm) {
+            submitForm: function () {
+                if (this.submitForm) {
                     this.onSubmit();
                     this.$emit('formValidated');
                 }
@@ -102,7 +104,30 @@
             },
             onSubmit()
             {
-                this.update();
+                this.$route.meta.formMode === 'create'
+                    ? this.create()
+                    : this.update();
+            },
+            create()
+            {
+                const idea = this.idea;
+                fetch('/api/ideas', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/ld+json'},
+                    body: JSON.stringify({
+                        label: idea.label,
+                        recipients: idea.recipientsUri,
+                        price: {
+                            value: parseFloat(idea.price)
+                        },
+                    })
+                })
+                .then( response => {
+                    console.log(response);
+                })
+                .catch( (err) => {
+                    console.log(err);
+                });
             },
             update()
             {
@@ -132,19 +157,19 @@
 </script>
 
 <style scoped>
-    .form-read-mode >>> .v-input__slot::before {
+    .form-reading >>> .v-input__slot::before {
         border-style: none;
     }
-    .form-read-mode >>> .theme--light.v-label--is-disabled {
+    .form-reading >>> .theme--light.v-label--is-disabled {
         color: rgba(0, 0, 0, .6);
     }
-    .form-read-mode >>> .theme--light.v-input--is-disabled input {
+    .form-reading >>> .theme--light.v-input--is-disabled input {
         color: rgba(0, 0, 0, .87);
     }
-    .form-read-mode >>> input[type="text"][disabled] {
+    .form-reading >>> input[type="text"][disabled] {
         color: rgba(0, 0, 0, .87);
     }
-    .form-read-mode >>> .theme--light.v-chip--disabled {
+    .form-reading >>> .theme--light.v-chip--disabled {
         opacity: 1;
     }
 </style>

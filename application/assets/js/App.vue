@@ -6,7 +6,7 @@
         <v-app-bar color="teal darken-1" app dark>
 
 
-            <v-app-bar-nav-icon @click.stop="navDrawer = !navDrawer">
+            <v-app-bar-nav-icon @click.stop="showMenu = !showMenu">
             </v-app-bar-nav-icon>
 
             <v-toolbar-title>
@@ -19,11 +19,11 @@
                 <v-icon>mdi-arrow-left</v-icon>
             </v-btn>
 
-            <v-btn icon v-if="showEditButton()" @click="editMode = true">
+            <v-btn icon v-if="showEditButton()" @click="editing = true">
                 <v-icon>mdi-square-edit-outline</v-icon>
             </v-btn>
 
-            <v-btn icon v-if="showValidateButton()" @click="validateForm = true">
+            <v-btn icon v-if="showValidateButton()" @click="submitForm = true">
                 <v-icon>mdi-check</v-icon>
             </v-btn>
 
@@ -35,7 +35,7 @@
 
         <v-content>
 
-            <v-navigation-drawer v-model="navDrawer" fixed left>
+            <v-navigation-drawer v-model="showMenu" fixed left>
 
                 <div class="drawer-container">
 
@@ -87,12 +87,12 @@
             <v-container d-flex fluid>
 
                 <router-view
-                    :editMode="editMode"
+                    :editing="editing"
                     :showMainFilter="showMainFilter"
-                    :validateForm="validateForm"
+                    :submitForm="submitForm"
                     v-on:formValidated="onFormValidated"
                     v-on:formCreated="onFormCreated"
-                    v-on:showMainFilterUpdated="onshowMainFilterUpdated"
+                    v-on:showMainFilterUpdated="onShowMainFilterUpdated"
                 ></router-view>
 
             </v-container>
@@ -108,35 +108,44 @@
     export default {
         name: "App",
         data: () => ({
-            navDrawer: false,
+            showMenu: false,
             showMainFilter: false,
-            editMode: false,
-            validateForm: false
+            editing: false,
+            submitForm: false
         }),
         methods: {
             onFormValidated() {
-                this.editMode = false;
-                this.validateForm = false;
+                this.editing = false;
+                this.submitForm = false;
             },
             onFormCreated() {
-                this.editMode = false;
+                if (this.$route.meta.formMode === 'create') {
+                    this.editing = true;
+                } else {
+                    this.editing = false;
+                }
             },
-            onshowMainFilterUpdated(value) {
+            onShowMainFilterUpdated(value) {
                 this.showMainFilter = value;
             },
             showBackButton() {
-                return ['idea', 'ideaCreate', 'gift', 'giftCreate'].includes(this.$route.name);
+                return this.$route.meta.showBackButton;
             },
             showEditButton() {
-                return ['idea', 'gift'].includes(this.$route.name) && !this.editMode;
+                if (this.$route.meta.formMode === 'edit' && !this.editing) {
+                    return true;
+                }
+
+                return false;
             },
             showValidateButton() {
-                if (['idea', 'gift'].includes(this.$route.name) && this.editMode) {
+                if (this.$route.meta.formMode === 'create') {
                     return true;
                 }
-                if (['ideaCreate', 'giftCreate'].includes(this.$route.name)) {
+                if (this.$route.meta.formMode === 'edit' && this.editing) {
                     return true;
                 }
+
                 return false;
             },
             showFilterButton() {
