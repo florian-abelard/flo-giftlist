@@ -212,6 +212,11 @@
                 })
                 .then( response => {
                     this.fetchGifts();
+                    this.$notify({
+                        type: 'success',
+                        title: 'Succès',
+                        text: "Le cadeau a bien été supprimée."
+                    });
                 })
                 .catch( (err) => {
                     console.log(err);

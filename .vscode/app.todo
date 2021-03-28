@@ -4,6 +4,7 @@ features :
     - Ajouter les notifications à la création / modification
     - Créer les migrations de données pour initialiser la prod
     - Ajouter les asserts côté API
+    - Gestion des erreurs (catch erreur via listener ?)
 
 issues :
     - fix: db-system-init @pending
