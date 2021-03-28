@@ -201,6 +201,11 @@
                 })
                 .then( response => {
                     this.fetchIdeas();
+                    this.$notify({
+                        type: 'success',
+                        title: 'Succès',
+                        text: "L'idée cadeau a bien été supprimée."
+                    });
                 })
                 .catch( (err) => {
                     console.log(err);

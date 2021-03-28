@@ -132,7 +132,11 @@
                     })
                 })
                 .then( response => {
-                    console.log(response);
+                        this.$notify({
+                            type: 'success',
+                            title: 'Succès',
+                            text: "Le cadeau a bien été créée."
+                        });
                 })
                 .catch( (err) => {
                     console.log(err);
@@ -155,7 +159,11 @@
                         })
                     })
                     .then( response => {
-                        console.log(response);
+                        this.$notify({
+                            type: 'success',
+                            title: 'Succès',
+                            text: "Le cadeau a bien été modifiée."
+                        });
                     })
                     .catch( (err) => {
                         console.log(err);
