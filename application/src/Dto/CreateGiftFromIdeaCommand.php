@@ -80,7 +80,6 @@ final class CreateGiftFromIdeaCommand
 
     public function removeRecipient(Recipient $recipient): self
     {
-        /* $this->recipients->removeElement($recipient); */
         $key = array_search($recipient, $this->recipients);
         if ($key !== false) {
             unset($this->recipients[$key]);
