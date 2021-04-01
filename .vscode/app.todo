@@ -6,6 +6,7 @@ features :
     - Ajouter les asserts côté API
     - Gestion des erreurs (catch erreur via listener ?)
     - Icones "fermer" quand les menus sont ouverts
+    - Homogénéiser les boutons (primary, secondary, ...)
 
 issues :
     - fix: db-system-init @pending

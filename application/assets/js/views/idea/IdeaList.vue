@@ -46,7 +46,7 @@
 
                             <v-container class="mt-3 pa-0 d-flex justify-center">
                                 <v-btn
-                                    small
+                                    medium
                                     @click="initializeFilters()"
                                 >
                                     Réinitialiser

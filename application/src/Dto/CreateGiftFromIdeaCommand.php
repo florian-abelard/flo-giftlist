@@ -11,7 +11,7 @@ use App\Entity\Recipient;
  *      collectionOperations={
  *          "post"={
  *              "method"="post",
- *              "path"="/gifts/create_from_idea",
+ *              "path"="/gifts/from_idea",
  *              "messenger"=true,
  *              "output"=false,
  *              "status"=202,
