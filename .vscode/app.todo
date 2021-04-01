@@ -5,6 +5,7 @@ features :
     - Créer les migrations de données pour initialiser la prod
     - Ajouter les asserts côté API
     - Gestion des erreurs (catch erreur via listener ?)
+    - Icones "fermer" quand les menus sont ouverts
 
 issues :
     - fix: db-system-init @pending

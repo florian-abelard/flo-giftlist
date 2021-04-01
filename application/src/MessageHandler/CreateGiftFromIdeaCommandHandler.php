@@ -20,25 +20,21 @@ final class CreateGiftFromIdeaCommandHandler implements MessageHandlerInterface
 
     public function __invoke(CreateGiftFromIdeaCommand $command)
     {
-        $gift = $this->createGift(
+        $this->createGift(
             $command->getIdea(),
             $command->getEventYear(),
             $command->getRecipients(),
         );
-        $this->entityManager->persist($gift);
 
-        // $idea = $idea->udpateIdeaRecipients($command->getRecipients());
-
-        // if (count($idea->getRecipients()) === 0) {
-        //     $this->entityManager->remove($idea);
-        // } else {
-        //     $this->entityManager->persist($idea);
-        // }
+        $this->udpateOriginIdea(
+            $command->getIdea(),
+            $command->getRecipients()
+        );
 
         $this->entityManager->flush();
     }
 
-    public function createGift(Idea $idea, string $eventYear, array $recipients): Gift
+    private function createGift(Idea $idea, string $eventYear, array $recipients): void
     {
         $gift = new Gift();
 
@@ -50,6 +46,19 @@ final class CreateGiftFromIdeaCommandHandler implements MessageHandlerInterface
             $gift->addRecipient($recipient);
         }
 
-        return $gift;
+        $this->entityManager->persist($gift);
+    }
+
+    private function udpateOriginIdea(Idea $idea, array $giftRecipients): void
+    {
+        foreach ($giftRecipients as $recipient) {
+            $idea->removeRecipient($recipient);
+        }
+
+        if (count($idea->getRecipients()) === 0) {
+            $this->entityManager->remove($idea);
+        } else {
+            $this->entityManager->persist($idea);
+        }
     }
 }
