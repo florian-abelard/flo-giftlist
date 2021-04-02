@@ -18,9 +18,9 @@ final class CreateGiftFromIdeaCommandHandler implements MessageHandlerInterface
         $this->entityManager = $entityManager;
     }
 
-    public function __invoke(CreateGiftFromIdeaCommand $command)
+    public function __invoke(CreateGiftFromIdeaCommand $command): Gift
     {
-        $this->createGift(
+        $gift = $this->createGift(
             $command->getIdea(),
             $command->getEventYear(),
             $command->getRecipients(),
@@ -32,9 +32,11 @@ final class CreateGiftFromIdeaCommandHandler implements MessageHandlerInterface
         );
 
         $this->entityManager->flush();
+
+        return $gift;
     }
 
-    private function createGift(Idea $idea, string $eventYear, array $recipients): void
+    private function createGift(Idea $idea, string $eventYear, array $recipients): Gift
     {
         $gift = new Gift();
 
@@ -47,6 +49,8 @@ final class CreateGiftFromIdeaCommandHandler implements MessageHandlerInterface
         }
 
         $this->entityManager->persist($gift);
+
+        return $gift;
     }
 
     private function udpateOriginIdea(Idea $idea, array $giftRecipients): void

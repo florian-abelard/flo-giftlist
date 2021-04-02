@@ -251,11 +251,17 @@
                     })
                 })
                 .then( response => {
-                        this.$notify({
-                            type: 'success',
-                            title: 'Succès',
-                            text: "L'idée cadeau a bien été créée."
-                        });
+                    this.$notify({
+                        type: 'success',
+                        title: 'Succès',
+                        text: "Le cadeau a bien été créée."
+                    });
+                    this.$notify({
+                        type: 'success',
+                        title: 'Succès',
+                        text: "L'idée cadeau a été mise à jour'."
+                    });
+                    console.log(response);
                 })
                 .catch( (err) => {
                     console.log(err);
