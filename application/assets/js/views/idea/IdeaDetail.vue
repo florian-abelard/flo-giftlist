@@ -197,12 +197,13 @@
                         },
                     })
                 })
-                .then( response => {
-                        this.$notify({
-                            type: 'success',
-                            title: 'Succès',
-                            text: "L'idée cadeau a bien été créée."
-                        });
+                .then( () => {
+                    this.$notify({
+                        type: 'success',
+                        title: 'Succès',
+                        text: "L'idée cadeau a bien été créée."
+                    });
+                    this.$router.push({ name: 'ideaList' });
                 })
                 .catch( (err) => {
                     console.log(err);
@@ -222,12 +223,13 @@
                             },
                         })
                     })
-                    .then( response => {
+                    .then( () => {
                         this.$notify({
                             type: 'success',
                             title: 'Succès',
                             text: "L'idée cadeau a bien été modifiée."
                         });
+                        this.$router.push({ name: 'ideaList' });
                     })
                     .catch( err => {
                         this.$notify({
@@ -250,7 +252,7 @@
                         eventYear: this.giftDialog.eventYear,
                     })
                 })
-                .then( response => {
+                .then( () => {
                     this.$notify({
                         type: 'success',
                         title: 'Succès',
@@ -259,9 +261,9 @@
                     this.$notify({
                         type: 'success',
                         title: 'Succès',
-                        text: "L'idée cadeau a été mise à jour'."
+                        text: "L'idée cadeau a été mise à jour."
                     });
-                    console.log(response);
+                    this.$router.push({ name: 'giftList' });
                 })
                 .catch( (err) => {
                     console.log(err);

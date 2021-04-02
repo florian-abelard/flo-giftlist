@@ -43,7 +43,7 @@
                             </v-row>
                             <v-row no-gutters>
                                 <v-col cols="12">
-                                    <v-card-subtitle>Affichez vos cadeaux effectués... Triez-les par évenements, année, ou groupe de personne...</v-card-subtitle>
+                                    <v-card-subtitle>Affichez vos cadeaux effectués... Triez-les par année, ou famille...</v-card-subtitle>
                                 </v-col>
                             </v-row>
                         </v-container>
