@@ -65,6 +65,8 @@
                     </v-card-title>
 
                     <v-card-text>
+                        <p>Choisis le ou les destinataire(s) du cadeau. L'idée cadeau sera mise à jour automatiquement. <br/>
+                        Si plus aucun destinataire n'est associé à l'idée cadeau, elle sera supprimée.</p>
                         <v-autocomplete
                             v-model="giftDialog.recipientsUri"
                             :items="recipients"
