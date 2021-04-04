@@ -111,8 +111,6 @@
 
     </v-container>
 
-
-
 </template>
 
 <script>
@@ -259,11 +257,6 @@
                         type: 'success',
                         title: 'Succès',
                         text: "Le cadeau a bien été créée."
-                    });
-                    this.$notify({
-                        type: 'success',
-                        title: 'Succès',
-                        text: "L'idée cadeau a été mise à jour."
                     });
                     this.$router.push({ name: 'giftList' });
                 })
