@@ -51,69 +51,21 @@
             </v-btn>
         </v-container>
 
-        <v-dialog
+        <create-gift-from-idea
+            v-if="!!idea.id"
             v-model="showCreateGiftDialog"
-            max-width="300"
-            >
-            <v-form
-                ref="giftDialogForm"
-                v-on:submit.prevent="createGift"
-            >
-                <v-card>
-                    <v-card-title class="headline">
-                        Création du cadeau
-                    </v-card-title>
-
-                    <v-card-text>
-                        <p>Choisis le ou les destinataire(s) du cadeau. L'idée cadeau sera mise à jour automatiquement. <br/>
-                        Si plus aucun destinataire n'est associé à l'idée cadeau, elle sera supprimée.</p>
-                        <v-autocomplete
-                            v-model="giftDialog.recipientsUri"
-                            :items="recipients"
-                            item-text="name"
-                            item-value="@id"
-                            small-chips
-                            deletable-chips
-                            label="Destinataires"
-                            multiple
-                            auto-select-first
-                        ></v-autocomplete>
-
-                        <v-text-field
-                            v-model="giftDialog.eventYear"
-                            label="Année de l'évènement"
-                        >
-                        </v-text-field>
-                    </v-card-text>
-
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-
-                        <v-btn
-                            color="darken-1"
-                            text
-                            @click="showCreateGiftDialog = false"
-                        >
-                            Annuler
-                        </v-btn>
-
-                        <v-btn
-                            color="darken-1"
-                            text
-                            type="submit"
-                        >
-                            Valider
-                        </v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-form>
-        </v-dialog>
+            :ideaRecipientsUri="idea.recipientsUri"
+            :recipients="recipients"
+            v-on:giftFromIdeaValidated="createGift"
+        />
 
     </v-container>
 
 </template>
 
 <script>
+
+    import CreateGiftFromIdea from '../../components/CreateGiftFromIdea.vue';
 
     export default {
         name: "IdeaDetail",
@@ -141,6 +93,9 @@
             this.fetchRecipients();
             this.$emit('formCreated');
         },
+        components: {
+            CreateGiftFromIdea
+        },
         watch: {
             submitForm: function () {
                 if (this.submitForm) {
@@ -158,6 +113,7 @@
                     .then( (data) => {
                         this.idea = data;
                         this.idea.recipientsUri = this.idea.recipients.map( element => element['@id'] );
+                        console.log(this.idea);
                     })
                     .catch( (err) => {
                         console.log(err);
@@ -240,16 +196,15 @@
                     })
                 ;
             },
-            createGift()
+            createGift(gift)
             {
-                console.log('createGift');
                 fetch('/api/gifts/from_idea', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/ld+json'},
                     body: JSON.stringify({
                         idea: this.idea['@id'],
-                        recipients: this.giftDialog.recipientsUri,
-                        eventYear: this.giftDialog.eventYear,
+                        recipients: gift.recipientsUri,
+                        eventYear: gift.eventYear,
                     })
                 })
                 .then( () => {
