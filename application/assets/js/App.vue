@@ -35,11 +35,11 @@
 
         <v-content>
 
-            <v-navigation-drawer v-model="showMenu" fixed left>
+            <v-navigation-drawer v-model="showMenu" temporary hide-overlay fixed left>
 
                 <div class="drawer-container">
 
-                    <v-list nav dense>
+                    <v-list nav dense flat>
 
                         <v-list-item-group active-class="deep-green--text text--accent-4">
 

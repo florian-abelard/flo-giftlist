@@ -1,7 +1,7 @@
 <template>
     <v-container class="pa-0">
 
-        <v-navigation-drawer v-model="showFilter" fixed right width=300>
+        <v-navigation-drawer v-model="showFilter" fixed right width=300 temporary hide-overlay>
 
             <div class="drawer-container">
 
@@ -46,7 +46,7 @@
 
                             <v-container class="mt-3 pa-0 d-flex justify-center">
                                 <v-btn
-                                    small
+                                    medium
                                     @click="initializeFilters()"
                                 >
                                     Réinitialiser

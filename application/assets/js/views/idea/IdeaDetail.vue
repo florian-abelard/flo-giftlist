@@ -39,11 +39,33 @@
 
         </v-form>
 
+        <v-container class="mt-3 d-flex justify-center" v-if="!editing">
+            <v-btn
+                medium
+                @click="openGiftDialog()"
+            >
+                Concrétiser l'idée
+                <v-icon right color="grey darken-1">
+                    mdi-lightbulb-on-outline
+                </v-icon>
+            </v-btn>
+        </v-container>
+
+        <create-gift-from-idea
+            v-if="!!idea.id"
+            v-model="showCreateGiftDialog"
+            :ideaRecipientsUri="idea.recipientsUri"
+            :recipients="recipients"
+            v-on:giftFromIdeaValidated="createGift"
+        />
+
     </v-container>
 
 </template>
 
 <script>
+
+    import CreateGiftFromIdea from '../../components/CreateGiftFromIdea.vue';
 
     export default {
         name: "IdeaDetail",
@@ -56,7 +78,12 @@
                 idea: {
                     price: {}
                 },
-                recipients: []
+                recipients: [],
+                giftDialog: {
+                    recipientsUri: [],
+                    eventYear: ''
+                },
+                showCreateGiftDialog: false
             };
         },
         created() {
@@ -65,6 +92,9 @@
             }
             this.fetchRecipients();
             this.$emit('formCreated');
+        },
+        components: {
+            CreateGiftFromIdea
         },
         watch: {
             submitForm: function () {
@@ -83,6 +113,7 @@
                     .then( (data) => {
                         this.idea = data;
                         this.idea.recipientsUri = this.idea.recipients.map( element => element['@id'] );
+                        console.log(this.idea);
                     })
                     .catch( (err) => {
                         console.log(err);
@@ -122,12 +153,13 @@
                         },
                     })
                 })
-                .then( response => {
-                        this.$notify({
-                            type: 'success',
-                            title: 'Succès',
-                            text: "L'idée cadeau a bien été créée."
-                        });
+                .then( () => {
+                    this.$notify({
+                        type: 'success',
+                        title: 'Succès',
+                        text: "L'idée cadeau a bien été créée."
+                    });
+                    this.$router.push({ name: 'ideaList' });
                 })
                 .catch( (err) => {
                     console.log(err);
@@ -147,12 +179,13 @@
                             },
                         })
                     })
-                    .then( response => {
+                    .then( () => {
                         this.$notify({
                             type: 'success',
                             title: 'Succès',
                             text: "L'idée cadeau a bien été modifiée."
                         });
+                        this.$router.push({ name: 'ideaList' });
                     })
                     .catch( err => {
                         this.$notify({
@@ -162,7 +195,41 @@
                         });
                     })
                 ;
-            }
+            },
+            createGift(gift)
+            {
+                fetch('/api/gifts/from_idea', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/ld+json'},
+                    body: JSON.stringify({
+                        idea: this.idea['@id'],
+                        recipients: gift.recipientsUri,
+                        eventYear: gift.eventYear,
+                    })
+                })
+                .then( () => {
+                    this.$notify({
+                        type: 'success',
+                        title: 'Succès',
+                        text: "Le cadeau a bien été créée."
+                    });
+                    this.$router.push({ name: 'giftList' });
+                })
+                .catch( (err) => {
+                    console.log(err);
+                })
+                .finally(() => this.showCreateGiftDialog = false);
+            },
+            openGiftDialog()
+            {
+                this.initializeGiftDialogData();
+                this.showCreateGiftDialog = true;
+            },
+            initializeGiftDialogData()
+            {
+                this.giftDialog.recipientsUri = this.idea.recipientsUri;
+                this.giftDialog.eventYear = new Date().getFullYear().toString();
+            },
         }
     }
 

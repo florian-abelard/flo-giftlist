@@ -17,6 +17,15 @@
                     "path": "${webRoot}/"
                 }
             ]
-        }
+        },
+        {
+            "name": "PHP - Listen for XDebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9001,
+            "pathMappings": {
+                "/var/www/app/application": "${workspaceFolder}/application"
+            }
+        },
     ]
 }

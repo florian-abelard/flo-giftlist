@@ -13,3 +13,8 @@ RUN apk add zlib-dev postgresql-dev git icu-dev libxml2-dev libzip-dev unzip \
 RUN apk add tzdata
 RUN ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
 RUN "date"
+
+# Xdebug
+RUN apk add --no-cache $PHPIZE_DEPS \
+    && pecl install xdebug-2.8.0 \
+    && docker-php-ext-enable xdebug
