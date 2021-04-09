@@ -171,39 +171,45 @@
 
                 fetch(url)
                 .then( response => {
+                    if (!response.ok) throw response;
                     return response.json();
                 })
                 .then( (data) => {
                     this.gifts = data['hydra:member'];
                 })
-                .catch( (err) => {
-                    console.log(err);
+                .catch( (error) => {
+                    console.log(error);
+                    this.notify('error', "Impossible de récupérer les cadeaux");
                 });
             },
             fetchGroups()
             {
                 fetch('/api/groups')
                 .then( response => {
+                    if (!response.ok) throw response;
                     return response.json();
                 })
                 .then( (data) => {
                     this.groups = data['hydra:member'];
                 })
-                .catch( (err) => {
-                    console.log(err);
+                .catch( (error) => {
+                    console.log(error);
+                    this.notify('error', "Impossible de récupérer les groupes");
                 });
             },
             fetchRecipients()
             {
                 fetch('/api/recipients')
                 .then( response => {
+                    if (!response.ok) throw response;
                     return response.json();
                 })
                 .then( (data) => {
                     this.recipients = data['hydra:member'];
                 })
-                .catch( (err) => {
-                    console.log(err);
+                .catch( (error) => {
+                    console.log(error);
+                    this.notify('error', "Impossible de récupérer les destinataires");
                 });
             },
             deleteGift(id) {
@@ -211,15 +217,14 @@
                     method: 'DELETE'
                 })
                 .then( response => {
+                    if (!response.ok) throw response;
+
                     this.fetchGifts();
-                    this.$notify({
-                        type: 'success',
-                        title: 'Succès',
-                        text: "Le cadeau a bien été supprimée."
-                    });
+                    this.notify('success', "Le cadeau a bien été supprimé");
                 })
-                .catch( (err) => {
-                    console.log(err);
+                .catch( (error) => {
+                    console.log(error);
+                    this.notify('error', "Impossible de supprimer le cadeau");
                 });
             },
             initializeFilters() {
