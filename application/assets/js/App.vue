@@ -5,7 +5,6 @@
 
         <v-app-bar color="teal darken-1" app dark>
 
-
             <v-app-bar-nav-icon @click.stop="showMenu = !showMenu">
             </v-app-bar-nav-icon>
 

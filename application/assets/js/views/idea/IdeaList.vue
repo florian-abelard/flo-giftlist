@@ -159,56 +159,62 @@
                 url += params ? '?' + params : '';
 
                 fetch(url)
-                .then( response => {
-                    return response.json();
-                })
-                .then( (data) => {
-                    this.ideas = data['hydra:member'];
-                })
-                .catch( (err) => {
-                    console.log(err);
-                });
+                    .then( response => {
+                        if (!response.ok) throw response;
+                        return response.json();
+                    })
+                    .then( (data) => {
+                        this.ideas = data['hydra:member'];
+                    })
+                    .catch( (error) => {
+                        console.log(error);
+                        this.notify('error', "Impossible de récupérer les idées cadeaux");
+                    })
+                ;
             },
             fetchGroups()
             {
                 fetch('/api/groups')
                 .then( response => {
+                    if (!response.ok) throw response;
                     return response.json();
                 })
                 .then( (data) => {
                     this.groups = data['hydra:member'];
                 })
-                .catch( (err) => {
-                    console.log(err);
+                .catch( (error) => {
+                    console.log(error);
+                    this.notify('error', "Impossible de récupérer les groupes");
                 });
             },
             fetchRecipients()
             {
                 fetch('/api/recipients')
                 .then( response => {
+                    if (!response.ok) throw response;
                     return response.json();
                 })
                 .then( (data) => {
                     this.recipients = data['hydra:member'];
                 })
-                .catch( (err) => {
-                    console.log(err);
+                .catch( (error) => {
+                    console.log(error);
+                    this.notify('error', "Impossible de récupérer les groupes");
                 });
             },
             deleteIdea(id) {
                 fetch('/api/ideas/' + id, {
                     method: 'DELETE'
                 })
-                .then( response => {
+                .then( (response) => {
+                    if (!response.ok) throw response;
+
                     this.fetchIdeas();
-                    this.$notify({
-                        type: 'success',
-                        title: 'Succès',
-                        text: "L'idée cadeau a bien été supprimée."
-                    });
+                    this.notify('success', "L'idée cadeau a bien été supprimée");
                 })
-                .catch( (err) => {
-                    console.log(err);
+                .catch( (error) => {
+                    console.log(error);
+                    this.notify('error', "Impossible de supprimer l'idée cadeau");
                 });
             },
             initializeFilters() {

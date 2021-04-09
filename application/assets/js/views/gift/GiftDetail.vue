@@ -85,14 +85,20 @@
             fetchGift(id) {
                 fetch('/api/gifts/' + id)
                     .then( response => {
+                        if (!response.ok) throw response;
                         return response.json();
                     })
                     .then( (data) => {
                         this.gift = data;
                         this.gift.recipientsUri = this.gift.recipients.map( element => element['@id'] );
                     })
-                    .catch( (err) => {
-                        console.log(err);
+                    .catch( (error) => {
+                        if (error.status === 404) {
+                            this.notify('error', "Le cadeau n'a pas été trouvé");
+                        } else {
+                            this.notify('error', error.statusText);
+                        }
+                        this.$router.push({ name: 'home' });
                     })
                 ;
             },
@@ -100,13 +106,15 @@
             {
                 fetch('/api/recipients')
                 .then( response => {
+                    if (!response.ok) throw response;
                     return response.json();
                 })
                 .then( (data) => {
                     this.recipients = data['hydra:member'];
                 })
-                .catch( (err) => {
-                    console.log(err);
+                .catch( (error) => {
+                    console.log(error);
+                    this.notify('error', 'Impossible de récupérer les destinataires');
                 });
             },
             onSubmit()
@@ -132,14 +140,12 @@
                     })
                 })
                 .then( response => {
-                        this.$notify({
-                            type: 'success',
-                            title: 'Succès',
-                            text: "Le cadeau a bien été créée."
-                        });
+                    if (!response.ok) throw response;
+                    this.notify('success', 'Le cadeau a bien été créé');
                 })
-                .catch( (err) => {
-                    console.log(err);
+                .catch( (error) => {
+                    console.log(error);
+                    this.notify('error', 'Impossible de créer le cadeau');
                 });
             },
             update()
@@ -159,15 +165,13 @@
                         })
                     })
                     .then( response => {
-                        this.$notify({
-                            type: 'success',
-                            title: 'Succès',
-                            text: "Le cadeau a bien été modifiée."
-                        });
+                        if (!response.ok) throw response;
+                        this.notify('success', 'Le cadeau a bien été modifié');
                     })
-                    .catch( (err) => {
-                        console.log(err);
-                    })
+                .catch( (error) => {
+                    console.log(error);
+                    this.notify('error', 'Impossible de modifier le cadeau');
+                });
                 ;
             },
         }
