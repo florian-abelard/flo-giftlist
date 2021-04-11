@@ -1,7 +1,20 @@
+@import './variables_temoin';
+@import '~vuetify/src/styles/styles';
+
 body {
     background-color: lightgray;
 }
 
 .drawer-container {
     margin-top: 60px;
+}
+
+.test1 {
+    color: $color-test1;
+    background-color: grey;
+}
+
+.test2 {
+    color: $color-test2;
+    background-color: grey;
 }

@@ -1,6 +1,9 @@
 <template>
     <v-container class="pa-0">
 
+        test 1 : <span class="test1">coucou</span>
+        test 2 : <span class="test2">coucou</span>
+
         <v-navigation-drawer v-model="showFilter" fixed right width=300 temporary hide-overlay>
 
             <div class="drawer-container">
@@ -65,7 +68,7 @@
 
         </v-navigation-drawer>
 
-        <v-container justify-center class="pa-0">
+        <v-container v-if="!loading" justify-center class="pa-0">
 
             <v-list two-line>
                 <template v-for="(idea, index) in ideas">
@@ -106,6 +109,10 @@
 
         </v-container>
 
+        <v-container v-if="loading" justify-center class="ma-2">
+            <v-skeleton-loader type="card-heading, chip, divider" class="pa-0"></v-skeleton-loader>
+        </v-container>
+
     </v-container>
 </template>
 
@@ -123,7 +130,8 @@
                 groups: [],
                 recipients: [],
                 filters: {},
-                showFilter: this.showMainFilter
+                showFilter: this.showMainFilter,
+                loading: true,
             };
         },
         created() {
@@ -228,3 +236,7 @@
     }
 
 </script>
+
+<style scoped>
+
+</style>
