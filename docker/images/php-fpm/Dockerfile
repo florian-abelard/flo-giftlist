@@ -14,6 +14,9 @@ RUN apk add tzdata
 RUN ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
 RUN "date"
 
+# Composer
+COPY --from=composer:2.0.12 /usr/bin/composer /usr/local/bin/composer
+
 # Xdebug
 RUN apk add --no-cache $PHPIZE_DEPS \
     && pecl install xdebug-2.8.0 \
