@@ -22,10 +22,10 @@ db-create-database:
 	$(call database-doctrine-exec, php bin/console doctrine:database:create)
 
 db-populate: ##@database populate with fixtures data
-	$(call database-doctrine-exec, php bin/console hautelook:fixtures:load --no-bundles --env=dev -v)
+	$(call database-doctrine-exec, php bin/console hautelook:fixtures:load --no-bundles --env=dev --no-interaction --verbose)
 
 db-migrate: ##@database run the database migrations
-	$(call database-doctrine-exec, php bin/console doctrine:migrations:migrate)
+	$(call database-doctrine-exec, php bin/console doctrine:migrations:migrate --no-interaction)
 
 db-create-migration: ##@database create a new migration file
 	$(call database-doctrine-exec, php bin/console doctrine:migrations:diff)
