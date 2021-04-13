@@ -58,7 +58,10 @@ Encore
     .enableVueLoader()
 
     // enables Sass/SCSS support
-    .enableSassLoader()
+    // .enableSassLoader()
+    .enableSassLoader(function (options) {
+        options.additionalData = '@import "~vuetify/src/styles/styles";'
+    });
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
