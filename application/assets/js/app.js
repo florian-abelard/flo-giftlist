@@ -9,7 +9,7 @@ import Vue from 'vue';
 import Notifications from 'vue-notification';
 
 import App from "./App";
-import NotificationMixin from './mixins/notificationMixin'
+import NotificationMixin from './mixins/notificationMixin';
 import vuetify from './plugins/vuetify';
 import router from "./router";
 

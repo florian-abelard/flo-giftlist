@@ -1,4 +1,4 @@
-FROM php:7.3-fpm-alpine
+FROM php:7.4-fpm-alpine
 
 RUN apk update
 
@@ -13,6 +13,9 @@ RUN apk add zlib-dev postgresql-dev git icu-dev libxml2-dev libzip-dev unzip \
 RUN apk add tzdata
 RUN ln -s /usr/share/zoneinfo/Europe/Paris /etc/localtime
 RUN "date"
+
+# Composer
+COPY --from=composer:2.0.12 /usr/bin/composer /usr/local/bin/composer
 
 # Xdebug
 RUN apk add --no-cache $PHPIZE_DEPS \
