@@ -65,4 +65,4 @@ jobs:
           script: |
             cd ${{ env.DEPLOY_DESTINATION_FOLDER }}
             make cache-clear
-            make db-init
+            make up
