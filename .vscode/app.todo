@@ -11,6 +11,7 @@ features :
         - Gestion des erreurs (catch erreur via listener ?)
 
 issues :
+    - https sur lesmoflo.fr
     - fix: db-system-init @pending
     - Active classe sur les boutons du menu (tout désactivé actuellement)
 
