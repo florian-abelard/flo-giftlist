@@ -115,17 +115,26 @@
 
         </v-container>
 
+        <list-skeleton-loader
+            v-model="loading"
+            :numberOfItems="5"
+        />
+
     </v-container>
 </template>
 
 <script>
 
     import filterMixin from '../../mixins/filterMixin.js'
+    import ListSkeletonLoader from '../../components/ListSkeletonLoader.vue'
 
     export default {
         name: "GiftList",
         props: ['showMainFilter'],
         mixins: [filterMixin],
+        components: {
+            ListSkeletonLoader
+        },
         data() {
             return {
                 gifts: [],
@@ -133,7 +142,8 @@
                 recipients: [],
                 years: [],
                 filters: {},
-                showFilter: this.showMainFilter
+                showFilter: this.showMainFilter,
+                loading: true,
             };
         },
         created() {
@@ -170,17 +180,21 @@
                 url += params ? '?' + params : '';
 
                 fetch(url)
-                .then( response => {
-                    if (!response.ok) throw response;
-                    return response.json();
-                })
-                .then( (data) => {
-                    this.gifts = data['hydra:member'];
-                })
-                .catch( (error) => {
-                    console.log(error);
-                    this.notify('error', "Impossible de récupérer les cadeaux");
-                });
+                    .then( response => {
+                        if (!response.ok) throw response;
+                        return response.json();
+                    })
+                    .then( (data) => {
+                        this.gifts = data['hydra:member'];
+                    })
+                    .catch( (error) => {
+                        console.log(error);
+                        this.notify('error', "Impossible de récupérer les cadeaux");
+                    })
+                    .finally( () => {
+                        this.loading = false;
+                    })
+                ;
             },
             fetchGroups()
             {
