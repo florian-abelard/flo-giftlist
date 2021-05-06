@@ -117,7 +117,7 @@
 <script>
 
     import filterMixin from '../../mixins/filterMixin.js'
-    import ListSkeletonLoader from '../../components/ListSkeletonLoader.vue'
+    import ListSkeletonLoader from '../../components/loaders/ListSkeletonLoader.vue'
 
     export default {
         name: "IdeaList",

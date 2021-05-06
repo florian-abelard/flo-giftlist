@@ -74,7 +74,7 @@
 
         </v-navigation-drawer>
 
-        <v-container justify-center class="pa-0">
+        <v-container v-if="!loading" justify-center class="pa-0">
 
             <v-list two-line>
                 <template v-for="(gift, index) in gifts">
@@ -126,7 +126,7 @@
 <script>
 
     import filterMixin from '../../mixins/filterMixin.js'
-    import ListSkeletonLoader from '../../components/ListSkeletonLoader.vue'
+    import ListSkeletonLoader from '../../components/loaders/ListSkeletonLoader.vue'
 
     export default {
         name: "GiftList",
