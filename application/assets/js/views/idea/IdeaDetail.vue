@@ -2,61 +2,70 @@
 
     <v-container justify-center>
 
-        <v-form
-            ref="ideaForm"
-            :class="editing ? '' : 'form-reading'"
-            v-on:submit.prevent="onSubmit"
-        >
+        <div v-if="!loading">
 
-            <v-text-field
-                v-model="idea.label"
-                label="Libellé"
-                required
-                :rules="[value => !!value || 'Le libellé est obligatoire']"
-                :disabled="!editing"
+            <v-form
+                ref="ideaForm"
+                :class="editing ? '' : 'form-reading'"
+                v-on:submit.prevent="onSubmit"
             >
-            </v-text-field>
 
-            <v-autocomplete
-                v-model="idea.recipientsUri"
-                :items="recipients"
-                item-text="name"
-                item-value="@id"
-                small-chips
-                deletable-chips
-                label="Destinataires"
-                multiple
-                auto-select-first
-                :disabled="!editing"
-            ></v-autocomplete>
+                <v-text-field
+                    v-model="idea.label"
+                    label="Libellé"
+                    required
+                    :rules="[value => !!value || 'Le libellé est obligatoire']"
+                    :disabled="!editing"
+                >
+                </v-text-field>
 
-            <v-text-field
-                v-model="idea.price.value"
-                label="Prix"
-                :disabled="!editing"
-            >
-            </v-text-field>
+                <v-autocomplete
+                    v-model="idea.recipientsUri"
+                    :items="recipients"
+                    item-text="name"
+                    item-value="@id"
+                    small-chips
+                    deletable-chips
+                    label="Destinataires"
+                    multiple
+                    auto-select-first
+                    :disabled="!editing"
+                ></v-autocomplete>
 
-        </v-form>
+                <v-text-field
+                    v-model="idea.price.value"
+                    label="Prix"
+                    :disabled="!editing"
+                >
+                </v-text-field>
 
-        <v-container class="mt-3 d-flex justify-center" v-if="!editing">
-            <v-btn
-                medium
-                @click="openGiftDialog()"
-            >
-                Concrétiser l'idée
-                <v-icon right color="grey darken-1">
-                    mdi-lightbulb-on-outline
-                </v-icon>
-            </v-btn>
-        </v-container>
+            </v-form>
 
-        <create-gift-from-idea
-            v-if="!!idea.id"
-            v-model="showCreateGiftDialog"
-            :ideaRecipientsUri="idea.recipientsUri"
-            :recipients="recipients"
-            v-on:giftFromIdeaValidated="createGift"
+            <v-container class="mt-3 d-flex justify-center" v-if="!editing">
+                <v-btn
+                    medium
+                    @click="openGiftDialog()"
+                >
+                    Concrétiser l'idée
+                    <v-icon right color="grey darken-1">
+                        mdi-lightbulb-on-outline
+                    </v-icon>
+                </v-btn>
+            </v-container>
+
+            <create-gift-from-idea
+                v-if="!!idea.id"
+                v-model="showCreateGiftDialog"
+                :ideaRecipientsUri="idea.recipientsUri"
+                :recipients="recipients"
+                v-on:giftFromIdeaValidated="createGift"
+            />
+
+        </div>
+
+        <form-skeleton-loader
+            v-model="loading"
+            :button="true"
         />
 
     </v-container>
@@ -66,6 +75,7 @@
 <script>
 
     import CreateGiftFromIdea from '../../components/CreateGiftFromIdea.vue';
+    import FormSkeletonLoader from '../../components/loaders/FormSkeletonLoader.vue'
 
     export default {
         name: "IdeaDetail",
@@ -74,7 +84,8 @@
             submitForm: false
         },
         components: {
-            CreateGiftFromIdea
+            CreateGiftFromIdea,
+            FormSkeletonLoader,
         },
         data() {
             return {
@@ -86,7 +97,8 @@
                     recipientsUri: [],
                     eventYear: ''
                 },
-                showCreateGiftDialog: false
+                showCreateGiftDialog: false,
+                loading: true,
             };
         },
         created() {
@@ -123,6 +135,9 @@
                             this.notify('error', error.statusText);
                         }
                         this.$router.push({ name: 'home' });
+                    })
+                    .finally( () => {
+                        this.loading = false;
                     })
                 ;
             },
@@ -253,4 +268,3 @@
         opacity: 1;
     }
 </style>
-e

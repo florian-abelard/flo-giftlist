@@ -1,9 +1,6 @@
 <template>
     <v-container class="pa-0">
 
-        test 1 : <span class="test1">coucou</span>
-        test 2 : <span class="test2">coucou</span>
-
         <v-navigation-drawer v-model="showFilter" fixed right width=300 temporary hide-overlay>
 
             <div class="drawer-container">
@@ -109,9 +106,10 @@
 
         </v-container>
 
-        <v-container v-if="loading" justify-center class="ma-2">
-            <v-skeleton-loader type="card-heading, chip, divider" class="pa-0"></v-skeleton-loader>
-        </v-container>
+        <list-skeleton-loader
+            v-model="loading"
+            :numberOfItems="5"
+        />
 
     </v-container>
 </template>
@@ -119,11 +117,15 @@
 <script>
 
     import filterMixin from '../../mixins/filterMixin.js'
+    import ListSkeletonLoader from '../../components/loaders/ListSkeletonLoader.vue'
 
     export default {
         name: "IdeaList",
         props: ['showMainFilter'],
         mixins: [filterMixin],
+        components: {
+            ListSkeletonLoader
+        },
         data() {
             return {
                 ideas: [],
@@ -177,6 +179,9 @@
                     .catch( (error) => {
                         console.log(error);
                         this.notify('error', "Impossible de récupérer les idées cadeaux");
+                    })
+                    .finally( () => {
+                        this.loading = false;
                     })
                 ;
             },

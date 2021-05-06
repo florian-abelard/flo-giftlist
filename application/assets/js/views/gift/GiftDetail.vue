@@ -2,49 +2,57 @@
 
     <v-container justify-center>
 
-        <v-form
-            ref="giftForm"
-            :class="editing ? '' : 'form-reading'"
-            v-on:submit.prevent="onSubmit"
-        >
-
-            <v-text-field
-                v-model="gift.label"
-                label="Libellé"
-                required
-                :rules="[value => !!value || 'Le libellé est obligatoire']"
-                :disabled="!editing"
+        <div v-if="!loading">
+            <v-form
+                ref="giftForm"
+                :class="editing ? '' : 'form-reading'"
+                v-on:submit.prevent="onSubmit"
             >
-            </v-text-field>
 
-            <v-autocomplete
-                v-model="gift.recipientsUri"
-                :items="recipients"
-                item-text="name"
-                item-value="@id"
-                small-chips
-                deletable-chips
-                label="Destinataires"
-                multiple
-                auto-select-first
-                :disabled="!editing"
-            ></v-autocomplete>
+                <v-text-field
+                    v-model="gift.label"
+                    label="Libellé"
+                    required
+                    :rules="[value => !!value || 'Le libellé est obligatoire']"
+                    :disabled="!editing"
+                >
+                </v-text-field>
 
-            <v-text-field
-                v-model="gift.eventYear"
-                label="Année de l'évènement"
-                :disabled="!editing"
-            >
-            </v-text-field>
+                <v-autocomplete
+                    v-model="gift.recipientsUri"
+                    :items="recipients"
+                    item-text="name"
+                    item-value="@id"
+                    small-chips
+                    deletable-chips
+                    label="Destinataires"
+                    multiple
+                    auto-select-first
+                    :disabled="!editing"
+                ></v-autocomplete>
 
-            <v-text-field
-                v-model="gift.price.value"
-                label="Prix"
-                :disabled="!editing"
-            >
-            </v-text-field>
+                <v-text-field
+                    v-model="gift.eventYear"
+                    label="Année de l'évènement"
+                    :disabled="!editing"
+                >
+                </v-text-field>
 
-        </v-form>
+                <v-text-field
+                    v-model="gift.price.value"
+                    label="Prix"
+                    :disabled="!editing"
+                >
+                </v-text-field>
+
+            </v-form>
+
+        </div>
+
+        <form-skeleton-loader
+            v-model="loading"
+            :button="false"
+        />
 
     </v-container>
 
@@ -52,18 +60,24 @@
 
 <script>
 
+    import FormSkeletonLoader from '../../components/loaders/FormSkeletonLoader.vue'
+
     export default {
         name: "GiftDetail",
         props: {
             editing: false,
             submitForm: false
         },
+        components: {
+            FormSkeletonLoader,
+        },
         data() {
             return {
                 gift: {
                     price: {}
                 },
-                recipients: []
+                recipients: [],
+                loading: true,
             };
         },
         created() {
@@ -99,6 +113,9 @@
                             this.notify('error', error.statusText);
                         }
                         this.$router.push({ name: 'home' });
+                    })
+                    .finally( () => {
+                        this.loading = false;
                     })
                 ;
             },
