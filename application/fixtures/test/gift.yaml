@@ -1,0 +1,9 @@
+App\Entity\Gift:
+  gift2012-1:
+    label: 'DVD Gojira'
+    recipients: ['@recipient3-clement']
+    eventYear: '2012'
+  gift2012-2:
+    label: 'DVD Spider'
+    recipients: ['@recipient3-romain']
+    eventYear: '2012'

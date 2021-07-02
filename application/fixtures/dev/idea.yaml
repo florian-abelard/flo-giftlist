@@ -5,26 +5,23 @@ App\Entity\Idea:
   idea2:
     label: 'Livre d''activité'
     price: '@price1'
-    recipients: ['@recipient12', '@recipient13']
+    recipients: ['@recipient1-2', '@recipient1-3']
   idea3:
     label: 'Les culottées Tome 1'
     price: '@price3'
-    recipients: ['@recipient1']
+    recipients: ['@recipient2-1']
   idea4:
     label: 'Attrape-plumes'
     price: '@price2'
   idea5:
     label: 'Cherche et trouve géant'
     price: '@price11'
-  idea{6..8}:
+  idea{11..20}:
     label: <sentence(3, true)>
     price: '@price*'
-    recipients: <randomElements(@recipient{1..22}, 1)>
-  idea{9..11}:
+  idea{21..30}:
     label: <sentence(3, true)>
     price: '@price*'
-    recipients : <randomElements(@recipient{1..22}, 2)>
-  idea{12..15}:
-    label: <sentence(3, true)>
+  idea{31..40}:
+    label: <sentence(4, true)>
     price: '@price*'
-    recipients: '<randomElements(@recipient{1..22}, 3)>'
