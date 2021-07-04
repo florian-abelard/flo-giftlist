@@ -5,11 +5,11 @@ App\Entity\Idea:
   idea2:
     label: 'Livre d''activité'
     price: '@price1'
-    recipients: ['@recipient1-2', '@recipient1-3']
+    recipients: ['@recipient-junon', '@recipient-amaurine']
   idea3:
     label: 'Les culottées Tome 1'
     price: '@price3'
-    recipients: ['@recipient2-1']
+    recipients: ['@recipient-clementine']
   idea4:
     label: 'Attrape-plumes'
     price: '@price2'
