@@ -54,8 +54,8 @@ App\Entity\Recipient:
   recipient-dom:
     name: 'Dom'
     group: '@group2'
-  recipient-mamie-des-neiges:
-    name: 'Mamie des neiges'
+  recipient-mamie-des-vignes:
+    name: 'Mamie des vignes'
     group: '@group2'
 
   recipient-mamini:
