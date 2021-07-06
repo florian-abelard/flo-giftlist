@@ -22,11 +22,11 @@ db-create-database:
 	$(call database-doctrine-exec, php bin/console doctrine:database:create)
 
 db-populate: ##@database populate with fixtures data
-	rsync -pav --delete application/fixtures/save-dev/ application/fixtures/dev/
+	rsync -pav --delete application/fixtures/dev-referential/ application/fixtures/dev/
 	$(call database-doctrine-exec, php bin/console hautelook:fixtures:load --no-bundles --env=dev --no-interaction --verbose)
 
 db-populate-production: ##@database populate with fixtures data
-	rsync -pav --delete application/fixtures/save-prod/ application/fixtures/dev/
+	rsync -pav --delete application/fixtures/prod-referential/ application/fixtures/dev/
 	$(call database-doctrine-exec, php bin/console hautelook:fixtures:load --no-bundles --env=dev --no-interaction --verbose)
 
 db-migrate: ##@database run the database migrations
