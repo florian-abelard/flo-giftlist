@@ -16,11 +16,8 @@ git clone https://github.com/florian-abelard/giftlist.git
 # Initialisation du projet
 make init
 
-# Démarrer les containers docker
+# Démarrer les containers docker et alimenter la base de données 
 make up
-
-# Créer et alimenter la base de données
-make db-init
 
 # Afficher toutes les commandes disponibles
 make
