@@ -122,3 +122,7 @@ App\Entity\Recipient:
   recipient-pape:
     name: 'Papé'
     group: '@group4'
+
+  recipient-valerie:
+    name: 'Valérie'
+    group: '@group5'

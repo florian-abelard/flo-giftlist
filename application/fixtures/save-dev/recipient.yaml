@@ -33,7 +33,7 @@ App\Entity\Recipient:
   recipient-pascale:
     name: 'Pascale'
     group: '@group2'
-  recipient-Thibaut:
+  recipient-thibaut-lacas:
     name: 'Thibaut'
     group: '@group2'
   recipient-romain:
@@ -47,6 +47,15 @@ App\Entity\Recipient:
     group: '@group2'
   recipient-nael:
     name: 'Naël'
+    group: '@group2'
+  recipient-fafa:
+    name: 'Fafa'
+    group: '@group2'
+  recipient-dom:
+    name: 'Dom'
+    group: '@group2'
+  recipient-mamie-des-vignes:
+    name: 'Mamie des vignes'
     group: '@group2'
 
   recipient-mamini:
@@ -80,8 +89,8 @@ App\Entity\Recipient:
     name: 'Valentin'
     group: '@group3'
 
-  recipient-thibaut:
-    name: 'Thibault'
+  recipient-thibaut-lasterre:
+    name: 'Tonton parrain'
     group: '@group4'
   recipient-aurelie:
     name: 'Aurélie'
@@ -110,6 +119,10 @@ App\Entity\Recipient:
   recipient-mamee:
     name: 'Mamée'
     group: '@group4'
-  recipient-papee:
+  recipient-pape:
     name: 'Papé'
     group: '@group4'
+
+  recipient-valerie:
+    name: 'Valérie'
+    group: '@group5'

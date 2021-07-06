@@ -388,3 +388,162 @@ App\Entity\Gift:
     label: 'Collier'
     recipients: ['@recipient-lora']
     eventYear: '2017'
+
+  gift2018-1:
+    label: 'Plateau de fromages'
+    recipients: ['@recipient-valerie']
+    eventYear: '2018'
+  gift2018-2:
+    label: 'Boule en verre décorative pour le jardin'
+    recipients: ['@recipient-guillaume', '@recipient-charline']
+    eventYear: '2018'
+  gift2018-3:
+    label: 'Patron de couture'
+    recipients: ['@recipient-aurelie']
+    eventYear: '2018'
+  gift2018-4:
+    label: 'Attrape-souris'
+    recipients: ['@recipient-arthur']
+    eventYear: '2018'
+  gift2018-6:
+    label: 'Ballon et panier de basket'
+    recipients: ['@recipient-junon']
+    eventYear: '2018'
+  gift2018-7:
+    label: 'Jeu de la grenouille'
+    recipients: ['@recipient-jules']
+    eventYear: '2018'
+  gift2018-8:
+    label: 'Cherche et trouve géant - les époques historiques'
+    recipients: ['@recipient-amaurine']
+    eventYear: '2018'
+  gift2018-9:
+    label: 'Attrape-plumes'
+    recipients: ['@recipient-jeanne']
+    eventYear: '2018'
+  gift2018-10:
+    label: 'Vieux Rhum'
+    recipients: ['@recipient-clementine', '@recipient-medhi']
+    eventYear: '2018'
+  gift2018-11:
+    label: 'Tasses à thé'
+    recipients: ['@recipient-mamie-des-vignes']
+    eventYear: '2018'
+  gift2018-12:
+    label: 'Fleurs de thé'
+    recipients: ['@recipient-juliette']
+    eventYear: '2018'
+  gift2018-13:
+    label: 'Chocolats'
+    recipients: ['@recipient-antoine']
+    eventYear: '2018'
+  gift2018-14:
+    label: 'BD cosmonaute'
+    recipients: ['@recipient-papi']
+    eventYear: '2018'
+  gift2018-15:
+    label: 'Orangettes'
+    recipients: ['@recipient-mamiflo']
+    eventYear: '2018'
+
+  gift2019-1:
+    label: 'Plat à tarte'
+    recipients: ['@recipient-charline']
+    eventYear: '2019'
+  gift2019-2:
+    label: 'Foulard "Papa pique et Maman Coud"'
+    recipients: ['@recipient-aurelie']
+    eventYear: '2019'
+  gift2019-3:
+    label: 'Livre "Les Grandes grandes vacances" tomes 1 et 2'
+    recipients: ['@recipient-arthur']
+    eventYear: '2019'
+  gift2019-4:
+    label: 'Rollers'
+    recipients: ['@recipient-junon']
+    eventYear: '2019'
+  gift2019-5:
+    label: 'Puzzle pays du monde'
+    recipients: ['@recipient-jules']
+    eventYear: '2019'
+  gift2019-6:
+    label: 'Rollers'
+    recipients: ['@recipient-amaurine']
+    eventYear: '2019'
+  gift2019-7:
+    label: 'Dessineo'
+    recipients: ['@recipient-jeanne']
+    eventYear: '2019'
+  gift2019-8:
+    label: 'Ruben Pat''Patrouille'
+    recipients: ['@recipient-roxane']
+    eventYear: '2019'
+  gift2019-9:
+    label: 'Livre avec CD'
+    recipients: ['@recipient-roxane']
+    eventYear: '2019'
+  gift2019-10:
+    label: 'Histoires à projeter'
+    recipients: ['@recipient-roxane']
+    eventYear: '2019'
+  gift2019-11:
+    label: 'Plantes aromatiques d''intérieur'
+    recipients: ['@recipient-antoine', '@recipient-juliette']
+    eventYear: '2019'
+  gift2019-12:
+    label: 'Coffret huile basilic ail'
+    recipients: ['@recipient-mamie-des-vignes']
+    eventYear: '2019'
+  gift2019-13:
+    label: 'Jeu de collaboration - création d''un feu d''artifice'
+    recipients: ['@recipient-clementine', '@recipient-medhi']
+    eventYear: '2019'
+  gift2019-14:
+    label: 'Box vins (cadeau commun)'
+    recipients: ['@recipient-papi']
+    eventYear: '2019'
+  gift2019-15:
+    label: 'Coffret chocolats'
+    recipients: ['@recipient-mamiflo']
+    eventYear: '2019'
+  gift2019-16:
+    label: 'Machine vintage Pop Corn'
+    recipients: ['@recipient-romain', '@recipient-amelie']
+    eventYear: '2019'
+  gift2019-17:
+    label: 'Assortiment chocolat / bonbons / pâtes à tartiner'
+    recipients: ['@recipient-thibaut-lacas']
+    eventYear: '2019'
+  gift2019-18:
+    label: 'Coffret de dipettes'
+    recipients: ['@recipient-fafa', '@recipient-dom']
+    eventYear: '2019'
+  gift2019-19:
+    label: 'Calendrier perpetuel d''anniversaires'
+    recipients: ['@recipient-pascale']
+    eventYear: '2019'
+  gift2019-20:
+    label: 'Livre d''activités'
+    recipients: ['@recipient-soan']
+    eventYear: '2019'
+  gift2019-21:
+    label: 'Jeu de quilles'
+    recipients: ['@recipient-nael']
+    eventYear: '2019'
+  gift2019-22:
+    label: 'Livre "La vie de Greta Calo"'
+    recipients: ['@recipient-michele']
+    eventYear: '2019'
+  gift2019-23:
+    label: 'Châle'
+    recipients: ['@recipient-lora']
+    eventYear: '2019'
+  gift2019-24:
+    label: 'Sabots échasse'
+    recipients: ['@recipient-simon']
+    eventYear: '2019'
+  gift2019-25:
+    label: 'Châle'
+    recipients: ['@recipient-valerie']
+    eventYear: '2019'
+
