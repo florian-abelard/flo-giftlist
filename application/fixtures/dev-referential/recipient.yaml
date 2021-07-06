@@ -1,0 +1,128 @@
+App\Entity\Recipient:
+  recipient-roxane:
+    name: 'Roxane'
+    group: '@group1'
+  recipient-colin:
+    name: 'Colin'
+    group: '@group1'
+  recipient-maud:
+    name: 'Maud'
+    group: '@group1'
+  recipient-florian:
+    name: 'Florian'
+    group: '@group1'
+
+  recipient-clementine:
+    name: 'Clémentine'
+    group: '@group2'
+  recipient-medhi:
+    name: 'Médhi'
+    group: '@group2'
+  recipient-juliette:
+    name: 'Juliette'
+    group: '@group2'
+  recipient-antoine:
+    name: 'Antoine'
+    group: '@group2'
+  recipient-papi:
+    name: 'Papi'
+    group: '@group2'
+  recipient-mamiflo:
+    name: 'Mamieflo'
+    group: '@group2'
+  recipient-pascale:
+    name: 'Pascale'
+    group: '@group2'
+  recipient-thibaut-lacas:
+    name: 'Thibaut'
+    group: '@group2'
+  recipient-romain:
+    name: 'Romain'
+    group: '@group2'
+  recipient-amelie:
+    name: 'Amélie'
+    group: '@group2'
+  recipient-soan:
+    name: 'Soan'
+    group: '@group2'
+  recipient-nael:
+    name: 'Naël'
+    group: '@group2'
+  recipient-fafa:
+    name: 'Fafa'
+    group: '@group2'
+  recipient-dom:
+    name: 'Dom'
+    group: '@group2'
+  recipient-mamie-des-vignes:
+    name: 'Mamie des vignes'
+    group: '@group2'
+
+  recipient-mamini:
+    name: 'Mamini'
+    group: '@group3'
+  recipient-papiphi:
+    name: 'Papiphi'
+    group: '@group3'
+  recipient-michele:
+    name: 'Michèle'
+    group: '@group3'
+  recipient-stephane:
+    name: 'Stéphane'
+    group: '@group3'
+  recipient-clement:
+    name: 'Clément'
+    group: '@group3'
+  recipient-segolene:
+    name: 'Ségolène'
+    group: '@group3'
+  recipient-simon:
+    name: 'Simon'
+    group: '@group3'
+  recipient-adele:
+    name: 'Adèle'
+    group: '@group3'
+  recipient-lora:
+    name: 'Lora'
+    group: '@group3'
+  recipient-valentin:
+    name: 'Valentin'
+    group: '@group3'
+
+  recipient-thibaut-lasterre:
+    name: 'Tonton parrain'
+    group: '@group4'
+  recipient-aurelie:
+    name: 'Aurélie'
+    group: '@group4'
+  recipient-arthur:
+    name: 'Arthur'
+    group: '@group4'
+  recipient-jules:
+    name: 'Jules'
+    group: '@group4'
+  recipient-jeanne:
+    name: 'Jeanne'
+    group: '@group4'
+  recipient-charline:
+    name: 'Charline'
+    group: '@group4'
+  recipient-guillaume:
+    name: 'Guillaume'
+    group: '@group4'
+  recipient-junon:
+    name: 'Junon'
+    group: '@group4'
+  recipient-amaurine:
+    name: 'Amaurine'
+    group: '@group4'
+  recipient-mamee:
+    name: 'Mamée'
+    group: '@group4'
+  recipient-pape:
+    name: 'Papé'
+    group: '@group4'
+
+  recipient-valerie:
+    name: 'Valérie'
+    group: '@group5'

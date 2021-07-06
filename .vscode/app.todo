@@ -1,17 +1,17 @@
 
 features :
     - Créer les migrations de données pour initialiser la prod
+    - Revoir le fixtures idea / gift en dev
+    - Mise en place authentification
     - Ajouter les asserts côté API
     - Icones "fermer" quand les menus sont ouverts
     - Homogénéiser les boutons (primary, secondary, ...)
     - Ajouter propriété "acheté" sur l'entité cadeau
     - Ajouter loader + attendre fin de chargement pour afficher certains éléments
     - Vuex pour la gestion des états des sidebars
-    - Mise en place authentification
-        - Gestion des erreurs (catch erreur via listener ?)
+    - Gestion des erreurs front (catch erreur via listener ?)
 
 issues :
-    - https sur lesmoflo.fr
     - fix: db-system-init @pending
     - Active classe sur les boutons du menu (tout désactivé actuellement)
     - make cache-clear sur env de prod
@@ -23,6 +23,5 @@ refactor :
     - refactor(vuejs): https://router.vuejs.org/guide/essentials/passing-props.html @pending
 
 improvements :
-    - chore(ci): on create tag pour production ? https://github.community/t5/GitHub-Actions/How-to-run-GitHub-Actions-Workflow-only-for-new-tags/td-p/29413/page/3
     - chore(docker): sécurisation container docker @pending
 
