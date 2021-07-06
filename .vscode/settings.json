@@ -1,0 +1,30 @@
+{
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#99ffff",
+        "activityBar.activeBackground": "#99ffff",
+        "activityBar.activeBorder": "#ff60ff",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#ff60ff",
+        "activityBarBadge.foreground": "#15202b",
+        "titleBar.activeBackground": "#66ffff",
+        "titleBar.inactiveBackground": "#66ffff99",
+        "titleBar.activeForeground": "#15202b",
+        "titleBar.inactiveForeground": "#15202b99",
+        "statusBar.background": "#66ffff",
+        "statusBarItem.hoverBackground": "#33ffff",
+        "statusBar.foreground": "#15202b"
+    },
+    "peacock.color": "#66ffff",
+    "sqltools.connections": [
+        {
+            "database": "giftlist",
+            "dialect": "PostgreSQL",
+            "name": "giftlist - local",
+            "password": "dPz648DdzA4fjIZez4",
+            "port": 5432,
+            "server": "db",
+            "username": "postgres"
+        }
+    ]
+}

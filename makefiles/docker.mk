@@ -5,19 +5,16 @@
 build: ##@docker build containers
 	docker-compose -f ${DOCKER_COMPOSE_FILE} build
 
-up: .env ##@docker build and start containers
-	docker-compose -f ${DOCKER_COMPOSE_FILE} up
+up-app: .env ##@docker build and start containers
+	docker-compose -f ${DOCKER_COMPOSE_FILE} up -d
 
 down: ##@docker stop and remove containers and volumes
 	docker-compose -f ${DOCKER_COMPOSE_FILE} down --volumes
 
 rebuild: build up ##@docker rebuild and start containers
 
-bash-web: ##@docker open a bash session in the web container
-	docker-compose -f ${DOCKER_COMPOSE_FILE} exec web /bin/bash
-
-bash-php: ##@docker open a bash session in the web container
-	docker-compose -f ${DOCKER_COMPOSE_FILE} exec php /bin/bash
+logs: ##@docker displays containers log
+	docker-compose logs -f -t --tail="5"
 
 #------------------------------------------------------------------------------
 
@@ -27,4 +24,4 @@ clean-docker: down ##@docker clean docker containers
 
 #------------------------------------------------------------------------------
 
-.PHONY: up build down rebuild connect clean-docker
+.PHONY: up build down rebuild connect clean-docker bash-web bash-php

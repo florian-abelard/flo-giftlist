@@ -1,0 +1,11 @@
+App\Entity\Group:
+  group1:
+    label: 'Famille Moflo'
+  group2:
+    label: 'Famille Abélard'
+  group3:
+    label: 'Famille Verlaguet'
+  group4:
+    label: 'Famille Lasterre'
+  group5:
+    label: 'Amis'

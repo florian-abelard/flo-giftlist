@@ -1,0 +1,36 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Test CI
+
+on:
+  push:
+    branches: [ stand_by ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      # This step uses GitHub's hello-world-javascript-action: https://github.com/actions/hello-world-javascript-action
+      - name: Hello world
+        uses: actions/hello-world-javascript-action@v1
+        with:
+          who-to-greet: 'Mona the Octocat'
+        id: hello
+
+      # This step prints an output (time) from the previous step's action.
+      - name: Echo the greeting's time
+        run: echo 'The time was ${{ steps.hello.outputs.time }}.'
+
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: "recette.cadeaux.lesmoflo.fr"
+          username: ${{ secrets.SERVER_STAGING_REMOTE_USER }}
+          key: ${{ secrets.SERVER_STAGING_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SERVER_STAGING_REMOTE_PORT }}
+          script: |
+            whoami
+            ls -l /var/www/deploy.test/

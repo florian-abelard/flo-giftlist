@@ -1,0 +1,5 @@
+App\Entity\ValueObject\Price:
+  price{1..10}:
+    __construct: ['<numberBetween(1, 80)>']
+  price{11..12}:
+    __construct: ['<randomFloat(2, 1, 50)>']
